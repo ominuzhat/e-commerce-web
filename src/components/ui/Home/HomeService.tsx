@@ -18,7 +18,7 @@ const HomeService = () => {
           />
           <div className="space-y-1">
             <p className="text-2xl font-semibold">Free Delivery</p>
-            <p className="text-sm text-gray-600">Orders Over $120</p>
+            <p className=" text-gray-600">Orders Over $120</p>
           </div>
         </div>
         <div className="lg:flex items-center space-x-3 text-center lg:text-left">
@@ -28,7 +28,7 @@ const HomeService = () => {
           />
           <div className="space-y-1">
             <p className="text-2xl font-semibold">Get Refund</p>
-            <p className="text-sm text-gray-600">Within 30 Days Returns</p>
+            <p className=" text-gray-600">Within 30 Days Returns</p>
           </div>
         </div>
         <div className="lg:flex items-center space-x-3 text-center lg:text-left">
@@ -38,7 +38,7 @@ const HomeService = () => {
           />
           <div className="space-y-1">
             <p className="text-2xl font-semibold">Safe Payment</p>
-            <p className="text-sm text-gray-600">100% Secure Payment</p>
+            <p className=" text-gray-600">100% Secure Payment</p>
           </div>
         </div>
         <div className="lg:flex items-center space-x-3 text-center lg:text-left">
@@ -48,7 +48,7 @@ const HomeService = () => {
           />
           <div className="space-y-1">
             <p className="text-2xl font-semibold">24/7 Support</p>
-            <p className="text-sm text-gray-600">Feel Free To Call Us</p>
+            <p className=" text-gray-600">Feel Free To Call Us</p>
           </div>
         </div>
       </div>
