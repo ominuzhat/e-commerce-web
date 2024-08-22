@@ -272,7 +272,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="">
+          <div>
             <p className="text-xl font-semibold">Newsletter</p>
             <div className="flex space-x-1 py-5">
               <p className="border border-baseColor w-3"></p>
@@ -284,14 +284,14 @@ const Footer = () => {
 
             <div className="py-3 relative">
               <input
-                className="py-2 ps-5 rounded-xl text-xl outline-none text-gray-400"
+                className="py-2 ps-5 rounded-xl outline-none text-gray-400 w-full"
                 placeholder="Email Address"
                 type="mail"
               />
               <FontAwesomeIcon
                 icon={faPaperPlane}
                 className="w-9 p-2 rounded-lg border bg-baseColor text-white absolute right-2 bottom-4 "
-              />{" "}
+              />
             </div>
 
             <p className="py-2 font-semibold">Get Our Mobile App</p>
