@@ -83,7 +83,13 @@
   background-size: cover;
   background-position: center;
 }
-
+.heroBgThree {
+  background-image: url("../../public/mini-banner-3.jpg");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
 .fixed-nav {
   position: fixed;
@@ -190,4 +196,75 @@ hr {
 
 .hide {
   display: none;
+}
+
+/* bubble button */
+
+.material-bubble:active {
+  transform: translateY(3px);
+}
+
+.material-bubble::after,
+.material-bubble::before {
+  border-radius: 30px;
+}
+
+.material-bubble {
+  background-color: transparent;
+  border: 1px solid rgba(226, 226, 226, 0.521);
+  color: #000000;
+  overflow: hidden;
+  position: relative;
+  transition: color 0.5s, transform 0.5s, background-color 0.5s;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  /* background-color: #f6f9fc; */
+}
+
+.material-bubble:hover {
+  color: #f0f0f0;
+  /* background-color: transparent; */
+}
+
+.material-bubble:hover img {
+  filter: brightness(0) invert(1); /* Makes the image white */
+  transition: filter 0.3s; /* Match other transition durations */
+  /* background-color: none; */
+}
+
+.material-bubble::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.2s, border 0.3s;
+}
+
+.material-bubble:hover::before {
+  opacity: 0;
+}
+
+.material-bubble::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  background-color: #11b76b;
+  border-color: transparent;
+  border-radius: 50%;
+  transform: translate(-35px, -34px) scale(0.2);
+  opacity: 0;
+  z-index: -1;
+  transition: transform 0.5s, opacity 0.5s, background-color 0.5s;
+}
+
+.material-bubble:hover::after {
+  opacity: 1;
+  transform-origin: 100px 100px;
+  transform: scale(1) translate(-44px, -40px);
 }
