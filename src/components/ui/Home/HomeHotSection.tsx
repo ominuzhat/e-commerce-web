@@ -2,8 +2,8 @@
 import {
   faArrowRight,
   faBagShopping,
-  faChartLine,
   faEye,
+  faFire,
   faHeart,
   faStar,
   faStarHalfAlt,
@@ -129,19 +129,20 @@ const trendingData = [
   },
 ];
 
-const HomeTrendingSection = () => {
+const HomeHotSection = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleOpenChange = (open: boolean) => {
+    console.log("first");
     setIsDrawerOpen(open);
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto py-20 lg:px-2 px-5">
+    <div className="max-w-screen-xl mx-auto py-16 lg:px-2 px-5">
       <div className="flex items-center justify-between">
         <div className="text-xl lg:text-3xl font-semibold flex items-center space-x-3">
-          <FontAwesomeIcon icon={faChartLine} className="text-baseColor" />
-          <p>Trending Items</p>
+          <FontAwesomeIcon icon={faFire} className="text-baseColor" />
+          <p>Hot Items</p>
         </div>
         <div>
           <Link href={"/"} className="lg:text-xl text-slate-700  ">
@@ -149,7 +150,7 @@ const HomeTrendingSection = () => {
           </Link>
         </div>
       </div>
-      <div className="py-10 ">
+      <div className="pt-10">
         <Carousel>
           <CarouselContent className="lg:gap-6 md:gap-4 sm:gap-2">
             {trendingData?.map((data) => (
@@ -262,4 +263,4 @@ const HomeTrendingSection = () => {
   );
 };
 
-export default HomeTrendingSection;
+export default HomeHotSection;

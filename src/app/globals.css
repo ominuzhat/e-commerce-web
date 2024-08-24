@@ -68,6 +68,27 @@
   }
 }
 
+.megaBg {
+  background-image: url("../../public/big-banner.jpg");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+.midBgOne {
+  background-image: url("../../public/mid-banner-1.jpg");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+.midBgTwo {
+  background-image: url("../../public/mid-banner-2.jpg");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
 .heroBgOne {
   background-image: url("../../public/mini-banner-1.jpg");
   width: 100%;

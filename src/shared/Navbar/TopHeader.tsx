@@ -6,9 +6,12 @@ import {
   faEnvelopeOpen,
   faHeadset,
 } from "@fortawesome/free-solid-svg-icons";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons/faFacebook";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons/faInstagram";
+
+import {
+  FaceBookIcon,
+  InstragramIcon,
+  TwiteerIcon,
+} from "@/common/CommonSociaIcon";
 
 const TopHeader = () => {
   return (
@@ -28,11 +31,11 @@ const TopHeader = () => {
             <span>Need Help?</span>
           </div>
         </div>
-        <div className="hidden lg:block flex items-center space-x-4 justify-center">
+        <div className="hidden lg:flex  items-center space-x-4 justify-center">
           <span>Follow Us :</span>
-          <FontAwesomeIcon icon={faFacebook} className="w-4 cursor-pointer" />
-          <FontAwesomeIcon icon={faTwitter} className="w-4 cursor-pointer" />
-          <FontAwesomeIcon icon={faInstagram} className="w-4 cursor-pointer" />
+          <FaceBookIcon />
+          <TwiteerIcon />
+          <InstragramIcon />
         </div>
       </div>
     </div>

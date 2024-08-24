@@ -8,22 +8,20 @@ import {
   faLocation,
   faPaperPlane,
   faPhone,
-  faRocket,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import {
-  faAppStore,
-  faFacebook,
-  faGooglePlay,
-  faInstagram,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+import { faAppStore, faGooglePlay } from "@fortawesome/free-brands-svg-icons";
 
 import visa from "../../../public/visa.svg";
 import mastercard from "../../../public/mastercard.svg";
 import amex from "../../../public/amex.svg";
 import discover from "../../../public/discover.svg";
 import paypal from "../../../public/paypal.svg";
+import {
+  FaceBookIcon,
+  InstragramIcon,
+  TwiteerIcon,
+} from "@/common/CommonSociaIcon";
 
 const Footer = () => {
   return (
@@ -331,18 +329,9 @@ const Footer = () => {
           </div>
           <div className="flex items-center space-x-4 justify-center">
             <span className="text-gray-400 ">Follow Us :</span>
-            <FontAwesomeIcon
-              icon={faFacebook}
-              className="w-8 text-white bg-baseColor rounded-full p-2 cursor-pointer"
-            />
-            <FontAwesomeIcon
-              icon={faTwitter}
-              className="w-8 text-white bg-baseColor rounded-full p-2 cursor-pointer"
-            />
-            <FontAwesomeIcon
-              icon={faInstagram}
-              className="w-8 text-white bg-baseColor rounded-full p-2 cursor-pointer"
-            />
+            <FaceBookIcon />
+            <TwiteerIcon />
+            <InstragramIcon />
           </div>
         </div>
       </div>
