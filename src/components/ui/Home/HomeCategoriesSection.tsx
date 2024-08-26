@@ -2,9 +2,9 @@
 import {
   faArrowRight,
   faBagShopping,
-  faChartLine,
   faEye,
   faHeart,
+  faMobile,
   faStar,
   faStarHalfAlt,
 } from "@fortawesome/free-solid-svg-icons";
@@ -12,13 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React, { useState } from "react";
 import p2 from "../../../../public/p2.png";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+
 import {
   Tooltip,
   TooltipContent,
@@ -27,8 +21,8 @@ import {
 } from "@/components/ui/tooltip";
 import Image from "next/image";
 import { Badge } from "../badge";
-
 import SingleItemsDrawer from "@/common/SingleItemsDrawer";
+import { Button } from "../button";
 
 const trendingData = [
   {
@@ -79,101 +73,84 @@ const trendingData = [
     price: "$80.00",
     stars: 4,
   },
-  {
-    id: 7,
-    image: p2,
-    badgeText: "Hot",
-    productName: "Fitness Tracker",
-    price: "$60.00",
-    stars: 4,
-  },
-  {
-    id: 8,
-    image: p2,
-    badgeText: "New",
-    productName: "Smartphone",
-    price: "$900.00",
-    stars: 5,
-  },
-  {
-    id: 9,
-    image: p2,
-    badgeText: "Sale",
-    productName: "Tablet",
-    price: "$300.00",
-    stars: 3,
-  },
-  {
-    id: 10,
-    image: p2,
-    badgeText: "Hot",
-    productName: "Laptop",
-    price: "$1200.00",
-    stars: 5,
-  },
-  {
-    id: 11,
-    image: p2,
-    badgeText: "New",
-    productName: "4K TV",
-    price: "$1000.00",
-    stars: 4,
-  },
-  {
-    id: 12,
-    image: p2,
-    badgeText: "10% off",
-    productName: "Camera",
-    price: "$700.00",
-    stars: 5,
-  },
 ];
 
-const HomeTrendingSection = () => {
+const mobileData = [
+  { id: 1, name: "Samsung", quantity: 10 },
+  { id: 2, name: "Apple", quantity: 15 },
+  { id: 3, name: "Xiaomi", quantity: 12 },
+  { id: 4, name: "Sony", quantity: 18 },
+  { id: 5, name: "Google", quantity: 5 },
+  { id: 6, name: "Vivo", quantity: 14 },
+  { id: 7, name: "Huawei", quantity: 17 },
+  { id: 8, name: "Techno", quantity: 8 },
+];
+
+const HomeCategoriesSection = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleOpenChange = (open: boolean) => {
     setIsDrawerOpen(open);
   };
-
   return (
-    <div className="max-w-screen-xl mx-auto pt-16 pb-12 lg:px-2 px-5">
-      <div className="flex items-center justify-between">
-        <div className="text-xl lg:text-3xl font-semibold flex items-center space-x-3">
-          <FontAwesomeIcon icon={faChartLine} className="text-baseColor" />
-          <p>Trending Items</p>
+    <div className="max-w-screen-xl mx-auto lg:pt-16 pb-12 lg:px-2 px-5">
+      <div className="lg:grid lg:grid-cols-4 gap-5">
+        <div className="border shadow-xl py-5 px-6 rounded-xl h-[35rem]">
+          <p className="text-xl lg:text-2xl font-semibold">Phone Brands</p>
+          <div className="my-5">
+            {mobileData?.map((item, index) => (
+              <div key={item?.id}>
+                <div className="flex justify-between items-center space-y-2 hover:text-baseColor cursor-pointer">
+                  <div className="flex items-center space-x-3 text-gray-700 hover:text-baseColor hover:ms-5 duration-300 hover:duration-300 ">
+                    <FontAwesomeIcon icon={faMobile} />
+                    <p className="font-medium">{item?.name}</p>
+                  </div>
+                  <p>({item?.quantity})</p>
+                </div>
+                {index < mobileData.length - 1 && <hr className="my-2" />}
+              </div>
+            ))}
+          </div>
+          <Button className="w-full"> View All Brands</Button>
         </div>
-        <div>
-          <Link href={"/"} className="lg:text-xl text-slate-700  ">
-            View More <FontAwesomeIcon icon={faArrowRight} />
-          </Link>
-        </div>
-      </div>
-      <div className="py-10">
-        <Carousel>
-          <CarouselContent className="lg:gap-6 md:gap-4 sm:gap-2">
+        <div className="lg:col-span-3  lg:mt-0 mt-10">
+          <div className="flex items-center justify-between">
+            <div className="text-xl lg:text-3xl font-semibold flex items-center space-x-3">
+              <FontAwesomeIcon icon={faMobile} className="text-baseColor" />
+              <p>Mobile Phones</p>
+            </div>
+            <div>
+              <Link href={"/"} className="lg:text-xl text-slate-700  ">
+                View More <FontAwesomeIcon icon={faArrowRight} />
+              </Link>
+            </div>
+          </div>
+          <div className="lg:grid lg:grid-cols-3 gap-5 mt-10 space-y-5 lg:space-y-0">
             {trendingData?.map((data) => (
-              <CarouselItem
-                className=" md:basis-1/2 lg:basis-1/4 bg-footerColor rounded-xl group "
-                key={data?.id}
-              >
+              <div className="bg-footerColor rounded-xl group" key={data?.id}>
                 <div className="relative">
-                  <Image src={data?.image} alt={"p2"} height={50} width={450} />
+                  <Image
+                    src={data?.image}
+                    alt="p2"
+                    height={50}
+                    width={450}
+                    className="w-full h-auto object-cover rounded-t-xl"
+                  />
                   <Badge
                     variant="outline"
-                    className={` ${
-                      data?.badgeText == "Hot"
+                    className={`${
+                      data?.badgeText === "Hot"
                         ? "bg-skyColor"
+                        : data?.badgeText === "Out of stock"
+                        ? "bg-redColor"
+                        : data?.badgeText === "10% off"
+                        ? "bg-yellowColor"
                         : "bg-secondaryColor"
-                    } 
-                    ${data?.badgeText == "Out of stack" && "bg-redColor"}   
-                    ${data?.badgeText == "10% off" && "bg-yellowColor"}   
-                    
-                    text-white px-4 py-1 absolute top-6 right-6 uppercase`}
+                    } text-white px-4 py-1 absolute top-6 right-6 uppercase`}
                   >
                     {data?.badgeText}
                   </Badge>
-                  <div className="space-x-2 absolute bottom-4 w-full left-[33%] transform  opacity-0 group-hover:opacity-100 group-hover:animate-fade-in-bottom">
+                  <div className="space-x-2 absolute bottom-4 w-full left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:animate-fade-in-bottom">
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
@@ -183,7 +160,6 @@ const HomeTrendingSection = () => {
                             onClick={() => setIsDrawerOpen(true)}
                           />
                         </TooltipTrigger>
-
                         <TooltipContent className="bg-secondaryColor text-white">
                           <p>Quick View</p>
                         </TooltipContent>
@@ -192,7 +168,6 @@ const HomeTrendingSection = () => {
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
-                          {" "}
                           <FontAwesomeIcon
                             icon={faHeart}
                             className="bg-secondaryColor text-white rounded-full p-2 w-4 h-4 cursor-pointer hover:bg-baseColor"
@@ -203,7 +178,6 @@ const HomeTrendingSection = () => {
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
-
                     <FontAwesomeIcon
                       icon={faHeart}
                       className="bg-secondaryColor text-white rounded-full p-2 w-4 h-4 cursor-pointer hover:bg-baseColor"
@@ -235,7 +209,6 @@ const HomeTrendingSection = () => {
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
-                          {" "}
                           <FontAwesomeIcon
                             icon={faBagShopping}
                             className="w-4 h-4 bg-secondaryColor text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"
@@ -248,18 +221,14 @@ const HomeTrendingSection = () => {
                     </TooltipProvider>
                   </div>
                 </div>
-              </CarouselItem>
+              </div>
             ))}
-          </CarouselContent>
-          <div className=" flex space-x-4">
-            <CarouselPrevious className="absolute -left-4 p-2 rounded-full bg-secondaryColor hover:bg-baseColor cursor-pointer text-white" />
-            <CarouselNext className="absolute -right-4 p-2 rounded-full bg-secondaryColor hover:bg-baseColor cursor-pointer text-white" />
           </div>
-        </Carousel>
+        </div>
       </div>
       <SingleItemsDrawer open={isDrawerOpen} onOpenChange={handleOpenChange} />
     </div>
   );
 };
 
-export default HomeTrendingSection;
+export default HomeCategoriesSection;

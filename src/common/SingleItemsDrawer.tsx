@@ -37,7 +37,7 @@ const SingleItemsDrawer = ({ open, onOpenChange }: any) => {
                   className="text-yellowColor"
                 />
               </div>
-              <div className="text-xl space-x- font-medium">
+              <div className="text-xl space-x-2 font-medium">
                 <span className="line-through">$690 </span>
                 <span className="text-baseColor">$650</span>
               </div>
