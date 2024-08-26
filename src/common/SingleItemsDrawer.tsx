@@ -18,13 +18,13 @@ import { FaceBookIcon, InstragramIcon, TwiteerIcon } from "./CommonSociaIcon";
 const SingleItemsDrawer = ({ open, onOpenChange }: any) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-fit p-6 border">
+      <DialogContent className="p-10 border  lg:max-w-[40%]">
         <DialogHeader>
-          <DialogDescription className="lg:flex items-center ">
-            <div>
-              <Image src={p2} alt={"p2"} height={50} width={200} />
+          <DialogDescription className="lg:grid grid-cols-2 ">
+            <div className=" flex justify-center items-center">
+              <Image src={p2} alt={"p2"} height={50} width={400} />
             </div>
-            <div className="space-y-3">
+            <div className="space-y-4 text-left">
               <DialogTitle className="text-xl font-semibold text-black">
                 Beats Bluetooth Earphones
               </DialogTitle>
@@ -37,25 +37,25 @@ const SingleItemsDrawer = ({ open, onOpenChange }: any) => {
                   className="text-yellowColor"
                 />
               </div>
-              <div className="text-xl space-x-2 font-medium">
+              <div className="text-xl space-x- font-medium">
                 <span className="line-through">$690 </span>
                 <span className="text-baseColor">$650</span>
               </div>
               <div className="flex space-x-7 text-base">
-                <div>
+                <div className="space-y-1">
                   <p>Brand </p>
                   <p>Category </p>
                   <p>Stock </p>
                   <p>Code </p>
                 </div>
-                <div className="flex space-x-2 ">
-                  <div>
+                <div className="flex space-x-4 ">
+                  <div className="space-y-1">
                     <p> :</p>
                     <p> :</p>
                     <p> :</p>
                     <p> :</p>
                   </div>
-                  <div className="font-semibold">
+                  <div className="font-semibold space-y-1">
                     <p>Beats</p>
                     <p>Headphones</p>
                     <p className="text-baseColor">Available</p>

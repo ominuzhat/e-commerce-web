@@ -4,7 +4,7 @@ import { Button } from "../button";
 
 const HomeMegaCollection = () => {
   return (
-    <div className="max-w-screen-xl mx-auto py-16 px-2">
+    <div className="max-w-screen-xl mx-auto pt-6 pb-10 px-2">
       <div className="rounded-3xl megaBg space-y-6 py-16 flex flex-col justify-center items-center text-center">
         <p className="tracking-widest font-bold ">Mega Collections</p>
         <p className="text-4xl font-semibold ">Huge Sale Up To 40% Off </p>{" "}

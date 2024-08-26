@@ -137,7 +137,7 @@ const HomeTrendingSection = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto py-20 lg:px-2 px-5">
+    <div className="max-w-screen-xl mx-auto pt-16 pb-12 lg:px-2 px-5">
       <div className="flex items-center justify-between">
         <div className="text-xl lg:text-3xl font-semibold flex items-center space-x-3">
           <FontAwesomeIcon icon={faChartLine} className="text-baseColor" />

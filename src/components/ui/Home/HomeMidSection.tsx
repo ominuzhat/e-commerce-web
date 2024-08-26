@@ -5,7 +5,7 @@ import { Button } from "../button";
 const HomeMidSection = () => {
   return (
     <div>
-      <div className="max-w-screen-xl mx-auto px-2">
+      <div className="max-w-screen-xl mx-auto px-2 py-10">
         <div className="lg:grid lg:grid-cols-2 gap-5 space-y-2 ">
           <div className="rounded-3xl midBgOne space-y-5 py-16 px-8 lg:px-16">
             <h1 className="text-green-600 text-base uppercase font-semibold tracking-widest border-t-2 border-b-2 border-baseColor py-1 w-[9.5rem]">
