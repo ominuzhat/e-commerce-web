@@ -68,6 +68,14 @@
   }
 }
 
+.breadcrumb {
+  background-image: url("../../public/breadcrumb.jpg");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 .megaBg {
   background-image: url("../../public/big-banner.jpg");
   width: 100%;

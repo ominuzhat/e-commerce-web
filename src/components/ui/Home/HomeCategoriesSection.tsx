@@ -150,7 +150,7 @@ const HomeCategoriesSection = () => {
                   >
                     {data?.badgeText}
                   </Badge>
-                  <div className="space-x-2 absolute bottom-4 w-full left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:animate-fade-in-bottom">
+                  <div className="space-x-2 absolute bottom-4  w-full left-1/3 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:animate-fade-in-bottom">
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>

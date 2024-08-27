@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { AOSInit } from "@/lib/aos";
+import BreadCrumb from "@/common/BreadCrumb";
 
 const fontSans = Inter({
   subsets: ["latin"],

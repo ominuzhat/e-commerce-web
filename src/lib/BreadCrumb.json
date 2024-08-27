@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "slug": "/service",
+    "name": "SERVICE",
+    "section_down_scroll": "#service-section"
+  },
+  {
+    "id": "2",
+    "name": "Gallery",
+    "slug": "/gallery",
+    "section_down_scroll": "#service-section"
+  },
+  {
+    "id": "3",
+    "name": "About",
+    "slug": "/about",
+    "section_down_scroll": "#service-section"
+  },
+  {
+    "id": "4",
+    "name": "Contact Us",
+    "slug": "/contact",
+    "section_down_scroll": "#service-section"
+  }
+]
