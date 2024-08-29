@@ -1,9 +1,13 @@
-import { faArrowRight, faFire } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 import React from "react";
-import p2 from "../../../../public/p2.png";
-import CommonCardWithCarousel from "@/components/CommonCardWithCarousel";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import p2 from "@/../../public/p2.png";
+import CommonCard from "@/components/CommonCard";
 
 const trendingData = [
   {
@@ -104,24 +108,30 @@ const trendingData = [
   },
 ];
 
-const HomeHotSection = () => {
+const ShopList = () => {
   return (
-    <div className="max-w-screen-xl mx-auto  lg:px-2 px-5">
-      <div className="flex items-center justify-between">
-        <div className="text-xl lg:text-3xl font-semibold flex items-center space-x-3">
-          <FontAwesomeIcon icon={faFire} className="text-baseColor" />
-          <p>Hot Items</p>
-        </div>
-        <div>
-          <Link href={"/"} className="lg:text-xl text-slate-700  ">
-            View More <FontAwesomeIcon icon={faArrowRight} />
-          </Link>
-        </div>
+    <div className=" space-y-3 ">
+      <div className="flex items-center space-x-2 text-gray-400 ">
+        <h1>Sort By:</h1>
+        <Select>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Default Sorting" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="default-sorting">Default Sorting</SelectItem>
+            <SelectItem value="latest-items">Latest Items</SelectItem>
+            <SelectItem value="best-seller-items">Best Seller Items</SelectItem>
+            <SelectItem value="LTH">Price- Low To High</SelectItem>
+            <SelectItem value="HTL">Price- High To Low</SelectItem>
+          </SelectContent>
+        </Select>
+        <p>Showing 1-10 of 50 Results</p>
       </div>
-
-      <CommonCardWithCarousel trendingData={trendingData} />
+      <div>
+        <CommonCard trendingData={trendingData} />
+      </div>
     </div>
   );
 };
 
-export default HomeHotSection;
+export default ShopList;

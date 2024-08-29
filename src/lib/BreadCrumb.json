@@ -7,8 +7,8 @@
   },
   {
     "id": "2",
-    "name": "Gallery",
-    "slug": "/gallery",
+    "name": "Shop",
+    "slug": "/shop",
     "section_down_scroll": "#service-section"
   },
   {

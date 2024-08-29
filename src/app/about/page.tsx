@@ -4,6 +4,12 @@ import MainLayout from "@/layout/MainLayout";
 import React from "react";
 import ExpertTeam from "./ExpertTeam";
 import AboutSection from "./AboutSection";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About | Geo Mart",
+  description: "About | Geo Mart",
+};
 
 const AboutPage = () => {
   return (

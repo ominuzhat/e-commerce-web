@@ -5,8 +5,6 @@ import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight, faHomeAlt } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
-import { FaceBookIcon } from "./CommonSociaIcon";
 
 const BreadCrumb = () => {
   const pathname = usePathname();

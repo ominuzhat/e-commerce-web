@@ -46,7 +46,7 @@ const nav_links = [
   },
   {
     display: "Shop",
-    path: "/products",
+    path: "/shop",
   },
   {
     display: "Cart",

@@ -9,7 +9,13 @@ import {
   faMapLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Contact Us | Geo Mart",
+  description: "Contact Us | Geo Mart",
+};
 
 const ContactPage = () => {
   return (
