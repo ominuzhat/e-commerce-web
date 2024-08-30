@@ -26,11 +26,21 @@ export const TwiteerIcon = () => {
     </div>
   );
 };
+
 export const InstragramIcon = () => {
   return (
     <div>
       <Link href={"/"}>
         <FontAwesomeIcon icon={faInstagram} className="w-4 cursor-pointer" />{" "}
+      </Link>
+    </div>
+  );
+};
+export const CommonIcon = ({ iconName }: any) => {
+  return (
+    <div>
+      <Link href={"/"}>
+        <FontAwesomeIcon icon={iconName} className="w-4 cursor-pointer" />{" "}
       </Link>
     </div>
   );
