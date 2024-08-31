@@ -25,7 +25,7 @@ const ProductDescription = () => {
         </p>
       </div>
 
-      <div className="my-5 flex items-center space-x-40">
+      <div className="my-5 lg:flex items-center lg:space-x-40 space-y-5 lg:space-y-0">
         <div className="space-y-2">
           <p className="text-xl font-medium">Features</p>
           <ul className="space-y-2 list-disc pl-5 text-gray-500">

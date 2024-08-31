@@ -50,11 +50,11 @@ const ProductInformation = () => {
       <div className="space-y-3">
         <h1 className="text-2xl font-semibold">Bluetooth Earphones</h1>
         <div className="flex space-x-1 text-baseColor">
-          <CommonIcon iconName={faStar} />
-          <CommonIcon iconName={faStar} />
-          <CommonIcon iconName={faStar} />
-          <CommonIcon iconName={faStar} />
-          <CommonIcon iconName={faStar} />
+          <CommonIcon icon={faStar} />
+          <CommonIcon icon={faStar} />
+          <CommonIcon icon={faStar} />
+          <CommonIcon icon={faStar} />
+          <CommonIcon icon={faStar} />
         </div>
         <div className="text-xl space-x-3 font-medium flex items-center">
           <span className="line-through text-gray-500">$690 </span>

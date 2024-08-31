@@ -49,10 +49,6 @@ const nav_links = [
     path: "/shop",
   },
   {
-    display: "Cart",
-    path: "/cart",
-  },
-  {
     display: "About",
     path: "/about",
   },
@@ -178,7 +174,7 @@ const Navbar = () => {
                   key={index}
                   className={`${
                     pathname === navlinks?.path
-                      ? " transform hover:scale-105 duration-500 bg-baseColor text-white px-3 py-2 rounded-lg"
+                      ? " transform hover:scale-105 duration-500 text-baseColor  rounded-lg"
                       : "hover:text-baseColor transform hover:scale-105 duration-500 "
                   }`}
                 >

@@ -8,8 +8,8 @@ const fontSans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "E-Commerce Profile",
-  description: "E-Commerce Profile",
+  title: "Profile | Geo Mart",
+  description: "Profile | Geo Mart",
 };
 
 export default function ProfileLayout({
@@ -25,7 +25,6 @@ export default function ProfileLayout({
           fontSans.variable
         )}
       >
-        <h1>aa</h1>
         {children}
       </body>
     </html>

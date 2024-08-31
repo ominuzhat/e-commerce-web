@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import React from "react";
 import ProductsDetails from "./ProductPage";
 import HomeCouponSection from "@/components/ui/Home/HomeCouponSection";
+import RelatedProductItems from "@/components/RelatedItems";
 
 export const metadata: Metadata = {
   title: "Shop | Geo Mart",
@@ -15,6 +16,7 @@ const ShopItemsDetails = () => {
       <div className="max-w-screen-xl mx-auto py-20 px-2 space-y-4">
         <ProductsDetails />
       </div>
+      <RelatedProductItems />
       <HomeCouponSection />
     </MainLayout>
   );

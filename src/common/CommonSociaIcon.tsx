@@ -36,11 +36,11 @@ export const InstragramIcon = () => {
     </div>
   );
 };
-export const CommonIcon = ({ iconName }: any) => {
+export const CommonIcon = ({ icon }: any) => {
   return (
     <div>
       <Link href={"/"}>
-        <FontAwesomeIcon icon={iconName} className="w-4 cursor-pointer" />{" "}
+        <FontAwesomeIcon icon={icon} className="w-4 cursor-pointer" />{" "}
       </Link>
     </div>
   );

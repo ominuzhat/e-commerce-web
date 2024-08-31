@@ -22,5 +22,11 @@
     "name": "Contact Us",
     "slug": "/contact",
     "section_down_scroll": "#service-section"
+  },
+  {
+    "id": "5",
+    "name": "Profile",
+    "slug": "/profile",
+    "section_down_scroll": "#service-section"
   }
 ]
