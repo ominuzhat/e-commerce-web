@@ -1,7 +1,7 @@
 import { faArrowRight, faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import React from "react";
+
 import p2 from "../../../../public/p2.png";
 
 import CommonCardWithCarousel from "@/components/CommonCardWithCarousel";

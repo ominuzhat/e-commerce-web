@@ -1,5 +1,5 @@
 import CommonTitle from "@/common/CommonTitle";
-import React from "react";
+
 import dress from "../../../../public/dress.svg";
 import Image from "next/image";
 

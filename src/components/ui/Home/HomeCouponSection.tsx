@@ -1,7 +1,7 @@
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import React from "react";
+
 import coupon1 from "../../../../public/cupon-1.png";
 import coupon2 from "../../../../public/cupom-2.png";
 

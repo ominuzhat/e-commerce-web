@@ -1,8 +1,7 @@
 "use client";
-import React from "react";
-import com from "../../../public/com-1.jpg";
+
+import com from "../../../../public/com-1.jpg";
 import Image from "next/image";
-import { CommonIcon } from "@/common/CommonSociaIcon";
 import {
   faUser,
   faListAlt,
@@ -18,6 +17,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const items = [
   {
@@ -30,7 +30,7 @@ const items = [
     name: "My Order List",
     icon: faListAlt,
     quantity: "02",
-    path: "/",
+    path: "/profile/my-order",
   },
   {
     name: "My Wishlist",
@@ -90,10 +90,9 @@ const items = [
 
 const ProfileNavber = () => {
   const pathname = usePathname();
-  console.log("ee", pathname);
 
   return (
-    <div className="border py-5 px-2 space-y-2">
+    <div className=" rounded-xl shadow-lg py-8 px-4 space-y-2">
       <div className="space-y-2">
         <Image
           src={com}
@@ -114,6 +113,31 @@ const ProfileNavber = () => {
           <Link
             href={item?.path}
             key={index}
+            className={`flex justify-between items-center  ${
+              pathname === item?.path
+                ? "bg-baseColor text-white px-4 py-2 rounded-lg"
+                : "text-gray-500 px-4 py-2 hover:text-baseColor hover:translate-x-2 duration-300 hover:duration-300"
+            } `}
+          >
+            {item && (
+              <p className="font-medium space">
+                <FontAwesomeIcon icon={item.icon} className="me-3" />
+                {item.name}
+              </p>
+            )}
+
+            {item?.quantity && (
+              <p className="bg-red-200 text-sm text-red-500 font-semibold p-1 rounded-full">
+                {item?.quantity}
+              </p>
+            )}
+          </Link>
+        ))}
+
+        {/* {items?.map((item, index) => (
+          <Link
+            href={item?.path}
+            key={index}
             className={`${
               pathname === item?.path
                 ? " transform hover:scale-105 duration-500 text-baseColor bg-red-600 rounded-lg"
@@ -127,9 +151,9 @@ const ProfileNavber = () => {
               </div>
               <p> {item?.quantity && `(${item?.quantity})`}</p>
             </div>
-            {/* {index < mobileData.length - 1 && <hr className="my-2" />} */}
+            {index < mobileData.length - 1 && <hr className="my-2" />}
           </Link>
-        ))}
+        ))} */}
       </div>
     </div>
   );

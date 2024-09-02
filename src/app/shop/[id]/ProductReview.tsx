@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+
 import comment from "@/../../public/com-1.jpg";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 import { CommonIcon } from "@/common/CommonSociaIcon";

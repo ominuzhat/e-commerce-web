@@ -1,7 +1,7 @@
 import BreadCrumb from "@/common/BreadCrumb";
 import MainLayout from "@/layout/MainLayout";
 import { Metadata } from "next";
-import React from "react";
+
 import ShopList from "./ShopList";
 import SearchComponent from "./SearchComponent";
 import HomeCouponSection from "@/components/ui/Home/HomeCouponSection";

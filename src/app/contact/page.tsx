@@ -10,7 +10,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
-import React from "react";
 
 export const metadata: Metadata = {
   title: "Contact Us | Geo Mart",

@@ -28,5 +28,11 @@
     "name": "Profile",
     "slug": "/profile",
     "section_down_scroll": "#service-section"
+  },
+  {
+    "id": "6",
+    "name": "Profile | My Order",
+    "slug": "/profile/my-order",
+    "section_down_scroll": "#service-section"
   }
 ]

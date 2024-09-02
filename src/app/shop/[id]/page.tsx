@@ -1,6 +1,6 @@
 import MainLayout from "@/layout/MainLayout";
 import { Metadata } from "next";
-import React from "react";
+
 import ProductsDetails from "./ProductPage";
 import HomeCouponSection from "@/components/ui/Home/HomeCouponSection";
 import RelatedProductItems from "@/components/RelatedItems";

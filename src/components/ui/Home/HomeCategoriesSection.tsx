@@ -1,7 +1,7 @@
 import { faArrowRight, faMobile } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import React from "react";
+
 import p2 from "../../../../public/p2.png";
 import { Button } from "../button";
 import CommonCard from "@/components/CommonCard";

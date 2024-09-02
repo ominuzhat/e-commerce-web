@@ -1,4 +1,3 @@
-import React from "react";
 import team1 from "../../../public/team1.jpg";
 import Image from "next/image";
 import {

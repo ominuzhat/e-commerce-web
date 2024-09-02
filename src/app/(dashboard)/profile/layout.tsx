@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
+import BreadCrumb from "@/common/BreadCrumb";
+import ProfileNavber from "./ProfileNavber";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -25,7 +27,11 @@ export default function ProfileLayout({
           fontSans.variable
         )}
       >
-        {children}
+        <BreadCrumb />
+        <div className="max-w-screen-xl mx-auto lg:grid lg:grid-cols-3 gap-5 my-10 space-y-5 lg:space-y-0 px-2">
+          <ProfileNavber />
+          <div className="lg:col-span-2">{children}</div>
+        </div>
       </body>
     </html>
   );

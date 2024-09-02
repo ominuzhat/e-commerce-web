@@ -1,4 +1,3 @@
-import React from "react";
 import banner from "../../../../public/bigBannerHome.jpg";
 import Image from "next/image";
 import Link from "next/link";

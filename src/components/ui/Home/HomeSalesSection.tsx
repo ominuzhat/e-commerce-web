@@ -1,4 +1,3 @@
-import React from "react";
 import p2 from "../../../../public/p2.png";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
