@@ -92,7 +92,7 @@ const ProfileNavber = () => {
   const pathname = usePathname();
 
   return (
-    <div className=" rounded-xl shadow-lg py-8 px-4 space-y-2">
+    <div className=" rounded-xl shadow-lg py-8 px-4 space-y-2 h-fit">
       <div className="space-y-2">
         <Image
           src={com}

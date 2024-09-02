@@ -41,7 +41,7 @@ const ProductReview = () => {
                 <div>
                   <p className="font-semibold">{review.name}</p>
                   <div className="flex space-x-2 text-baseColor">
-                    <CommonIcon icon={faClock} />
+                    <CommonIcon icon={faClock} className="" />
                     <p>{review.date}</p>
                   </div>
                 </div>

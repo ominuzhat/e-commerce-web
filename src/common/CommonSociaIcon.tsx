@@ -35,11 +35,21 @@ export const InstragramIcon = () => {
     </div>
   );
 };
-export const CommonIcon = ({ icon }: any) => {
+
+interface CommonIconProps {
+  icon: any;
+  className?: string; // Rename the prop to className
+}
+
+export const CommonIcon: React.FC<CommonIconProps> = ({ icon, className }) => {
   return (
     <div>
       <Link href={"/"}>
-        <FontAwesomeIcon icon={icon} className="w-4 cursor-pointer" />{" "}
+        <FontAwesomeIcon
+          icon={icon}
+          className={` ${className} ? ${className} :  'w-4 cursor-pointer'`}
+          // className="w-4 cursor-pointer"
+        />{" "}
       </Link>
     </div>
   );
