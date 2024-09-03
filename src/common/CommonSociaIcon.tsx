@@ -44,13 +44,11 @@ interface CommonIconProps {
 export const CommonIcon: React.FC<CommonIconProps> = ({ icon, className }) => {
   return (
     <div>
-      <Link href={"/"}>
-        <FontAwesomeIcon
-          icon={icon}
-          className={` ${className} ? ${className} :  'w-4 cursor-pointer'`}
-          // className="w-4 cursor-pointer"
-        />{" "}
-      </Link>
+      <FontAwesomeIcon
+        icon={icon}
+        className={` ${className} ? ${className} :  'w-4 cursor-pointer'`}
+        // className="w-4 cursor-pointer"
+      />{" "}
     </div>
   );
 };

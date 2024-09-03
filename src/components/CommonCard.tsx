@@ -52,7 +52,7 @@ const CommonCard = ({ trendingData }: any) => {
               >
                 {data?.badgeText}
               </Badge>
-              <div className="space-x-2 absolute bottom-4  w-full left-1/3 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:animate-fade-in-bottom">
+              <div className="space-x-2 absolute bottom-4  w-full left-[30%] transform -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:animate-fade-in-bottom">
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger>
@@ -67,19 +67,27 @@ const CommonCard = ({ trendingData }: any) => {
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
+
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger>
                       <FontAwesomeIcon
                         icon={faHeart}
-                        className="bg-secondaryColor text-white rounded-full p-2 w-4 h-4 cursor-pointer hover:bg-baseColor"
+                        className={` ${
+                          data?.isWishList ? " text-red-500" : " text-white "
+                        }   rounded-full p-2 w-4 h-4 cursor-pointer bg-secondaryColor hover:bg-baseColor`}
                       />
                     </TooltipTrigger>
                     <TooltipContent className="bg-secondaryColor text-white">
-                      <p>Add to Wishlist</p>
+                      <p>
+                        {data?.isWishList
+                          ? "Remove to Wishlist"
+                          : "Add to Wishlist"}
+                      </p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
+
                 <FontAwesomeIcon
                   icon={faHeart}
                   className="bg-secondaryColor text-white rounded-full p-2 w-4 h-4 cursor-pointer hover:bg-baseColor"

@@ -36,50 +36,28 @@ const items = [
     name: "My Wishlist",
     icon: faHeart,
     quantity: "02",
-    path: "/",
+    path: "/profile/my-wishlist",
   },
   {
     name: "Address List",
     icon: faAddressBook,
     quantity: null,
-    path: "/",
+    path: "/profile/address-list",
   },
-  {
-    name: "Support Tickets",
-    icon: faTicketAlt,
-    quantity: "02",
-    path: "/",
-  },
+
   {
     name: "Track My Order",
     icon: faShippingFast,
     quantity: null,
-    path: "/",
+    path: "/profile/track-my-order",
   },
-  {
-    name: "Payment Methods",
-    icon: faCreditCard,
-    quantity: null,
-    path: "/",
-  },
-  {
-    name: "Notification",
-    icon: faBell,
-    quantity: "02",
-    path: "/",
-  },
-  {
-    name: "Messages",
-    icon: faEnvelope,
-    quantity: "02",
-    path: "/",
-  },
-  {
-    name: "Settings",
-    icon: faCog,
-    quantity: null,
-    path: "/",
-  },
+  // {
+  //   name: "Notification",
+  //   icon: faBell,
+  //   quantity: "02",
+  //   path: "/profile/notification",
+  // },
+
   {
     name: "Logout",
     icon: faSignOutAlt,

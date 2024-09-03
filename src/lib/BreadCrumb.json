@@ -34,5 +34,23 @@
     "name": "Profile | My Order",
     "slug": "/profile/my-order",
     "section_down_scroll": "#service-section"
+  },
+  {
+    "id": "7",
+    "name": "Profile | My WishList",
+    "slug": "/profile/my-wishlist",
+    "section_down_scroll": "#service-section"
+  },
+  {
+    "id": "8",
+    "name": "Profile | My Address",
+    "slug": "/profile/address-list",
+    "section_down_scroll": "#service-section"
+  },
+  {
+    "id": "9",
+    "name": "Profile | Track My Order",
+    "slug": "/profile/track-my-order",
+    "section_down_scroll": "#service-section"
   }
 ]
