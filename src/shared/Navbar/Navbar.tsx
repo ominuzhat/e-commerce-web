@@ -181,7 +181,9 @@ const Navbar = () => {
                   {navlinks.display}
                 </Link>
               ))}
-              <Button>Sign Up</Button>
+              <Link href={"/login"}>
+                <Button>Sign Up</Button>
+              </Link>
             </div>
           </div>
 

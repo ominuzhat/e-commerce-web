@@ -7,7 +7,6 @@ const NotFound = () => {
   const router = useRouter();
 
   const handleGoBack = () => {
-    console.log("Button clicked"); // Updated log message
     router.back();
   };
 

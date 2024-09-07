@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { AOSInit } from "@/lib/aos";
 import BreadCrumb from "@/common/BreadCrumb";
+import ProgressBarComponent from "@/lib/PrograssBar";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
       >
         <AOSInit />
         {children}
+        <ProgressBarComponent />
       </body>
     </html>
   );
