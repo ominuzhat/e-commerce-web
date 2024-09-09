@@ -30,6 +30,12 @@
     "section_down_scroll": "#service-section"
   },
   {
+    "id": "5",
+    "name": "Return Policy",
+    "slug": "/return-policy",
+    "section_down_scroll": "#service-section"
+  },
+  {
     "id": "6",
     "name": "Profile | My Order",
     "slug": "/profile/my-order",

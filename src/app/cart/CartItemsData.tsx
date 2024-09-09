@@ -67,18 +67,21 @@ const CartItemsData = ({ CartListData }: any) => {
               <TableCell className="font-medium">{cart.price}</TableCell>
               <TableCell className="text-right font-medium">
                 <div className="flex items-center space-x-5">
-                  <Button
+                  <button
                     onClick={handleDecrement}
-                    className={` rounded-full ${
-                      cart?.quantity > 0 ? "bg-baseColor " : "bg-gray-500 "
+                    className={`border rounded-full px-3 py-1 text-baseColor text-xl ${
+                      cart?.quantity > 0 ? "bg-footerColor " : "bg-gray-500 "
                     }`}
                   >
                     -
-                  </Button>
+                  </button>
                   <p className="font-bold">{cart?.quantity}</p>
-                  <Button onClick={handleIncrement} className="rounded-full ">
+                  <button
+                    onClick={handleIncrement}
+                    className={` rounded-full px-3 py-1 text-baseColor text-xl bg-footerColor border `}
+                  >
                     +
-                  </Button>
+                  </button>
                 </div>
               </TableCell>{" "}
               <TableCell className="font-medium">{cart.price}</TableCell>

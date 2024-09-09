@@ -106,20 +106,20 @@ const Footer = () => {
                   href={"/contact"}
                   className="flex space-x-3 items-center hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:border-b border-baseColor w-40 pb-2  hover:duration-300  text-gray-400"
                 >
-                  <span>Ccontact us</span>
+                  <span>Contact us</span>
                 </Link>
               </li>
               <li>
                 <Link
-                  href={"/about"}
+                  href={"/return-policy"}
                   className="flex space-x-3 items-center hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:border-b border-baseColor w-40 pb-2  hover:duration-300  text-gray-400"
                 >
-                  <span>Testimonials</span>
+                  <span>Return Policy</span>
                 </Link>
               </li>
               <li>
                 <Link
-                  href={"/"}
+                  href={"/terms-of-service"}
                   className="flex space-x-3 items-center hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:border-b border-baseColor w-40 pb-2  hover:duration-300  text-gray-400"
                 >
                   <span>Terms Of Service</span>
@@ -127,7 +127,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href={"/about"}
+                  href={"/privacy-policy"}
                   className="flex space-x-3 items-center hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:border-b border-baseColor w-40 pb-2  hover:duration-300  text-gray-400"
                 >
                   <span>Privacy policy</span>
