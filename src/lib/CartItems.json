@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Xamaha R15 Red",
+    "price": "$100",
+    "description": "Product description 1",
+    "image": "https://live.themewild.com/goemart/assets/img/product/p1.png",
+    "quantity": 2,
+    "type": "Headphone",
+    "color": "black"
+  },
+  {
+    "name": "Xamaha R15 Red",
+    "price": "$600",
+    "description": "Product description 1",
+    "image": "https://live.themewild.com/goemart/assets/img/product/p1.png",
+    "quantity": 20,
+    "type": "Headphone",
+    "color": "black"
+  },
+  {
+    "name": "Xamaha R15 Red",
+    "price": "$400",
+    "description": "Product description 1",
+    "image": "https://live.themewild.com/goemart/assets/img/product/p1.png",
+    "quantity": 1,
+    "type": "Headphone",
+    "color": "black"
+  },
+  {
+    "name": "Xamaha R15 Red",
+    "price": "$90",
+    "description": "Product description 1",
+    "image": "https://live.themewild.com/goemart/assets/img/product/p1.png",
+    "quantity": 3,
+    "type": "Headphone",
+    "color": "black"
+  },
+  {
+    "name": "Xamaha R15 Red",
+    "price": "$50",
+    "description": "Product description 1",
+    "image": "https://live.themewild.com/goemart/assets/img/product/p1.png",
+    "quantity": 5,
+    "type": "Headphone",
+    "color": "black"
+  }
+]

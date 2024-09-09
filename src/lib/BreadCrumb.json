@@ -52,5 +52,11 @@
     "name": "Profile | Track My Order",
     "slug": "/profile/track-my-order",
     "section_down_scroll": "#service-section"
+  },
+  {
+    "id": "10",
+    "name": "Cart",
+    "slug": "/cart",
+    "section_down_scroll": "#service-section"
   }
 ]
