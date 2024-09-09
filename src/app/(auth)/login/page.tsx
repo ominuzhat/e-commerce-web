@@ -40,7 +40,7 @@ const Login = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="flex flex-col justify-center items-center px-10 py-10 space-y-4">
+        <div className="flex flex-col justify-center items-center  px-10 py-10 space-y-4">
           <Image src={logo} alt={"logo"} width={200} height={500} />
           <p className=" text-gray-500 ">Login with your goemart account</p>
           <hr className="bg-gray-500 w-full" />
@@ -88,7 +88,10 @@ const Login = () => {
                 <span className="text-red-500">{errors.Password.message}</span>
               )}
             </div>
-            <Link href={"/"} className="flex justify-end my-4 text-baseColor">
+            <Link
+              href={"/forgot-password"}
+              className="flex justify-end my-4 text-baseColor"
+            >
               Forgot Password?
             </Link>
 

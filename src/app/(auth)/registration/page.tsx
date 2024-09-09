@@ -10,7 +10,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
-type TLogin = {
+type TRegistration = {
   name: string;
   email: string;
   Password: string;
@@ -24,8 +24,8 @@ const Registration = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<TLogin>();
-  const onSubmit: SubmitHandler<TLogin> = (data) => console.log(data);
+  } = useForm<TRegistration>();
+  const onSubmit: SubmitHandler<TRegistration> = (data) => console.log(data);
 
   console.log(watch("email")); // watch input value by passing the name of it
 
