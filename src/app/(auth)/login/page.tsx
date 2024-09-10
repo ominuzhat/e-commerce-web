@@ -9,14 +9,20 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Link from "next/link";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { signIn } from "next-auth/react";
+import { LoginUser } from "@/utils/actions/loginUser";
+import { toast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import { useRouter } from "next/navigation";
 
-type TLogin = {
+export type TLogin = {
   email: string;
   Password: string;
 };
 
 const Login = () => {
   const [password, setPassword] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -24,7 +30,26 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm<TLogin>();
-  const onSubmit: SubmitHandler<TLogin> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<TLogin> = async (data: TLogin) => {
+    console.log(data);
+    try {
+      const res = await LoginUser(data);
+      console.log(res);
+      if (res.success) {
+        localStorage.setItem("accessToken", res.accessToken);
+        toast({
+          title: `Hi, ${res?.data?.name}!`,
+          description: "User Registration Success",
+          action: (
+            <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+          ),
+        });
+        router.push("/dashboard");
+      }
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  };
 
   console.log(watch("email")); // watch input value by passing the name of it
 
@@ -97,7 +122,15 @@ const Login = () => {
 
             <Button className="w-full">Submit</Button>
           </form>
-          <Button variant={"ghost"} className="space-x-1 ">
+          <Button
+            variant={"ghost"}
+            className="space-x-1"
+            onClick={() =>
+              signIn("google", {
+                callbackUrl: "http://localhost:3000/profile",
+              })
+            }
+          >
             <FontAwesomeIcon className="cursor-pointer w-5 " icon={faGoogle} />
             <p>Connect With Google</p>
           </Button>

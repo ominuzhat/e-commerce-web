@@ -7,17 +7,13 @@ import {
   faListAlt,
   faHeart,
   faAddressBook,
-  faTicketAlt,
   faShippingFast,
-  faCreditCard,
-  faBell,
-  faEnvelope,
-  faCog,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { signOut } from "next-auth/react";
 
 const items = [
   {
@@ -58,30 +54,41 @@ const items = [
   //   path: "/profile/notification",
   // },
 
-  {
-    name: "Logout",
-    icon: faSignOutAlt,
-    quantity: null,
-    path: "/",
-  },
+  // {
+  //   name: "Logout",
+  //   icon: faSignOutAlt,
+  //   quantity: null,
+  //   path: "/",
+  // },
 ];
 
-const ProfileNavber = () => {
+type TUserProps = {
+  user?: {
+    name?: string | null | undefined;
+    email?: string | null | undefined;
+    image?: string | null | undefined;
+  };
+};
+
+const ProfileNavber = ({ session }: { session: TUserProps | null }) => {
   const pathname = usePathname();
 
   return (
     <div className=" rounded-xl shadow-lg py-8 px-4 space-y-2 h-fit">
       <div className="space-y-2">
         <Image
-          src={com}
+          src={session?.user?.image || com}
           alt={"profile"}
           width={100}
           height={50}
           className="rounded-full mx-auto p-1 border-2 border-baseColor"
         />
         <div className="text-center">
-          <p className="text-xl font-semibold"> Antoni Jonson </p>
-          <p className="text-gray-500">antoni@example.com</p>
+          <p className="text-xl font-semibold">
+            {" "}
+            {session?.user?.name || "N/A"}{" "}
+          </p>
+          <p className="text-gray-500">{session?.user?.email || "N/A"}</p>
         </div>
       </div>
       <hr />
@@ -98,7 +105,7 @@ const ProfileNavber = () => {
             } `}
           >
             {item && (
-              <p className="font-medium space">
+              <p className="font-medium ">
                 <FontAwesomeIcon icon={item.icon} className="me-3" />
                 {item.name}
               </p>
@@ -112,26 +119,13 @@ const ProfileNavber = () => {
           </Link>
         ))}
 
-        {/* {items?.map((item, index) => (
-          <Link
-            href={item?.path}
-            key={index}
-            className={`${
-              pathname === item?.path
-                ? " transform hover:scale-105 duration-500 text-baseColor bg-red-600 rounded-lg"
-                : "hover:text-baseColor bg-red-600 transform hover:scale-105 duration-500 "
-            }`}
-          >
-            <div className="flex items-center justify-between  text-gray-500 my-4 hover:text-baseColor cursor-pointer">
-              <div className="flex items-center space-x-3  hover:ms-5 duration-300 hover:duration-300 ">
-                <CommonIcon icon={item?.icon} />
-                <p className="font-medium ">{item?.name}</p>
-              </div>
-              <p> {item?.quantity && `(${item?.quantity})`}</p>
-            </div>
-            {index < mobileData.length - 1 && <hr className="my-2" />}
-          </Link>
-        ))} */}
+        <p
+          onClick={() => signOut()}
+          className="font-medium  text-gray-500 px-4 py-2 rounded-lg cursor-pointer hover:text-baseColor hover:translate-x-2 duration-300 hover:duration-300"
+        >
+          <FontAwesomeIcon icon={faSignOutAlt} className="me-3" />
+          Log Out
+        </p>
       </div>
     </div>
   );

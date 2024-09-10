@@ -1,12 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "live.themewild.com",
-      },
-    ],
+    domains: ["lh3.googleusercontent.com", "live.themewild.com"],
   },
 };
 

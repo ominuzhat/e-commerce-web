@@ -9,8 +9,12 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Link from "next/link";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { registerUser } from "@/utils/actions/registerUser";
+import { toast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import { useRouter } from "next/navigation";
 
-type TRegistration = {
+export type TRegistration = {
   name: string;
   email: string;
   Password: string;
@@ -18,6 +22,7 @@ type TRegistration = {
 
 const Registration = () => {
   const [password, setPassword] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -25,7 +30,27 @@ const Registration = () => {
     watch,
     formState: { errors },
   } = useForm<TRegistration>();
-  const onSubmit: SubmitHandler<TRegistration> = (data) => console.log(data);
+
+  const onSubmit: SubmitHandler<TRegistration> = async (
+    data: TRegistration
+  ) => {
+    try {
+      const res = await registerUser(data);
+      console.log(res);
+      if (res.success) {
+        toast({
+          title: `Hi, ${res?.data?.name}!`,
+          description: "User Registration Success",
+          action: (
+            <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+          ),
+        });
+        router.push("/dashboard");
+      }
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  };
 
   console.log(watch("email")); // watch input value by passing the name of it
 

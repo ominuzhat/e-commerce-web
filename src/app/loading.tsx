@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DotLoader from "react-spinners/DotLoader";
 
 const Loading = () => {

@@ -114,17 +114,19 @@ const trendingData = [
 ];
 
 export const metadata: Metadata = {
-    title: "My WishList | Geo Mart",
-    description: "My WishList | Geo Mart",
-  };
+  title: "My WishList | Geo Mart",
+  description: "My WishList | Geo Mart",
+};
 
 const MyWishList = () => {
   return (
-    <div className="shadow rounded-lg px-5 py-8 space-y-5">
-      <p className="text-xl font-semibold">My Wishlist</p>
-      <hr />
-      <CommonCard trendingData={trendingData} />
-    </div>
+    <>
+      <div className="shadow rounded-lg px-5 py-8 space-y-5">
+        <p className="text-xl font-semibold">My Wishlist</p>
+        <hr />
+        <CommonCard trendingData={trendingData} />
+      </div>{" "}
+    </>
   );
 };
 
