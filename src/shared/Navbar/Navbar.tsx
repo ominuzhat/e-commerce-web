@@ -180,8 +180,11 @@ const Navbar = () => {
                   {navlinks.display}
                 </Link>
               ))}
-              <Link href={"/login"}>
+              {/* <Link href={"/login"}>
                 <Button>Sign Up</Button>
+              </Link> */}
+              <Link href={"/"}>
+                <Button>Become Seller</Button>
               </Link>
             </div>
           </div>

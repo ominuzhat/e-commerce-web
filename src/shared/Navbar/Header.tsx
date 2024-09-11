@@ -1,3 +1,4 @@
+"use client";
 import logo from "../../../public/logo.png";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +12,7 @@ import {
   Github,
   Keyboard,
   LifeBuoy,
+  LogIn,
   LogOut,
   Mail,
   MessageSquare,
@@ -39,8 +41,11 @@ import {
 import Link from "next/link";
 import cartList from "../../lib/CartItems.json";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { signOut, useSession } from "next-auth/react";
 
-const Header = () => {
+const Header = async () => {
+  const { data } = useSession();
+
   return (
     <div className="max-w-screen-xl mx-auto py-5 px-2">
       <div className="flex items-center justify-between">
@@ -58,6 +63,10 @@ const Header = () => {
           />
         </div>
         <div className="flex items-center space-x-3">
+          {/* <FontAwesomeIcon
+            icon={faUser}
+            className="w-8 bg-footerColor text-baseColor hover:text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"
+          /> */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <FontAwesomeIcon
@@ -66,29 +75,49 @@ const Header = () => {
               />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-40">
-              <Link href="/profile">
-                <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
-                </DropdownMenuItem>
-              </Link>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Log out</span>
-              </DropdownMenuItem>
+              {!data?.user ? (
+                <Link href="/login">
+                  <DropdownMenuItem>
+                    <LogIn className="mr-2 h-4 w-4" />
+                    <span>Log In</span>
+                  </DropdownMenuItem>
+                </Link>
+              ) : (
+                <>
+                  <Link href="/profile">
+                    <DropdownMenuItem>
+                      <User className="mr-2 h-4 w-4" />
+                      <span>Profile</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  <DropdownMenuSeparator />
+
+                  <DropdownMenuItem>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span
+                      onClick={() => {
+                        signOut();
+                      }}
+                    >
+                      Log out
+                    </span>
+                  </DropdownMenuItem>
+                </>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <div className="relative">
-            <FontAwesomeIcon
-              icon={faHeart}
-              className="w-8 bg-footerColor text-baseColor hover:text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"
-            />
-            <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-              0
-            </span>
-          </div>
+          <Link href={"/profile/my-wishlist"}>
+            <div className="relative">
+              <FontAwesomeIcon
+                icon={faHeart}
+                className="w-8 bg-footerColor text-baseColor hover:text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"
+              />
+              <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                0
+              </span>
+            </div>
+          </Link>
           {/* <div className="relative">
             <FontAwesomeIcon
               icon={faBagShopping}
@@ -99,7 +128,7 @@ const Header = () => {
             </span>
           </div> */}
 
-          {/* ddddddddddddd */}
+          {/* Cart */}
 
           <div>
             <DropdownMenu>

@@ -6,7 +6,7 @@ const ProductPage = () => {
   return (
     <div>
       <div className="lg:grid lg:grid-cols-3 gap-5">
-        <div className="border ">
+        <div>
           <ProductImageInformation />
         </div>
         <div className="lg:col-span-2">

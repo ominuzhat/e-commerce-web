@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Target the main image in the gallery */
+.image-gallery-slide img {
+  border: 1px solid #e0e0e0; /* Add a 2px border with your preferred color */
+  border-radius: 5px; /* Optional: Add some rounding to the edges */
+  padding: 5px; /* Optional: Add some padding inside the border */
+}
+
+.active {
+  border: 1px solid #8493ca !important;
+  border-radius: 10px !important;
+}
+
+.image-gallery-thumbnails-container button:hover {
+  border: 1px solid #536bc2 !important;
+  border-radius: 10px !important;
+
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

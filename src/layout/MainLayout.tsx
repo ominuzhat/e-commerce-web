@@ -22,20 +22,12 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      >
-        {" "}
-        <TopHeader />
-        <Header />
-        <Navbar />
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <>
+      <TopHeader />
+      <Header />
+      <Navbar />
+      {children}
+      <Footer />
+    </>
   );
 }
