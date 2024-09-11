@@ -36,7 +36,7 @@ const Login = () => {
       const res = await LoginUser(data);
       console.log(res);
       if (res.success) {
-        localStorage.setItem("accessToken", res.accessToken);
+        localStorage.setItem("accessToken", res?.accessToken);
         toast({
           title: `Hi, ${res?.data?.name}!`,
           description: "User Registration Success",

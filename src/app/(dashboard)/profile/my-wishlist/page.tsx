@@ -1,3 +1,4 @@
+"use client";
 import p2 from "@/../../public/p2.png";
 import CommonCard from "@/components/CommonCard";
 import { Metadata } from "next";
@@ -113,10 +114,10 @@ const trendingData = [
   },
 ];
 
-export const metadata: Metadata = {
-  title: "My WishList | Geo Mart",
-  description: "My WishList | Geo Mart",
-};
+// export const metadata: Metadata = {
+//   title: "My WishList | Geo Mart",
+//   description: "My WishList | Geo Mart",
+// };
 
 const MyWishList = () => {
   return (

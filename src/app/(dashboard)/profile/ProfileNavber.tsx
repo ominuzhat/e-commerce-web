@@ -74,60 +74,64 @@ const ProfileNavber = ({ session }: { session: TUserProps | null }) => {
   const pathname = usePathname();
 
   return (
-    <div className=" rounded-xl shadow-lg py-8 px-4 space-y-2 h-fit">
-      <div className="space-y-2">
-        <Image
-          src={session?.user?.image || com}
-          alt={"profile"}
-          width={100}
-          height={50}
-          className="rounded-full mx-auto p-1 border-2 border-baseColor"
-        />
-        <div className="text-center">
-          <p className="text-xl font-semibold">
-            {" "}
-            {session?.user?.name || "N/A"}{" "}
+    <>
+      <div className=" rounded-xl shadow-lg py-8 px-4 space-y-2 h-fit">
+        <div className="space-y-2">
+          <Image
+            src={session?.user?.image || com}
+            alt={"profile"}
+            width={100}
+            height={50}
+            className="rounded-full mx-auto p-1 border-2 border-baseColor"
+          />
+          <div className="text-center">
+            <p className="text-xl font-semibold">
+              {" "}
+              {session?.user?.name || "N/A"}{" "}
+            </p>
+            <p className="text-gray-500">{session?.user?.email || "N/A"}</p>
+          </div>
+        </div>
+        <hr />
+
+        <div className="my-5">
+          {items?.map((item, index) => (
+            <Link
+              href={item?.path}
+              key={index}
+              className={`flex justify-between items-center  ${
+                pathname === item?.path
+                  ? "bg-baseColor text-white px-4 py-2 rounded-lg"
+                  : "text-gray-500 px-4 py-2 hover:text-baseColor hover:translate-x-2 duration-300 hover:duration-300"
+              } `}
+            >
+              {item && (
+                <p className="font-medium ">
+                  <FontAwesomeIcon icon={item.icon} className="me-3" />
+                  {item.name}
+                </p>
+              )}
+
+              {item?.quantity && (
+                <p className="bg-red-200 text-sm text-red-500 font-semibold p-1 rounded-full">
+                  {item?.quantity}
+                </p>
+              )}
+            </Link>
+          ))}
+
+          <p
+            onClick={() => {
+              signOut();
+            }}
+            className="font-medium  text-gray-500 px-4 py-2 rounded-lg cursor-pointer hover:text-baseColor hover:translate-x-2 duration-300 hover:duration-300"
+          >
+            <FontAwesomeIcon icon={faSignOutAlt} className="me-3" />
+            Log Out
           </p>
-          <p className="text-gray-500">{session?.user?.email || "N/A"}</p>
         </div>
       </div>
-      <hr />
-
-      <div className="my-5">
-        {items?.map((item, index) => (
-          <Link
-            href={item?.path}
-            key={index}
-            className={`flex justify-between items-center  ${
-              pathname === item?.path
-                ? "bg-baseColor text-white px-4 py-2 rounded-lg"
-                : "text-gray-500 px-4 py-2 hover:text-baseColor hover:translate-x-2 duration-300 hover:duration-300"
-            } `}
-          >
-            {item && (
-              <p className="font-medium ">
-                <FontAwesomeIcon icon={item.icon} className="me-3" />
-                {item.name}
-              </p>
-            )}
-
-            {item?.quantity && (
-              <p className="bg-red-200 text-sm text-red-500 font-semibold p-1 rounded-full">
-                {item?.quantity}
-              </p>
-            )}
-          </Link>
-        ))}
-
-        <p
-          onClick={() => signOut()}
-          className="font-medium  text-gray-500 px-4 py-2 rounded-lg cursor-pointer hover:text-baseColor hover:translate-x-2 duration-300 hover:duration-300"
-        >
-          <FontAwesomeIcon icon={faSignOutAlt} className="me-3" />
-          Log Out
-        </p>
-      </div>
-    </div>
+    </>
   );
 };
 
