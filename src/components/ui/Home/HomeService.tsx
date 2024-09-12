@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const HomeService = () => {
   return (
-    <div className="max-w-screen-xl mx-auto bg-footerColor rounded-xl my-5 ">
+    <div className="max-w-screen-xl mx-auto bg-footerColor rounded-xl my-5  ">
       <div className="lg:flex items-center justify-around py-10 space-y-8 lg:space-y-0 ">
         <div className="lg:flex items-center space-x-3 text-center lg:text-left">
           <FontAwesomeIcon

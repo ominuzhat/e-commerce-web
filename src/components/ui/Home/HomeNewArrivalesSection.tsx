@@ -108,7 +108,7 @@ const trendingData = [
 
 const HomeNewArrivalsSection = () => {
   return (
-    <div className="max-w-screen-xl mx-auto lg:px-2 px-5">
+    <div className="max-w-screen-xl mx-auto lg:px-5 px-5">
       <div className="flex items-center justify-between">
         <div className="text-xl lg:text-3xl font-semibold flex items-center space-x-3">
           <FontAwesomeIcon icon={faNeos} className="text-baseColor" />
