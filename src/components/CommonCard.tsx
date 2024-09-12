@@ -17,6 +17,7 @@ import {
 import Image from "next/image";
 import SingleItemsDrawer from "@/common/SingleItemsDrawer";
 import { Badge } from "./ui/badge";
+import Link from "next/link";
 
 const CommonCard = ({ trendingData }: any) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -29,7 +30,11 @@ const CommonCard = ({ trendingData }: any) => {
     <div>
       <div className="lg:grid lg:grid-cols-3 gap-5 mt-10 space-y-5 lg:space-y-0">
         {trendingData?.map((data: any) => (
-          <div className="bg-footerColor rounded-xl group" key={data?.id}>
+          <Link
+            href={"/shop/1"}
+            className="bg-footerColor rounded-xl group"
+            key={data?.id}
+          >
             <div className="relative">
               <Image
                 src={data?.image}
@@ -122,7 +127,7 @@ const CommonCard = ({ trendingData }: any) => {
                 </TooltipProvider>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <SingleItemsDrawer open={isDrawerOpen} onOpenChange={handleOpenChange} />

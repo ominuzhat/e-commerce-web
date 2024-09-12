@@ -67,7 +67,7 @@ const Login = () => {
         </div>
         <div className="flex flex-col justify-center items-center  px-10 py-10 space-y-4">
           <Image src={logo} alt={"logo"} width={200} height={500} />
-          <p className=" text-gray-500 ">Login with your goemart account</p>
+          <p className=" text-gray-500 ">Login with your Eco Shop account</p>
           <hr className="bg-gray-500 w-full" />
           <form onSubmit={handleSubmit(onSubmit)} className="w-full">
             <div className="space-y-2">

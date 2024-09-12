@@ -7,8 +7,8 @@ import CartItems from "./CartItemsData";
 import CartSummary from "./CartSummary";
 
 export const metadata: Metadata = {
-  title: "Cart | Geo Mart",
-  description: "Cart | Geo Mart",
+  title: "Cart | Eco Shop",
+  description: "Cart | Eco Shop",
 };
 
 const CartList = () => {

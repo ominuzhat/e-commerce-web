@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/pagination";
 import p2 from "@/../../public/p2.png";
 import CommonCard from "@/components/CommonCard";
+import { getProductList } from "@/utils/actions/productList";
 
 const trendingData = [
   {
@@ -116,7 +117,10 @@ const trendingData = [
   },
 ];
 
-const ShopList = () => {
+const ShopList = async () => {
+  // const { data: productList } = await getProductList();
+  // console.log("data: ", productList);
+
   return (
     <div className=" space-y-3 ">
       <div className="flex items-center space-x-2 text-gray-400 ">

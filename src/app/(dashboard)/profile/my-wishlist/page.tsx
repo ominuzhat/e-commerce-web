@@ -115,8 +115,8 @@ const trendingData = [
 ];
 
 // export const metadata: Metadata = {
-//   title: "My WishList | Geo Mart",
-//   description: "My WishList | Geo Mart",
+//   title: "My WishList | Eco Shop",
+//   description: "My WishList | Eco Shop",
 // };
 
 const MyWishList = () => {

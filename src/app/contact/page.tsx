@@ -12,8 +12,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Geo Mart",
-  description: "Contact Us | Geo Mart",
+  title: "Contact Us | Eco Shop",
+  description: "Contact Us | Eco Shop",
 };
 
 const ContactPage = () => {

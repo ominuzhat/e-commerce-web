@@ -49,9 +49,9 @@ const Header = async () => {
   return (
     <div className="max-w-screen-xl mx-auto py-5 px-2">
       <div className="flex items-center justify-between">
-        <div>
+        <Link href={"/"}>
           <Image src={logo} alt={"logo"} width={200} height={50} />
-        </div>
+        </Link>
         <div className="hidden lg:block md:block relative">
           <input
             placeholder="Search Here..."

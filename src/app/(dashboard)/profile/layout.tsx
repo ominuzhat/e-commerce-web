@@ -14,8 +14,8 @@ const fontSans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Profile | Geo Mart",
-  description: "Profile | Geo Mart",
+  title: "Profile | Eco Shop",
+  description: "Profile | Eco Shop",
 };
 
 export default async function ProfileLayout({
@@ -37,14 +37,12 @@ export default async function ProfileLayout({
   // }, []);
 
   return (
- 
-        <>
-          <BreadCrumb />
-          <div className="max-w-screen-xl mx-auto lg:grid lg:grid-cols-3 gap-5 my-10 space-y-5 lg:space-y-0 px-2">
-            <ProfileNavber session={sessionData} />
-            <div className="lg:col-span-2">{children}</div>
-          </div>
-        </>
-    
+    <>
+      <BreadCrumb />
+      <div className="max-w-screen-xl mx-auto lg:grid lg:grid-cols-3 gap-5 my-10 space-y-5 lg:space-y-0 px-2">
+        <ProfileNavber session={sessionData} />
+        <div className="lg:col-span-2">{children}</div>
+      </div>
+    </>
   );
 }

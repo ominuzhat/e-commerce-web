@@ -38,7 +38,7 @@ const ForgotPassword = () => {
         <div className="flex flex-col justify-center items-center  w-full px-10 py-10 space-y-4">
           <Image src={logo} alt={"logo"} width={200} height={500} />
           <p className=" text-gray-500 ">
-            Forgot Password with your goemart account
+            Forgot Password with your Eco Shop account
           </p>
           <hr className="bg-gray-500 w-full" />
           <form onSubmit={handleSubmit(onSubmit)} className="w-full">

@@ -69,7 +69,7 @@ const Registration = () => {
         <div className="flex flex-col justify-center items-center px-10 py-10 space-y-4">
           <Image src={logo} alt={"logo"} width={200} height={500} />
           <p className=" text-gray-500 ">
-            Registration with your goemart account
+            Registration with your Eco Shop account
           </p>
           <hr className="bg-gray-500 w-full" />
           <form onSubmit={handleSubmit(onSubmit)} className="w-full">

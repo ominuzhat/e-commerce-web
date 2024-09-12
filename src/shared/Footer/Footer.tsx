@@ -324,7 +324,8 @@ const Footer = () => {
           </div>
           <div>
             © Copyright {new Date().getFullYear()}{" "}
-            <span className="text-baseColor">Goemart</span> All Rights Reserved.
+            <span className="text-baseColor">Eco Shop</span> All Rights
+            Reserved.
           </div>
           <div className="flex items-center space-x-4 justify-center">
             <span className="text-gray-400 ">Follow Us :</span>

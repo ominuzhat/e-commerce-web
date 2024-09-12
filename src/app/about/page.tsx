@@ -7,8 +7,8 @@ import AboutSection from "./AboutSection";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About | Geo Mart",
-  description: "About | Geo Mart",
+  title: "About | Eco Shop",
+  description: "About | Eco Shop",
 };
 
 const AboutPage = () => {

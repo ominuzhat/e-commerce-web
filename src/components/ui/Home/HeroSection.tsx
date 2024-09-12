@@ -46,7 +46,7 @@ const HeroSection = () => {
                     data-aos-duration="1000"
                   >
                     For Your First{" "}
-                    <span className="text-baseColor">Geomart</span> Shopping
+                    <span className="text-baseColor">Eco Shop</span> Shopping
                   </h1>
                   <p
                     className="font-medium text-slate-600 w-96"
@@ -80,7 +80,7 @@ const HeroSection = () => {
                     data-aos-duration="1000"
                   >
                     For Your First{" "}
-                    <span className="text-baseColor">Geomart</span> Shopping
+                    <span className="text-baseColor">Eco Shop</span> Shopping
                   </h1>
                   <p
                     className="font-medium text-slate-600 w-96"
@@ -114,7 +114,7 @@ const HeroSection = () => {
                     data-aos-duration="1000"
                   >
                     For Your First{" "}
-                    <span className="text-baseColor">Geomart</span> Shopping
+                    <span className="text-baseColor">Eco Shop</span> Shopping
                   </h1>
                   <p
                     className="font-medium text-slate-600 w-96"
@@ -148,7 +148,7 @@ const HeroSection = () => {
                     data-aos-duration="1000"
                   >
                     For Your First{" "}
-                    <span className="text-baseColor">Geomart</span> Shopping
+                    <span className="text-baseColor">Eco Shop</span> Shopping
                   </h1>
                   <p
                     className="font-medium text-slate-600 w-96"

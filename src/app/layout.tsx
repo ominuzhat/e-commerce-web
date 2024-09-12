@@ -12,8 +12,8 @@ const fontSans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Geo Mart",
-  description: "Geo Mart",
+  title: "Eco Shop",
+  description: "Eco Shop",
 };
 
 export default function RootLayout({

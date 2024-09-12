@@ -7,8 +7,8 @@ import SearchComponent from "./SearchComponent";
 import HomeCouponSection from "@/components/ui/Home/HomeCouponSection";
 
 export const metadata: Metadata = {
-  title: "Shop | Geo Mart",
-  description: "Shop | Geo Mart",
+  title: "Shop | Eco Shop",
+  description: "Shop | Eco Shop",
 };
 
 const ShopPage = () => {

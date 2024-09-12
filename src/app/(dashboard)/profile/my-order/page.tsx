@@ -71,8 +71,8 @@ const orderItems = [
 ];
 
 export const metadata: Metadata = {
-  title: "My-order | Profile | Geo Mart",
-  description: "My-order | Profile | Geo Mart",
+  title: "My-order | Profile | Eco Shop",
+  description: "My-order | Profile | Eco Shop",
 };
 const MyOrder = () => {
   return (
