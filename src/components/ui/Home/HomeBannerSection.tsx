@@ -5,7 +5,7 @@ import { Button } from "../button";
 
 const HomeBannerSection = () => {
   return (
-    <div className="py-10 lg:py-20 border">
+    <div className="py-10 lg:py-20 ">
       <div className="block lg:flex bg-[#fdfbef]">
         {/* Image Section */}
         <div className="w-full lg:w-1/2">

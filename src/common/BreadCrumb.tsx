@@ -18,7 +18,7 @@ const BreadCrumb = () => {
     <div className="breadcrumb">
       <div className="max-w-screen-xl mx-auto px-2 py-10 sm:py-14 ">
         {breadData?.map((data) => (
-          <div key={data?.id} className="text-center lg:text-left ">
+          <div key={data?.id} className="text-left ">
             {data?.slug === pathname && (
               <div className="space-y-3">
                 <h1 className=" font-bold text-xl  md:text-xl lg:text-3xl">
