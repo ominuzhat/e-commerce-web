@@ -1,18 +1,25 @@
 "use server";
 import { TRegistration } from "@/app/(auth)/registration/page";
-import { baseUrl } from "./../constant";
+import axiosInstance from "@/lib/AxiosInstance";
+import envConfig from "@/lib/config/envConfig";
 
 export const registerUser = async (data: TRegistration) => {
-  const res = await fetch(`${baseUrl}/register`, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(data),
-    cache: "no-cache",
-  });
+  try {
+    const res = await axiosInstance.post("/registration", data);
+  } catch (error: any) {
+    throw new Error(error);
+  }
 
-  const userInfo = await res.json();
+  // const res = await fetch(`${envConfig.baseApi}/register`, {
+  //   method: "POST",
+  //   headers: {
+  //     "content-type": "application/json",
+  //   },
+  //   body: JSON.stringify(data),
+  //   cache: "no-cache",
+  // });
 
-  return userInfo;
+  // const userInfo = await res.json();
+
+  // return userInfo;
 };

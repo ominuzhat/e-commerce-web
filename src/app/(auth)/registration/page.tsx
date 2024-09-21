@@ -36,7 +36,7 @@ const Registration = () => {
   ) => {
     try {
       const res = await registerUser(data);
-      console.log(res);
+      console.log(res, "regis");
       if (res.success) {
         toast({
           title: `Hi, ${res?.data?.name}!`,
