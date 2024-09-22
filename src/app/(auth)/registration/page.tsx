@@ -9,15 +9,15 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Link from "next/link";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { registerUser } from "@/utils/actions/registerUser";
 import { toast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { useRouter } from "next/navigation";
+import { registerUser } from "@/utils/actions/registerUser";
 
 export type TRegistration = {
-  name: string;
+  firstName: string;
   email: string;
-  Password: string;
+  password: string;
 };
 
 const Registration = () => {
@@ -34,25 +34,40 @@ const Registration = () => {
   const onSubmit: SubmitHandler<TRegistration> = async (
     data: TRegistration
   ) => {
-    try {
-      const res = await registerUser(data);
-      console.log(res, "regis");
-      if (res.success) {
-        toast({
-          title: `Hi, ${res?.data?.name}!`,
-          description: "User Registration Success",
-          action: (
-            <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
-          ),
-        });
-        router.push("/dashboard");
-      }
-    } catch (error: any) {
-      throw new Error(error.message);
-    }
-  };
+    console.log(data);
 
-  console.log(watch("email")); // watch input value by passing the name of it
+    registerUser(data);
+
+    // try {
+    //   const res = await registerUser(data);
+    //   console.log("Registration success:", res);
+
+    //   if (res?.success) {
+    //     toast({
+    //       title: `Hi, ${res?.data?.name}!`,
+    //       description: "User Registration Success",
+    //       action: (
+    //         <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+    //       ),
+    //     });
+
+    //     // Navigate to the dashboard
+    //     const router = useRouter();
+    //     router.push("/dashboard");
+    //   } else {
+    //     toast({
+    //       title: "Registration Failed",
+    //       description: res?.message || "An unknown error occurred.",
+    //     });
+    //   }
+    // } catch (error: any) {
+    //   console.error("Error during submission:", error);
+    //   toast({
+    //     title: "Error",
+    //     description: error.message || "Something went wrong!",
+    //   });
+    // }
+  };
 
   return (
     <div className="max-w-screen-xl mx-auto flex items-center justify-center min-h-screen">
@@ -77,13 +92,13 @@ const Registration = () => {
               <p className="font-semibold">Full Name *</p>
               <input
                 placeholder="Your Full Name"
-                {...register("name", {
+                {...register("firstName", {
                   required: "name is required",
                 })}
                 className="px-4 py-2 rounded-md border w-full focus:outline-none hover:border-baseColor"
               />
-              {errors.name && (
-                <span className="text-red-500">{errors.name.message}</span>
+              {errors.firstName && (
+                <span className="text-red-500">{errors.firstName.message}</span>
               )}
             </div>
             <br />
@@ -110,7 +125,7 @@ const Registration = () => {
               <input
                 type={!password ? "password" : "text"}
                 placeholder="Your Password "
-                {...register("Password", {
+                {...register("password", {
                   required: "Password is required",
                   pattern: {
                     value:
@@ -126,8 +141,8 @@ const Registration = () => {
                 icon={!password ? faEye : faEyeSlash}
                 onClick={() => setPassword(!password)}
               />
-              {errors.Password && (
-                <span className="text-red-500">{errors.Password.message}</span>
+              {errors.password && (
+                <span className="text-red-500">{errors.password.message}</span>
               )}
             </div>
             <br />
