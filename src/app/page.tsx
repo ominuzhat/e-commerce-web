@@ -13,23 +13,27 @@ import HomeSalesSection from "@/components/ui/Home/HomeSalesSection";
 import HomeService from "@/components/ui/Home/HomeService";
 import HomeTrendingSection from "@/components/ui/Home/HomeTrendingSection";
 import MainLayout from "@/layout/MainLayout";
+import { getWebsiteInfo } from "@/utils/actions/websiteInfo";
 
-export default function Home() {
+export default async function Home() {
+  const { data } = await getWebsiteInfo();
+  const { officeInfo, trendingItems, hotItems, newArrivals, category ,bestSellers,topRatedItems, onSaleItems} =
+    data || {};
   return (
     <MainLayout>
       <HeroSection />
       <HomeService />
-      <HomeCategory />
+      <HomeCategory category={category} />
       <HomeCartSection />
-      <HomeTrendingSection />
-      <HomeHotSection />
+      <HomeTrendingSection trendingItems={trendingItems} />
+      <HomeHotSection hotItems={hotItems} />
       <HomeBannerSection />
       <HomeCategoriesSection />
-      <HomeNewArrivalsSection />
+      <HomeNewArrivalsSection newArrivals={newArrivals} />
       <HomeMidSection />
       <HomeMegaCollection />
       <HomeBrandsSection />
-      <HomeSalesSection />
+      <HomeSalesSection bestSellers={bestSellers} topRatedItems={topRatedItems} onSaleItems={onSaleItems} />
       <HomeCouponSection />
     </MainLayout>
   );

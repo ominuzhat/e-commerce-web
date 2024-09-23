@@ -13,32 +13,47 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@/components/ui/button";
 
 import { FaceBookIcon, InstragramIcon, TwiteerIcon } from "./CommonSociaIcon";
+import { renderStars } from "@/components/CommonRating";
 
-const SingleItemsDrawer = ({ open, onOpenChange }: any) => {
+const SingleItemsDrawer = ({ open, onOpenChange, singleData }: any) => {
+  const { title, sku, featuredImage, priceOptions, subCategory, avgRating } =
+    singleData || {};
+  console.log(singleData);
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="p-10 border  lg:max-w-[40%]">
         <DialogHeader>
-          <DialogDescription className="lg:grid grid-cols-2 ">
+          <DialogDescription className="lg:grid grid-cols-2 gap-10">
             <div className=" flex justify-center items-center">
-              <Image src={p2} alt={"p2"} height={50} width={400} />
+              <Image src={featuredImage} alt={title} height={50} width={400} />
             </div>
             <div className="space-y-4 text-left">
               <DialogTitle className="text-xl font-semibold text-black">
-                Beats Bluetooth Earphones
+                {title}
               </DialogTitle>
-              <div className="space-x-1">
-                <FontAwesomeIcon icon={faStar} className="text-yellowColor" />
-                <FontAwesomeIcon icon={faStar} className="text-yellowColor" />
-                <FontAwesomeIcon icon={faStar} className="text-yellowColor" />
-                <FontAwesomeIcon
-                  icon={faStarHalfAlt}
-                  className="text-yellowColor"
-                />
-              </div>
+              <div className="space-x-1">{renderStars(avgRating)}</div>
               <div className="text-xl space-x-2 font-medium">
-                <span className="line-through">$690 </span>
-                <span className="text-baseColor">$650</span>
+                {/* <span className="line-through">$690 </span> */}
+                {/* <span className="text-baseColor">
+                  ৳ {priceOptions?.[0]?.price}
+                </span> */}
+
+                <div className="flex gap-4 items-center">
+                  {/* If there's a discount, show original price and discounted price */}
+                  {priceOptions?.[0]?.discount > 0 && (
+                    <>
+                      <h1 className=" text-3xl text-red-500">
+                        ৳{priceOptions?.[0]?.totalPrice}
+                      </h1>
+                      <small className="line-through text-gray-400">
+                        ৳ {priceOptions?.[0]?.price}
+                      </small>
+                    </>
+                  )}
+                  {!priceOptions?.[0]?.discount && (
+                    <h2 className=" text-3xl text-red-500">৳{priceOptions?.[0]?.price}</h2>
+                  )}
+                </div>
               </div>
               <div className="flex space-x-7 text-base">
                 <div className="space-y-1">
@@ -56,19 +71,19 @@ const SingleItemsDrawer = ({ open, onOpenChange }: any) => {
                   </div>
                   <div className="font-semibold space-y-1">
                     <p>Beats</p>
-                    <p>Headphones</p>
-                    <p className="text-baseColor">Available</p>
-                    <p>676TYWV</p>
+                    <p>{subCategory?.name}</p>
+                    <p className="text-baseColor">{priceOptions?.[0]?.stock}</p>
+                    <p>{sku}</p>
                   </div>
                 </div>
               </div>
               <Button>Add to cart</Button>
-              <div className="flex items-center space-x-4 ">
+              {/* <div className="flex items-center space-x-4 ">
                 <span>Follow Us :</span>
                 <FaceBookIcon />
                 <TwiteerIcon />
                 <InstragramIcon />
-              </div>
+              </div> */}
             </div>
           </DialogDescription>
         </DialogHeader>

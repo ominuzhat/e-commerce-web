@@ -4,34 +4,33 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 
-export const FaceBookIcon = () => {
+export const FaceBookIcon = ({ link }: any) => {
   return (
     <div>
-      <Link href={"/"}>
+      <a href={link} target="_blank">
         <FontAwesomeIcon icon={faFacebook} className="w-4 cursor-pointer" />
-      </Link>
+      </a>
     </div>
   );
 };
 
-export const TwiteerIcon = () => {
+export const TwiteerIcon = ({ link }: any) => {
   return (
     <div>
-      <Link href={"/"}>
+      <a href={link} target="_blank">
         <FontAwesomeIcon icon={faTwitter} className="w-4 cursor-pointer" />{" "}
-      </Link>
+      </a>
     </div>
   );
 };
 
-export const InstragramIcon = () => {
+export const InstragramIcon = ({ link }: any) => {
   return (
     <div>
-      <Link href={"/"}>
+      <a href={link} target="_blank">
         <FontAwesomeIcon icon={faInstagram} className="w-4 cursor-pointer" />{" "}
-      </Link>
+      </a>
     </div>
   );
 };

@@ -9,35 +9,10 @@ import {
   TooltipTrigger,
 } from "../tooltip";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons/faBagShopping";
+import { renderStars } from "@/components/CommonRating";
 
-const trendingData = [
-  {
-    id: 1,
-    image: p2,
-    badgeText: "Hot",
-    productName: "Bluetooth Earphones",
-    price: "$100.00",
-    stars: 4,
-  },
-  {
-    id: 2,
-    image: p2,
-    badgeText: "New",
-    productName: "Wireless Headphones",
-    price: "$150.00",
-    stars: 5,
-  },
-  {
-    id: 3,
-    image: p2,
-    badgeText: "Sale",
-    productName: "Smart Watch",
-    price: "$200.00",
-    stars: 3,
-  },
-];
 
-const HomeSalesSection = () => {
+const HomeSalesSection = ({ onSaleItems, topRatedItems, bestSellers }: any) => {
   return (
     <div className="max-w-screen-xl mx-auto pt-16 lg:px-2 px-5">
       <div className="lg:grid grid-cols-3 gap-10 space-y-5 lg:space-y-0">
@@ -45,32 +20,41 @@ const HomeSalesSection = () => {
           <p className="text-2xl font-semibold pb-2 border-b-2 ">On Sale</p>
           <p className="border border-b-2 w-10 border-baseColor"></p>
 
-          {trendingData?.map((data) => (
+          {onSaleItems?.slice(0,3)?.map((data: any) => (
             <div
               key={data?.id}
               className="bg-footerColor mt-10 px-4 py-2 flex items-center gap-5 relative rounded-2xl"
             >
               <Image
-                src={data?.image}
+                src={data?.featuredImage}
                 alt={"p2"}
                 width={100}
                 height={30}
                 className="border bg-white rounded-xl"
               />
               <div className="space-y-1 ">
-                <p className="text-xl font-semibold">{data?.productName}</p>
-                <div className="space-x-1">
-                  <FontAwesomeIcon icon={faStar} className="text-yellowColor" />
-                  <FontAwesomeIcon icon={faStar} className="text-yellowColor" />
-                  <FontAwesomeIcon icon={faStar} className="text-yellowColor" />
-                  <FontAwesomeIcon
-                    icon={faStarHalfAlt}
-                    className="text-yellowColor"
-                  />
-                </div>
+                <p className="text-xl font-semibold">{data?.title}</p>
+                <p>
+                  {" "}
+                  {renderStars(data?.avgRating)}{" "}
+                  <span>({data?.totalReviews})</span>
+                </p>
                 <div className=" space-x-2 font-medium">
-                  <span className="line-through">$690 </span>
-                  <span className="text-baseColor">{data?.price}</span>
+                  <div className="flex gap-3 items-center">
+                    {data?.priceOptions?.[0]?.discount > 0 && (
+                      <>
+                        <h1 className=" text-xl text-red-500">
+                          ৳{data?.priceOptions?.[0]?.totalPrice}
+                        </h1>
+                        <small className="line-through text-gray-400">
+                          ৳ {data?.priceOptions?.[0]?.price}
+                        </small>
+                      </>
+                    )}
+                    {!data?.priceOptions?.[0]?.discount && (
+                      <h2 className=" text-xl text-red-500">৳{data?.priceOptions?.[0]?.price}</h2>
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="absolute -bottom-1 right-0">
@@ -96,32 +80,41 @@ const HomeSalesSection = () => {
           <p className="text-2xl font-semibold pb-2 border-b-2 ">Best Seller</p>
           <p className="border border-b-2 w-10 border-baseColor"></p>
 
-          {trendingData?.map((data) => (
+          {topRatedItems?.slice(0,3)?.map((data: any) => (
             <div
               key={data?.id}
               className="bg-footerColor mt-10 px-4 py-2 flex items-center gap-5 relative rounded-2xl"
             >
               <Image
-                src={data?.image}
+                src={data?.featuredImage}
                 alt={"p2"}
                 width={100}
                 height={30}
                 className="border bg-white rounded-xl"
               />
               <div className="space-y-1 ">
-                <p className="text-xl font-semibold">{data?.productName}</p>
-                <div className="space-x-1">
-                  <FontAwesomeIcon icon={faStar} className="text-yellowColor" />
-                  <FontAwesomeIcon icon={faStar} className="text-yellowColor" />
-                  <FontAwesomeIcon icon={faStar} className="text-yellowColor" />
-                  <FontAwesomeIcon
-                    icon={faStarHalfAlt}
-                    className="text-yellowColor"
-                  />
-                </div>
+                <p className="text-xl font-semibold">{data?.title}</p>
+                <p>
+                  {" "}
+                  {renderStars(data?.avgRating)}{" "}
+                  <span>({data?.totalReviews})</span>
+                </p>
                 <div className=" space-x-2 font-medium">
-                  <span className="line-through">$690 </span>
-                  <span className="text-baseColor">{data?.price}</span>
+                  <div className="flex gap-3 items-center">
+                    {data?.priceOptions?.[0]?.discount > 0 && (
+                      <>
+                        <h1 className=" text-xl text-red-500">
+                          ৳{data?.priceOptions?.[0]?.totalPrice}
+                        </h1>
+                        <small className="line-through text-gray-400">
+                          ৳ {data?.priceOptions?.[0]?.price}
+                        </small>
+                      </>
+                    )}
+                    {!data?.priceOptions?.[0]?.discount && (
+                      <h2 className=" text-xl text-red-500">৳{data?.priceOptions?.[0]?.price}</h2>
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="absolute -bottom-1 right-0">
@@ -146,33 +139,41 @@ const HomeSalesSection = () => {
         <div>
           <p className="text-2xl font-semibold pb-2 border-b-2 ">Top Rated</p>
           <p className="border border-b-2 w-10 border-baseColor"></p>
-
-          {trendingData?.map((data) => (
+          {bestSellers?.slice(0,3)?.map((data: any) => (
             <div
               key={data?.id}
               className="bg-footerColor mt-10 px-4 py-2 flex items-center gap-5 relative rounded-2xl"
             >
               <Image
-                src={data?.image}
+                src={data?.featuredImage}
                 alt={"p2"}
                 width={100}
                 height={30}
                 className="border bg-white rounded-xl"
               />
               <div className="space-y-1 ">
-                <p className="text-xl font-semibold">{data?.productName}</p>
-                <div className="space-x-1">
-                  <FontAwesomeIcon icon={faStar} className="text-yellowColor" />
-                  <FontAwesomeIcon icon={faStar} className="text-yellowColor" />
-                  <FontAwesomeIcon icon={faStar} className="text-yellowColor" />
-                  <FontAwesomeIcon
-                    icon={faStarHalfAlt}
-                    className="text-yellowColor"
-                  />
-                </div>
+                <p className="text-xl font-semibold">{data?.title}</p>
+                <p>
+                  {" "}
+                  {renderStars(data?.avgRating)}{" "}
+                  <span>({data?.totalReviews})</span>
+                </p>
                 <div className=" space-x-2 font-medium">
-                  <span className="line-through">$690 </span>
-                  <span className="text-baseColor">{data?.price}</span>
+                  <div className="flex gap-3 items-center">
+                    {data?.priceOptions?.[0]?.discount > 0 && (
+                      <>
+                        <h1 className=" text-xl text-red-500">
+                          ৳{data?.priceOptions?.[0]?.totalPrice}
+                        </h1>
+                        <small className="line-through text-gray-400">
+                          ৳ {data?.priceOptions?.[0]?.price}
+                        </small>
+                      </>
+                    )}
+                    {!data?.priceOptions?.[0]?.discount && (
+                      <h2 className=" text-xl text-red-500">৳{data?.priceOptions?.[0]?.price}</h2>
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="absolute -bottom-1 right-0">

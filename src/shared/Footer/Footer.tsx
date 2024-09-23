@@ -21,8 +21,13 @@ import {
   InstragramIcon,
   TwiteerIcon,
 } from "@/common/CommonSociaIcon";
+import { getWebsiteInfo } from "@/utils/actions/websiteInfo";
 
-const Footer = () => {
+const Footer = async () => {
+  const { data } = await getWebsiteInfo();
+
+  const { officeInfo } = data || {};
+
   return (
     <footer className="bg-footerColor">
       <div className="max-w-screen-xl mx-auto pt-32 pb-16">
@@ -41,21 +46,25 @@ const Footer = () => {
                   icon={faPhone}
                   className="w-8 text-white bg-baseColor rounded-full p-2 "
                 />
-                <span className="text-gray-400 ">+2 123 654 7898</span>
+                <span className="text-gray-400 ">{officeInfo?.hotline}</span>
               </div>
               <div className="flex items-center space-x-3">
                 <FontAwesomeIcon
                   icon={faLocation}
                   className="w-8 text-white bg-baseColor rounded-full p-2 "
                 />
-                <span className="text-gray-400 ">Bashabo, Dhaka</span>
+                <span className="text-gray-400 ">
+                  {officeInfo?.officeAddress}
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <FontAwesomeIcon
                   icon={faEnvelope}
                   className="w-8 text-white bg-baseColor rounded-full p-2 "
                 />
-                <span className="text-gray-400 ">info@example.com</span>
+                <span className="text-gray-400 ">
+                  {officeInfo?.supportEmail}
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <FontAwesomeIcon
@@ -63,7 +72,7 @@ const Footer = () => {
                   className="w-8 text-white bg-baseColor rounded-full p-2 "
                 />
                 <span className="text-gray-400 ">
-                  Mon-Fri (9.00AM - 8.00PM)
+                  {officeInfo?.workingDayAndTime}
                 </span>
               </div>
             </div>
@@ -329,9 +338,9 @@ const Footer = () => {
           </div>
           <div className="flex items-center space-x-4 justify-center">
             <span className="text-gray-400 ">Follow Us :</span>
-            <FaceBookIcon />
-            <TwiteerIcon />
-            <InstragramIcon />
+            <FaceBookIcon link={officeInfo?.facebook} />
+            <TwiteerIcon link={officeInfo?.twitter} />
+            <InstragramIcon link={officeInfo?.instagram} />
           </div>
         </div>
       </div>

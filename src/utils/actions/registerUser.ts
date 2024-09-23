@@ -1,7 +1,6 @@
 "use server";
 import { TRegistration } from "@/app/(auth)/registration/page";
 import axiosInstance from "@/lib/AxiosInstance";
-import axios from "axios"; // Import axios to check Axios errors
 
 export const registerUser = async (data: TRegistration) => {
   try {

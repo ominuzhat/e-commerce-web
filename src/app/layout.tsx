@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { AOSInit } from "@/lib/aos";
 import ProgressBarComponent from "@/lib/PrograssBar";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
+import { Toaster } from "@/components/ui/toaster";
+import TanStackProviders from "@/providers/TanStackProviders";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -29,11 +31,14 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <AuthProvider>
-          <AOSInit />
-          {children}
-          <ProgressBarComponent />
-        </AuthProvider>
+        <TanStackProviders>
+          <AuthProvider>
+            <AOSInit />
+            <Toaster />
+            {children}
+            <ProgressBarComponent />
+          </AuthProvider>
+        </TanStackProviders>
       </body>
     </html>
   );

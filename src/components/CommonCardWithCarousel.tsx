@@ -5,6 +5,7 @@ import {
   faHeart,
   faStar,
   faStarHalfAlt,
+  faStar as faStarEmpty,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
@@ -25,8 +26,13 @@ import Image from "next/image";
 
 import SingleItemsDrawer from "@/common/SingleItemsDrawer";
 import { Badge } from "./ui/badge";
-const CommonCardWithCarousel = ({ trendingData }: any) => {
+import { renderStars } from "./CommonRating";
+
+const CommonCardWithCarousel = ({ data }: any) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [id, setId] = useState();
+
+  const singleData = data?.find((item: any) => item?.id === id);
 
   const handleOpenChange = (open: boolean) => {
     setIsDrawerOpen(open);
@@ -36,13 +42,19 @@ const CommonCardWithCarousel = ({ trendingData }: any) => {
       <div className="pt-10">
         <Carousel>
           <CarouselContent className="lg:gap-6 md:gap-4 sm:gap-2">
-            {trendingData?.map((data: any) => (
+            {data?.map((data: any) => (
               <CarouselItem
-                className=" md:basis-1/2 lg:basis-1/4 bg-footerColor rounded-xl group "
+                className=" md:basis-1/2 lg:basis-1/4 bg-footerColor rounded-xl group ps-0 "
                 key={data?.id}
               >
-                <div className="relative">
-                  <Image src={data?.image} alt={"p2"} height={50} width={450} />
+                <div className="relative p-2  w-full h-[15rem] ">
+                  <Image
+                    src={data?.featuredImage}
+                    alt={data?.title}
+                    height={50}
+                    width={450}
+                    className="w-full h-full rounded-xl"
+                  />
                   <Badge
                     variant="outline"
                     className={` ${
@@ -64,7 +76,9 @@ const CommonCardWithCarousel = ({ trendingData }: any) => {
                           <FontAwesomeIcon
                             icon={faEye}
                             className="bg-secondaryColor text-white rounded-full p-2 w-4 h-4 cursor-pointer hover:bg-baseColor"
-                            onClick={() => setIsDrawerOpen(true)}
+                            onClick={() => {
+                              setIsDrawerOpen(true), setId(data?.id);
+                            }}
                           />
                         </TooltipTrigger>
 
@@ -95,26 +109,27 @@ const CommonCardWithCarousel = ({ trendingData }: any) => {
                   </div>
                 </div>
                 <div className="space-y-2 px-5 pb-8 relative">
-                  <p className="text-xl font-semibold">{data?.productName}</p>
-                  <div className="space-x-1">
-                    <FontAwesomeIcon
-                      icon={faStar}
-                      className="text-yellowColor"
-                    />
-                    <FontAwesomeIcon
-                      icon={faStar}
-                      className="text-yellowColor"
-                    />
-                    <FontAwesomeIcon
-                      icon={faStar}
-                      className="text-yellowColor"
-                    />
-                    <FontAwesomeIcon
-                      icon={faStarHalfAlt}
-                      className="text-yellowColor"
-                    />
-                  </div>
-                  <p className="text-red-500 font-semibold">{data?.price}</p>
+                  <p className="text-xl font-semibold">{data?.title}</p>
+                  <p>
+                    {renderStars(data?.avgRating)}
+                    <span>({data?.totalReviews})</span>
+                  </p>
+                  <div className="flex gap-4 items-center">
+                  {/* If there's a discount, show original price and discounted price */}
+                  {data?.priceOptions?.[0]?.discount > 0 && (
+                    <>
+                      <h1 className=" text-3xl text-red-500">
+                        ৳{data?.priceOptions?.[0]?.totalPrice}
+                      </h1>
+                      <small className="line-through text-gray-400">
+                        ৳ {data?.priceOptions?.[0]?.price}
+                      </small>
+                    </>
+                  )}
+                  {!data?.priceOptions?.[0]?.discount && (
+                    <h2 className=" text-3xl text-red-500">৳{data?.priceOptions?.[0]?.price}</h2>
+                  )}
+                </div>
                   <div className="absolute bottom-8 right-4">
                     <TooltipProvider>
                       <Tooltip>
@@ -141,7 +156,11 @@ const CommonCardWithCarousel = ({ trendingData }: any) => {
           </div>
         </Carousel>
       </div>
-      <SingleItemsDrawer open={isDrawerOpen} onOpenChange={handleOpenChange} />
+      <SingleItemsDrawer
+        open={isDrawerOpen}
+        onOpenChange={handleOpenChange}
+        singleData={singleData}
+      />
     </div>
   );
 };
