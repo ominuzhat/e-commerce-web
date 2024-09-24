@@ -27,16 +27,29 @@ const Registration = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm<TRegistration>();
 
   const onSubmit: SubmitHandler<TRegistration> = async (
     data: TRegistration
   ) => {
-    console.log(data);
+    const response = await registerUser(data);
+    console.log(response);
 
-    registerUser(data);
+    if (response?.success === true) {
+      toast({
+        title: `Hi, ${response?.data?.firstName}!`,
+        description: "Check your mail for validation",
+        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+      });
+      reset();
+    } else {
+      toast({
+        title: "Registration Failed",
+        description: response?.message || "An unknown error occurred.",
+      });
+    }
 
     // try {
     //   const res = await registerUser(data);

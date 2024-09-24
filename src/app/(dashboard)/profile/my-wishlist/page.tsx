@@ -125,7 +125,7 @@ const MyWishList = () => {
       <div className="shadow rounded-lg px-5 py-8 space-y-5">
         <p className="text-xl font-semibold">My Wishlist</p>
         <hr />
-        <CommonCard trendingData={trendingData} />
+        <CommonCard data={trendingData} />
       </div>{" "}
     </>
   );

@@ -79,7 +79,6 @@ const CategoryItems = [
 ];
 
 const HomeCategory = ({ category }: any) => {
-  console.log(category);
   return (
     <div className="max-w-screen-xl mx-auto py-24">
       <CommonTitle

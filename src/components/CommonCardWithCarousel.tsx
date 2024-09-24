@@ -108,6 +108,8 @@ const CommonCardWithCarousel = ({ data }: any) => {
                     />
                   </div>
                 </div>
+
+                
                 <div className="space-y-2 px-5 pb-8 relative">
                   <p className="text-xl font-semibold">{data?.title}</p>
                   <p>

@@ -18,7 +18,6 @@ import { renderStars } from "@/components/CommonRating";
 const SingleItemsDrawer = ({ open, onOpenChange, singleData }: any) => {
   const { title, sku, featuredImage, priceOptions, subCategory, avgRating } =
     singleData || {};
-  console.log(singleData);
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="p-10 border  lg:max-w-[40%]">
@@ -51,7 +50,9 @@ const SingleItemsDrawer = ({ open, onOpenChange, singleData }: any) => {
                     </>
                   )}
                   {!priceOptions?.[0]?.discount && (
-                    <h2 className=" text-3xl text-red-500">৳{priceOptions?.[0]?.price}</h2>
+                    <h2 className=" text-3xl text-red-500">
+                      ৳{priceOptions?.[0]?.price}
+                    </h2>
                   )}
                 </div>
               </div>

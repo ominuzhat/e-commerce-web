@@ -10,9 +10,11 @@ import {
 } from "@/components/ui/pagination";
 import { useState } from "react";
 
-const CommonPagination = ({ limit, totalItems }: any) => {
-  const totalPageItem = Math.ceil(totalItems / limit); 
-  const [currentPage, setCurrentPage] = useState(1); 
+const CommonPagination = ({ paginationData }: any) => {
+  // const totalPageItem = Math.ceil(totalItems / limit);
+  console.log(paginationData);
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handlePageChange = (page: any) => {
     setCurrentPage(page);
@@ -21,11 +23,11 @@ const CommonPagination = ({ limit, totalItems }: any) => {
   const renderPaginationItems = () => {
     let paginationItems = [];
 
-    for (let i = 1; i <= totalPageItem; i++) {
+    for (let i = 1; i <= paginationData?.totalPages; i++) {
       paginationItems.push(
         <PaginationItem key={i}>
           <PaginationLink
-            href="#"
+            // href="#"
             isActive={i === currentPage}
             onClick={() => handlePageChange(i)}
           >
@@ -45,17 +47,17 @@ const CommonPagination = ({ limit, totalItems }: any) => {
           {currentPage > 1 && (
             <PaginationItem>
               <PaginationPrevious
-                href="#"
-                onClick={() => handlePageChange(currentPage - 1)}
+                // href="#"
+                onClick={() => handlePageChange(paginationData?.previousPage)}
               />
             </PaginationItem>
           )}
           {renderPaginationItems()}
-          {currentPage < totalPageItem && (
+          {currentPage < paginationData?.totalPages && (
             <PaginationItem>
               <PaginationNext
-                href="#"
-                onClick={() => handlePageChange(currentPage + 1)}
+                // href="#"
+                onClick={() => handlePageChange(paginationData?.nextPage)}
               />
             </PaginationItem>
           )}

@@ -17,6 +17,7 @@ import {
 import p2 from "@/../../public/p2.png";
 import CommonCard from "@/components/CommonCard";
 import { getProductList } from "@/utils/actions/productList";
+import CommonPagination from "@/common/CommonPagination";
 
 const trendingData = [
   {
@@ -117,10 +118,8 @@ const trendingData = [
   },
 ];
 
-const ShopList = async () => {
-  // const { data: productList } = await getProductList();
-  // console.log("data: ", productList);
-
+const ShopList = async ({ productData, paginationData }: any) => {
+  console.log(paginationData);
   return (
     <div className=" space-y-3 ">
       <div className="flex items-center space-x-2 text-gray-400 ">
@@ -140,10 +139,12 @@ const ShopList = async () => {
         <p>Showing 1-10 of 50 Results</p>
       </div>
       <div>
-        <CommonCard trendingData={trendingData} />
+        <CommonCard data={productData} />
       </div>
       <div>
-        <Pagination>
+        <CommonPagination paginationData={paginationData} />
+
+        {/* <Pagination>
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious href="#" />
@@ -166,7 +167,7 @@ const ShopList = async () => {
               <PaginationNext href="#" />
             </PaginationItem>
           </PaginationContent>
-        </Pagination>
+        </Pagination> */}
       </div>
     </div>
   );

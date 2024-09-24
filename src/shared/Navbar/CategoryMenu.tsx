@@ -19,7 +19,6 @@ const CategoryMenu = async () => {
   const { data } = await getWebsiteInfo();
   const { category } = data || {};
 
-  // Inline styles for hover effect
   const dropdownItemStyle = {
     padding: "8px 12px",
     cursor: "pointer",
@@ -27,7 +26,7 @@ const CategoryMenu = async () => {
   };
 
   const dropdownItemHoverStyle = {
-    backgroundColor: "#ADE6CC", // Change this to your desired hover color
+    backgroundColor: "#ADE6CC",
   };
 
   return (
@@ -52,16 +51,22 @@ const CategoryMenu = async () => {
                 {cat?.subCategory?.length > 0 ? (
                   <>
                     <DropdownMenuSubTrigger
-                      style={dropdownItemStyle}
+                      style={{
+                        ...dropdownItemStyle,
+                        paddingLeft: "12px",
+                        transition:
+                          "padding-left 0.3s ease, background-color 0.3s ease",
+                      }}
                       onMouseEnter={(e) => {
-                        Object.assign(
-                          e.currentTarget.style,
-                          dropdownItemHoverStyle
-                        );
+                        Object.assign(e.currentTarget.style, {
+                          ...dropdownItemHoverStyle,
+                          paddingLeft: "26px",
+                        });
                       }}
                       onMouseLeave={(e) => {
                         Object.assign(e.currentTarget.style, {
                           backgroundColor: "transparent",
+                          paddingLeft: "12px",
                         });
                       }}
                     >
@@ -69,7 +74,23 @@ const CategoryMenu = async () => {
                     </DropdownMenuSubTrigger>
                   </>
                 ) : (
-                  <DropdownMenuItem className="cursor-pointer py-2 text-base">
+                  <DropdownMenuItem
+                    style={{
+                      padding: "8px 12px",
+                      paddingLeft: "12px",
+                      cursor: "pointer",
+                      transition:
+                        "padding-left 0.3s ease, background-color 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "#ADE6CC";
+                      e.currentTarget.style.paddingLeft = "26px";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                      e.currentTarget.style.paddingLeft = "12px";
+                    }}
+                  >
                     <span>{cat.name}</span>
                   </DropdownMenuItem>
                 )}

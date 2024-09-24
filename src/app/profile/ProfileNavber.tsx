@@ -90,7 +90,6 @@ const items = [
 
 const ProfileNavber = () => {
   const pathname = usePathname();
-  console.log("ee", pathname);
 
   return (
     <div className="border py-5 px-2 space-y-2">

@@ -5,13 +5,16 @@ import { Metadata } from "next";
 import ShopList from "./ShopList";
 import SearchComponent from "./SearchComponent";
 import HomeCouponSection from "@/components/ui/Home/HomeCouponSection";
+import { getProductList } from "@/utils/actions/productList";
 
 export const metadata: Metadata = {
   title: "Shop | Eco Shop",
   description: "Shop | Eco Shop",
 };
 
-const ShopPage = () => {
+const ShopPage = async () => {
+  const { data: productList, pagination } = await getProductList();
+
   return (
     <MainLayout>
       <BreadCrumb />
@@ -20,7 +23,7 @@ const ShopPage = () => {
           <SearchComponent />
         </div>
         <div className="col-span-3 ">
-          <ShopList />
+          <ShopList productData={productList} paginationData={pagination} />
         </div>
       </div>
       <HomeCouponSection />
