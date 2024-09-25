@@ -2,6 +2,7 @@ export { default } from "next-auth/middleware";
 
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
+import { getCurrentUser } from "./utils/actions/registerUser";
 
 // This function can be marked `async` if using `await` inside
 
@@ -12,15 +13,19 @@ const AuthRoutes = ["/login", "/registration"];
 //   ADMIN: [/^\/profile/],
 // };
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const user = undefined;
+  const user = await getCurrentUser();
+
   if (!user) {
     if (AuthRoutes.includes(pathname)) {
       return NextResponse.next();
     } else {
-      return NextResponse.redirect(new URL("/", request.url));
+      return NextResponse.redirect(
+        new URL(`/`, request.url)
+        // new URL(`/login?redirect=${pathname}`, request.url)
+      );
     }
   }
 
@@ -38,10 +43,11 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/profile",
-    "/profile/my-wishlist",
-    "/profile/my-order",
-    "/profile/address-list",
-    "/profile/track-my-order",
+    "/profile/:page*",
+    // "/profile/my-wishlist",
+    // "/profile/my-order",
+    // "/profile/address-list",
+    // "/profile/track-my-order",
     "/login",
     "/registration",
   ],

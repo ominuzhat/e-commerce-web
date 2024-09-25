@@ -42,6 +42,7 @@ import Link from "next/link";
 import cartList from "../../lib/CartItems.json";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { signOut, useSession } from "next-auth/react";
+import { logout } from "@/utils/actions/registerUser";
 
 const Header = async () => {
   const { data } = useSession();
@@ -96,7 +97,7 @@ const Header = async () => {
                     <LogOut className="mr-2 h-4 w-4" />
                     <span
                       onClick={() => {
-                        signOut();
+                        signOut(), logout();
                       }}
                     >
                       Log out

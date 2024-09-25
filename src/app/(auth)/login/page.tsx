@@ -13,7 +13,7 @@ import { signIn } from "next-auth/react";
 import { LoginUser } from "@/utils/actions/loginUser";
 import { toast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export type TLogin = {
   email: string;
@@ -21,8 +21,11 @@ export type TLogin = {
 };
 
 const Login = () => {
-  const [password, setPassword] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
+
+  const [password, setPassword] = useState(false);
 
   const {
     register,
@@ -30,7 +33,7 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm<TLogin>();
-  
+
   const onSubmit: SubmitHandler<TLogin> = async (data: TLogin) => {
     console.log(data);
     try {
@@ -38,6 +41,7 @@ const Login = () => {
       console.log(res);
       if (res.success) {
         localStorage.setItem("accessToken", res?.accessToken);
+        // cookies().set("accessToken", res?.accessToken);
         toast({
           title: `Hi, ${res?.data?.name}!`,
           description: "User Registration Success",
@@ -45,7 +49,7 @@ const Login = () => {
             <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
           ),
         });
-        router.push("/dashboard");
+        // router.push(redirect);
       }
     } catch (error: any) {
       throw new Error(error.message);

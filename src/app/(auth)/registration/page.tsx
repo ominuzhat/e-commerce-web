@@ -9,10 +9,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Link from "next/link";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { toast } from "@/hooks/use-toast";
-import { ToastAction } from "@/components/ui/toast";
-import { useRouter } from "next/navigation";
-import { registerUser } from "@/utils/actions/registerUser";
+import { useRegistration } from "@/hooks/auth.hook";
 
 export type TRegistration = {
   firstName: string;
@@ -22,7 +19,11 @@ export type TRegistration = {
 
 const Registration = () => {
   const [password, setPassword] = useState(false);
-  const router = useRouter();
+  const {
+    mutate: handleUserRegistration,
+    isSuccess,
+    data: userData,
+  } = useRegistration();
 
   const {
     register,
@@ -34,22 +35,26 @@ const Registration = () => {
   const onSubmit: SubmitHandler<TRegistration> = async (
     data: TRegistration
   ) => {
-    const response = await registerUser(data);
-    console.log(response);
+    handleUserRegistration(data);
 
-    if (response?.success === true) {
-      toast({
-        title: `Hi, ${response?.data?.firstName}!`,
-        description: "Check your mail for validation",
-        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
-      });
+    console.log(isSuccess, userData, "ussser");
+
+    if (isSuccess) {
       reset();
-    } else {
-      toast({
-        title: "Registration Failed",
-        description: response?.message || "An unknown error occurred.",
-      });
     }
+    // if (userData && isSuccess === true) {
+    //   toast({
+    //     title: `Hi, ${userData?.data?.firstName}!`,
+    //     description: "Check your mail for validation",
+    //     action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+    //   });
+    //   reset();
+    // } else {
+    //   toast({
+    //     title: "Registration Failed",
+    //     description: userData?.message || "An unknown error occurred.",
+    //   });
+    // }
 
     // try {
     //   const res = await registerUser(data);
