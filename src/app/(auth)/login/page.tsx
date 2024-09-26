@@ -10,11 +10,11 @@ import { useState } from "react";
 import Link from "next/link";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { signIn } from "next-auth/react";
-import { LoginUser } from "@/utils/actions/loginUser";
 import { toast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useUser } from "@/providers/user.provider";
+import { useLogin } from "@/hooks/auth.hook";
 
 export type TLogin = {
   email: string;
@@ -25,6 +25,7 @@ const Login = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect");
+  const { mutate: handleUserLogin, isPending, data: userData } = useLogin();
 
   const { setIsLoading }: any = useUser();
   const [password, setPassword] = useState(false);
@@ -38,25 +39,32 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<TLogin> = async (data: TLogin) => {
     console.log(data);
-    try {
-      const res = await LoginUser(data);
+
+    handleUserLogin(data);
+    if (!isPending && userData) {
       setIsLoading(true);
-      console.log(res);
-      if (res.success) {
-        localStorage.setItem("accessToken", res?.accessToken);
-        // cookies().set("accessToken", res?.accessToken);
-        toast({
-          title: `Hi, ${res?.data?.name}!`,
-          description: "User Registration Success",
-          action: (
-            <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
-          ),
-        });
-        // router.push(redirect);
-      }
-    } catch (error: any) {
-      throw new Error(error.message);
+      // router.push(redirect);
     }
+
+    // try {
+    //   const res = await LoginUser(data);
+    //   setIsLoading(true);
+    //   console.log(res);
+    //   if (res.success) {
+    //     localStorage.setItem("accessToken", res?.accessToken);
+    //     // cookies().set("accessToken", res?.accessToken);
+    //     toast({
+    //       title: `Hi, ${res?.data?.name}!`,
+    //       description: "User Registration Success",
+    //       action: (
+    //         <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+    //       ),
+    //     });
+    //     // router.push(redirect);
+    //   }
+    // } catch (error: any) {
+    //   throw new Error(error.message);
+    // }
   };
 
   console.log(watch("email")); // watch input value by passing the name of it

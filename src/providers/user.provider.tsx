@@ -1,5 +1,5 @@
 "use client";
-import { getCurrentUser } from "@/utils/actions/registerUser";
+import { getCurrentUser } from "@/utils/actions/auth.user";
 import {
   createContext,
   Dispatch,

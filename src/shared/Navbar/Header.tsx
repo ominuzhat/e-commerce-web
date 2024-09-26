@@ -5,24 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons/faBagShopping";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons/faMagnifyingGlass";
-
-import {
-  Cloud,
-  CreditCard,
-  Github,
-  Keyboard,
-  LifeBuoy,
-  LogIn,
-  LogOut,
-  Mail,
-  MessageSquare,
-  Plus,
-  PlusCircle,
-  Settings,
-  User,
-  UserPlus,
-  Users,
-} from "lucide-react";
+import { LogIn, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -38,8 +21,8 @@ import Link from "next/link";
 import cartList from "../../lib/CartItems.json";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { signOut, useSession } from "next-auth/react";
-import { logout } from "@/utils/actions/registerUser";
 import { useUser } from "@/providers/user.provider";
+import { logout } from "@/utils/actions/auth.user";
 
 const Header = async () => {
   const { user, setIsLoading }: any = useUser();

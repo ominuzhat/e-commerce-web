@@ -3,6 +3,7 @@ import { TRegistration } from "@/app/(auth)/registration/page";
 import axiosInstance from "@/lib/AxiosInstance";
 import { cookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";
+import { TLogin } from "@/app/(auth)/login/page";
 
 export const registerUser = async (data: TRegistration) => {
   try {
@@ -18,6 +19,22 @@ export const logout = () => {
   cookies().delete("accessToken");
   cookies().delete("next-auth.session-token");
   localStorage.deleteItem("access_token");
+};
+
+export const LoginUser = async (data: TLogin) => {
+  try {
+    const res = await axiosInstance.post("/auth/login", data);
+    console.log("res", res?.data);
+
+    if (res?.data?.success) {
+      localStorage.setItem("accessToken", res?.data?.accessToken);
+      cookies().set("accessToken", res?.data?.accessToken);
+    }
+    return res?.data;
+  } catch (error: any) {
+    console.log(error, "eeee");
+    throw new Error(error);
+  }
 };
 
 export const getCurrentUser = async () => {
@@ -38,17 +55,3 @@ export const getCurrentUser = async () => {
     };
   }
 };
-
-// const res = await fetch(`${envConfig.baseApi}/register`, {
-//   method: "POST",
-//   headers: {
-//     "content-type": "application/json",
-//   },
-//   body: JSON.stringify(data),
-//   cache: "no-cache",
-// });
-
-// const userInfo = await res.json();
-
-// return userInfo;
-// };

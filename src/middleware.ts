@@ -2,7 +2,7 @@ export { default } from "next-auth/middleware";
 
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
-import { getCurrentUser } from "./utils/actions/registerUser";
+import { getCurrentUser } from "./utils/actions/auth.user";
 
 // This function can be marked `async` if using `await` inside
 
