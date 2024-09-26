@@ -14,6 +14,7 @@ import { LoginUser } from "@/utils/actions/loginUser";
 import { toast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useUser } from "@/providers/user.provider";
 
 export type TLogin = {
   email: string;
@@ -25,6 +26,7 @@ const Login = () => {
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect");
 
+  const { setIsLoading }: any = useUser();
   const [password, setPassword] = useState(false);
 
   const {
@@ -38,6 +40,7 @@ const Login = () => {
     console.log(data);
     try {
       const res = await LoginUser(data);
+      setIsLoading(true);
       console.log(res);
       if (res.success) {
         localStorage.setItem("accessToken", res?.accessToken);

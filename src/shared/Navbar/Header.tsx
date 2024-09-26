@@ -30,12 +30,8 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
@@ -43,8 +39,10 @@ import cartList from "../../lib/CartItems.json";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { signOut, useSession } from "next-auth/react";
 import { logout } from "@/utils/actions/registerUser";
+import { useUser } from "@/providers/user.provider";
 
 const Header = async () => {
+  const { user, setIsLoading }: any = useUser();
   const { data } = useSession();
 
   return (
@@ -76,7 +74,7 @@ const Header = async () => {
               />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-40">
-              {!data?.user ? (
+              {!user?.email || !data?.user ? (
                 <Link href="/login">
                   <DropdownMenuItem>
                     <LogIn className="mr-2 h-4 w-4" />
@@ -97,7 +95,7 @@ const Header = async () => {
                     <LogOut className="mr-2 h-4 w-4" />
                     <span
                       onClick={() => {
-                        signOut(), logout();
+                        signOut(), logout(), setIsLoading(true);
                       }}
                     >
                       Log out
