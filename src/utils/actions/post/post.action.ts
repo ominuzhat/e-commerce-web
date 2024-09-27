@@ -1,0 +1,12 @@
+"use server";
+import axiosInstance from "@/lib/AxiosInstance";
+
+export const addToCart = async (data: any) => {
+  try {
+    const res = await axiosInstance.post("/cart", data);
+    return res?.data;
+  } catch (error: any) {
+    console.log(error, "eeee");
+    throw new Error(error);
+  }
+};

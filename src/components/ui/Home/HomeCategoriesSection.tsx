@@ -5,105 +5,58 @@ import Link from "next/link";
 import p2 from "../../../../public/p2.png";
 import { Button } from "../button";
 import CommonCard from "@/components/CommonCard";
+import { getProductList } from "@/utils/actions/productList";
 
-const trendingData = [
-  {
-    id: 1,
-    image: p2,
-    badgeText: "Hot",
-    productName: "Bluetooth Earphones",
-    price: "$100.00",
-    stars: 4,
-  },
-  {
-    id: 2,
-    image: p2,
-    badgeText: "New",
-    productName: "Wireless Headphones",
-    price: "$150.00",
-    stars: 5,
-  },
-  {
-    id: 3,
-    image: p2,
-    badgeText: "Sale",
-    productName: "Smart Watch",
-    price: "$200.00",
-    stars: 3,
-  },
-  {
-    id: 4,
-    image: p2,
-    badgeText: "Out of stack",
-    productName: "Gaming Mouse",
-    price: "$50.00",
-    stars: 4,
-  },
-  {
-    id: 5,
-    image: p2,
-    badgeText: "New",
-    productName: "Mechanical Keyboard",
-    price: "$120.00",
-    stars: 5,
-  },
-  {
-    id: 6,
-    image: p2,
-    badgeText: "Sale",
-    productName: "Bluetooth Speaker",
-    price: "$80.00",
-    stars: 4,
-  },
-];
 
-const mobileData = [
-  { id: 1, name: "Samsung", quantity: 10 },
-  { id: 2, name: "Apple", quantity: 15 },
-  { id: 3, name: "Xiaomi", quantity: 12 },
-  { id: 4, name: "Sony", quantity: 18 },
-  { id: 5, name: "Google", quantity: 5 },
-  { id: 6, name: "Vivo", quantity: 14 },
-  { id: 7, name: "Huawei", quantity: 17 },
-  { id: 8, name: "Techno", quantity: 8 },
-];
 
-const HomeCategoriesSection = () => {
+const HomeCategoriesSection = async ({ category , productList}: any) => {
+  // const { data: productList, pagination } = await getProductList();
+
+  // console.log(productList);
+
   return (
     <div className="max-w-screen-xl mx-auto lg:pt-16 pb-12 lg:px-2 px-5">
       <div className="lg:grid lg:grid-cols-4 gap-5">
-        <div className="border shadow-xl py-5 px-6 rounded-xl h-[35rem]">
-          <p className="text-xl lg:text-2xl font-semibold">Phone Brands</p>
+        <div className="border shadow-xl py-5 px-6 rounded-xl ">
+          <p className="text-xl lg:text-2xl font-semibold">Top Categories</p>
           <div className="my-5">
-            {mobileData?.map((item, index) => (
+            {category?.map((item: any, index: number) => (
               <div key={item?.id}>
                 <div className="flex justify-between items-center space-y-2 hover:text-baseColor cursor-pointer">
                   <div className="flex items-center space-x-3 text-gray-700 hover:text-baseColor hover:ms-5 duration-300 hover:duration-300 ">
-                    <FontAwesomeIcon icon={faMobile} />
+                    <p
+                      className="w-5 h-5 "
+                      dangerouslySetInnerHTML={{
+                        __html: item?.icon,
+                      }}
+                    />
                     <p className="font-medium">{item?.name}</p>
                   </div>
-                  <p>({item?.quantity})</p>
+                  <p>({item?.subCategory?.length})</p>
                 </div>
-                {index < mobileData.length - 1 && <hr className="my-2" />}
+                {index < category?.length - 1 && <hr className="my-2" />}
               </div>
             ))}
           </div>
-          <Button className="w-full"> View All Brands</Button>
+          <Link href={"/shop"}>
+            <Button className="w-full"> View All Brands</Button>
+          </Link>
         </div>
+
         <div className="lg:col-span-3  lg:mt-0 mt-10">
           <div className="flex items-center justify-between">
             <div className="text-xl lg:text-3xl font-semibold flex items-center space-x-3">
               <FontAwesomeIcon icon={faMobile} className="text-baseColor" />
-              <p>Mobile Phones</p>
+              <p>Top Products</p>
             </div>
             <div>
-              <Link href={"/"} className="lg:text-xl text-slate-700  ">
+              <Link href={"/shop"} className="lg:text-xl text-slate-700  ">
                 View More <FontAwesomeIcon icon={faArrowRight} />
               </Link>
             </div>
           </div>
 
-          <CommonCard trendingData={trendingData} />
+          <CommonCard data={productList?.slice(0, 6)} />
         </div>
       </div>
     </div>

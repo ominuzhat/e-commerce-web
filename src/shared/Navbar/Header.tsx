@@ -57,7 +57,7 @@ const Header = async () => {
               />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-40">
-              {!user?.email || !data?.user ? (
+              {!user ? (
                 <Link href="/login">
                   <DropdownMenuItem>
                     <LogIn className="mr-2 h-4 w-4" />

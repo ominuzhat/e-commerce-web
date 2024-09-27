@@ -4,9 +4,12 @@
 
 /* Target the main image in the gallery */
 .image-gallery-slide img {
-  border: 1px solid #e0e0e0; /* Add a 2px border with your preferred color */
-  border-radius: 5px; /* Optional: Add some rounding to the edges */
-  padding: 5px; /* Optional: Add some padding inside the border */
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 5px;
+  height: 45vh;
+  width: auto;
+  object-fit: cover;
 }
 
 .active {
@@ -17,7 +20,6 @@
 .image-gallery-thumbnails-container button:hover {
   border: 1px solid #536bc2 !important;
   border-radius: 10px !important;
-
 }
 
 @layer base {

@@ -24,6 +24,7 @@ export const useRegistration = () => {
     },
   });
 };
+
 export const useLogin = () => {
   return useMutation({
     mutationKey: ["USER_LOGIN"],

@@ -40,18 +40,18 @@ export const LoginUser = async (data: TLogin) => {
 export const getCurrentUser = async () => {
   const accessToken = cookies().get("accessToken")?.value;
   // const googleToken = cookies().get("next-auth.session-token");
-
+  // console.log(accessToken, "get user");
   let decodedToken = null;
 
   if (accessToken) {
     decodedToken = await jwtDecode(accessToken);
 
-    console.log("decodedToken", decodedToken);
+    // console.log("decodedToken", decodedToken);
 
     return {
-      id: decodedToken.id,
-      name: decodedToken.name,
-      email: decodedToken.email,
+      // id: decodedToken.id,
+      // name: decodedToken.name,
+      email: decodedToken.data?.registered_user,
     };
   }
 };

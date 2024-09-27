@@ -23,7 +23,7 @@ const reviews = [
   },
 ];
 
-const ProductReview = () => {
+const ProductReview = ({ reviewData }: any) => {
   return (
     <div className="space-y-5 my-10">
       {reviews.map((review, index) => (

@@ -5,7 +5,7 @@ import ProductDescription from "./ProductDescription";
 import ProductAdditionalInfo from "./ProductAdditionalInfo";
 import ProductReview from "./ProductReview";
 
-const ProductDetails = () => {
+const ProductDetails = ({ content, description, reviews }: any) => {
   return (
     <div>
       <Tabs defaultValue="description" className="w-full">
@@ -15,13 +15,13 @@ const ProductDetails = () => {
           <TabsTrigger value="review">Reviews</TabsTrigger>
         </TabsList>
         <TabsContent value="description">
-          <ProductDescription />
+          <ProductDescription description={description} />
         </TabsContent>
         <TabsContent value="additional-info">
-          <ProductAdditionalInfo />
+          <ProductAdditionalInfo content={content}/>
         </TabsContent>
         <TabsContent value="review">
-          <ProductReview />
+          <ProductReview  reviewData={reviews} />
         </TabsContent>
       </Tabs>
     </div>

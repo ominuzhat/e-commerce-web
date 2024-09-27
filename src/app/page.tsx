@@ -13,12 +13,24 @@ import HomeSalesSection from "@/components/ui/Home/HomeSalesSection";
 import HomeService from "@/components/ui/Home/HomeService";
 import HomeTrendingSection from "@/components/ui/Home/HomeTrendingSection";
 import MainLayout from "@/layout/MainLayout";
+import { getProductList } from "@/utils/actions/productList";
 import { getWebsiteInfo } from "@/utils/actions/websiteInfo";
 
 export default async function Home() {
   const { data } = await getWebsiteInfo();
-  const { officeInfo, trendingItems, hotItems, newArrivals, category ,bestSellers,topRatedItems, onSaleItems} =
-    data || {};
+  const { data: productList, pagination } = await getProductList();
+  const {
+    officeInfo,
+    trendingItems,
+    hotItems,
+    newArrivals,
+    category,
+    bestSellers,
+    topRatedItems,
+    onSaleItems,
+  } = data || {};
+  console.log(hotItems);
+
   return (
     <MainLayout>
       <HeroSection />
@@ -28,12 +40,16 @@ export default async function Home() {
       <HomeTrendingSection trendingItems={trendingItems} />
       <HomeHotSection hotItems={hotItems} />
       <HomeBannerSection />
-      <HomeCategoriesSection />
+      <HomeCategoriesSection category={category} productList={productList}/>
       <HomeNewArrivalsSection newArrivals={newArrivals} />
       <HomeMidSection />
       <HomeMegaCollection />
       <HomeBrandsSection />
-      <HomeSalesSection bestSellers={bestSellers} topRatedItems={topRatedItems} onSaleItems={onSaleItems} />
+      <HomeSalesSection
+        bestSellers={bestSellers}
+        topRatedItems={topRatedItems}
+        onSaleItems={onSaleItems}
+      />
       <HomeCouponSection />
     </MainLayout>
   );

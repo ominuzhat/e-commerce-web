@@ -1,29 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import ImageGallery from "react-image-gallery";
-import "react-image-gallery/styles/scss/image-gallery.scss"; // Import gallery styles
-// import "./ProductImageInformation.scss"; // Import your custom styless
+import "react-image-gallery/styles/scss/image-gallery.scss";
 
-const images = [
-  {
-    original: "https://live.themewild.com/goemart/assets/img/product/p1.png",
-    thumbnail: "https://live.themewild.com/goemart/assets/img/product/p1.png",
-  },
-  {
-    original: "https://live.themewild.com/goemart/assets/img/product/p2.png",
-    thumbnail: "https://live.themewild.com/goemart/assets/img/product/p2.png",
-  },
-  {
-    original: "https://live.themewild.com/goemart/assets/img/product/p1.png",
-    thumbnail: "https://live.themewild.com/goemart/assets/img/product/p1.png",
-  },
-  {
-    original: "https://live.themewild.com/goemart/assets/img/product/p1.png",
-    thumbnail: "https://live.themewild.com/goemart/assets/img/product/p1.png",
-  },
-];
-
-const ProductImageInformation = () => {
+const ProductImageInformation = ({ imageData }: any) => {
+  const mappedImageData = imageData?.map((item: any) => ({
+    original: item?.image,
+    thumbnail: item?.image,
+  }));
   const [showNav, setShowNav] = useState(false);
 
   useEffect(() => {
@@ -41,9 +25,9 @@ const ProductImageInformation = () => {
   }, []);
 
   return (
-    <div className="">
+    <div>
       <ImageGallery
-        items={images}
+        items={mappedImageData}
         infinite={true}
         showPlayButton={false}
         showFullscreenButton={false}

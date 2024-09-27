@@ -96,26 +96,40 @@ const CommonCard = ({ data }: any) => {
             </div>
 
             <div className="space-y-2 px-5 pb-8 relative">
-              <p className="text-xl font-semibold">{data?.title}</p>
+              <Link href={`/shop/${data?.id}`}>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <p className="text-xl font-semibold text-left">
+                        {data?.title?.length > 50
+                          ? data?.title?.slice(0, 50) + "..."
+                          : data?.title}
+                      </p>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-secondaryColor text-white">
+                      <p>{data?.title}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </Link>
               <p>
                 {renderStars(data?.avgRating)}
                 <span>({data?.totalReviews})</span>
               </p>
               <div className="flex gap-4 items-center">
-                {/* If there's a discount, show original price and discounted price */}
-                {data?.priceOptions?.[0]?.discount > 0 && (
+                {data?.priceOptions?.[0]?.variants?.[0]?.discount > 0 && (
                   <>
                     <h1 className=" text-3xl text-red-500">
-                      ৳{data?.priceOptions?.[0]?.totalPrice}
+                      ৳{data?.priceOptions?.[0]?.variants?.[0]?.totalPrice}
                     </h1>
-                    <small className="line-through text-gray-400">
-                      ৳ {data?.priceOptions?.[0]?.price}
+                    <small className="line-through text-gray-400 font-semibold">
+                      ৳ {data?.priceOptions?.[0]?.variants?.[0]?.price}
                     </small>
                   </>
                 )}
-                {!data?.priceOptions?.[0]?.discount && (
+                {!data?.priceOptions?.[0]?.variants?.[0]?.discount && (
                   <h2 className=" text-3xl text-red-500">
-                    ৳{data?.priceOptions?.[0]?.price}
+                    ৳{data?.priceOptions?.[0]?.variants?.[0]?.price}
                   </h2>
                 )}
               </div>

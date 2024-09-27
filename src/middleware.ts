@@ -15,8 +15,11 @@ const AuthRoutes = ["/login", "/registration"];
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  console.log(pathname);
 
-  const user = await getCurrentUser();
+  // const user = await getCurrentUser();
+  const user = { email: "ominuzhat@gmail.com" };
+  console.log(user, "user");
 
   if (!user) {
     if (AuthRoutes.includes(pathname)) {
@@ -43,11 +46,11 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/profile",
-    "/profile/:page*",
-    // "/profile/my-wishlist",
-    // "/profile/my-order",
-    // "/profile/address-list",
-    // "/profile/track-my-order",
+    // "/profile/:page*",
+    "/profile/my-wishlist",
+    "/profile/my-order",
+    "/profile/address-list",
+    "/profile/track-my-order",
     "/login",
     "/registration",
   ],

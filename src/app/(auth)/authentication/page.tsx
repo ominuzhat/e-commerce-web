@@ -1,7 +1,6 @@
 "use client";
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { cookies } from "next/headers";
 
 const VerificationCheck = () => {
   const router = useRouter();
@@ -15,8 +14,11 @@ const VerificationCheck = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined" && hash) {
+      // Store token in local storage
       localStorage.setItem("access_token", hash);
-      cookies().set("accessToken", hash);
+
+      // Set token in cookies using document.cookie
+      document.cookie = `accessToken=${hash}; path=/;`;
     }
   }, [hash]);
 
