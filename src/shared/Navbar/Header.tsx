@@ -23,10 +23,24 @@ import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { signOut, useSession } from "next-auth/react";
 import { useUser } from "@/providers/user.provider";
 import { logout } from "@/utils/actions/auth.user";
+import { useForm } from "react-hook-form";
+import useDebounce from "@/hooks/debounce.hook";
 
-const Header = async () => {
+interface SearchFormData {
+  searchQuery: string;
+}
+
+const Header = () => {
   const { user, setIsLoading }: any = useUser();
   const { data } = useSession();
+  const { register, handleSubmit, watch } = useForm<SearchFormData>();
+
+  console.log(useDebounce(watch("searchQuery")));
+
+  const onSubmit = (data: SearchFormData) => {
+    console.log(data);
+    // You can handle the search action here
+  };
 
   return (
     <div className="max-w-screen-xl mx-auto py-5 px-2">
@@ -34,16 +48,21 @@ const Header = async () => {
         <Link href={"/"}>
           <Image src={logo} alt={"logo"} width={200} height={50} />
         </Link>
-        <div className="hidden lg:block md:block relative">
-          <input
-            placeholder="Search Here..."
-            className="border hover:border-baseColor rounded-lg md:w-[450px] lg:w-[500px] py-2 px-4  focus:outline-none"
-          />
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className="w-9 p-2 absolute right-2 bottom-1 font-medium text-slate-400"
-          />
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="hidden lg:block md:block relative">
+            <input
+              {...register("searchQuery")}
+              placeholder="Search Here..."
+              className="border hover:border-baseColor rounded-lg md:w-[450px] lg:w-[500px] py-2 px-4 focus:outline-none"
+            />
+            <button type="submit">
+              <FontAwesomeIcon
+                icon={faMagnifyingGlass}
+                className="w-9 p-2 absolute right-2 bottom-1 font-medium text-slate-400"
+              />
+            </button>
+          </div>
+        </form>
         <div className="flex items-center space-x-3">
           {/* <FontAwesomeIcon
             icon={faUser}

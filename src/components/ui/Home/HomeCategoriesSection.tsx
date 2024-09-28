@@ -5,11 +5,8 @@ import Link from "next/link";
 import p2 from "../../../../public/p2.png";
 import { Button } from "../button";
 import CommonCard from "@/components/CommonCard";
-import { getProductList } from "@/utils/actions/productList";
 
-
-
-const HomeCategoriesSection = async ({ category , productList}: any) => {
+const HomeCategoriesSection = ({ category, productList }: any) => {
   // const { data: productList, pagination } = await getProductList();
 
   // console.log(productList);

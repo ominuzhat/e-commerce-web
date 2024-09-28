@@ -20,13 +20,13 @@ const TeamData = [
     designation: "Junior Manager",
   },
   {
-    id: 1,
+    id: 3,
     image: team1,
     name: "Mona My",
     designation: "Senior Manager",
   },
   {
-    id: 1,
+    id: 4,
     image: team1,
     name: "Mona Boss",
     designation: "Senior Manager",

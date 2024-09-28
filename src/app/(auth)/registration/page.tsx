@@ -32,9 +32,7 @@ const Registration = () => {
     formState: { errors },
   } = useForm<TRegistration>();
 
-  const onSubmit: SubmitHandler<TRegistration> = async (
-    data: TRegistration
-  ) => {
+  const onSubmit: SubmitHandler<TRegistration> = (data: TRegistration) => {
     handleUserRegistration(data);
 
     console.log(isSuccess, userData, "ussser");

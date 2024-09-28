@@ -37,7 +37,7 @@ const Login = () => {
     formState: { errors },
   } = useForm<TLogin>();
 
-  const onSubmit: SubmitHandler<TLogin> = async (data: TLogin) => {
+  const onSubmit: SubmitHandler<TLogin> = (data: TLogin) => {
     console.log(data);
 
     handleUserLogin(data);

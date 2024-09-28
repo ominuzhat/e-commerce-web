@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
 import TopHeader from "@/shared/Navbar/TopHeader";
 import Header from "@/shared/Navbar/Header";
 import Navbar from "@/shared/Navbar/Navbar";

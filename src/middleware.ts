@@ -17,8 +17,8 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   console.log(pathname);
 
-  // const user = await getCurrentUser();
-  const user = { email: "ominuzhat@gmail.com" };
+  const user = await getCurrentUser();
+  // const {user} = { email: "ominuzhat@gmail.com" };
   console.log(user, "user");
 
   if (!user) {
@@ -26,7 +26,7 @@ export async function middleware(request: NextRequest) {
       return NextResponse.next();
     } else {
       return NextResponse.redirect(
-        new URL(`/`, request.url)
+        new URL(`/login`, request.url)
         // new URL(`/login?redirect=${pathname}`, request.url)
       );
     }
