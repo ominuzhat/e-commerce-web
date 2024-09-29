@@ -19,7 +19,7 @@ export const getProductList = async () => {
   };
 
   const response = await fetch(
-    `${envConfig.baseApi}/product?pagination=true`,
+    `${envConfig.baseApi}/product`,
     fetchOptions
   );
 
