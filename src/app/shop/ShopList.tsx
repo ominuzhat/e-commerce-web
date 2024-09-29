@@ -20,7 +20,6 @@ import { getProductList } from "@/utils/actions/productList";
 import CommonPagination from "@/common/CommonPagination";
 
 const ShopList = ({ productData, paginationData }: any) => {
-  console.log(paginationData);
   return (
     <div className=" space-y-3 ">
       <div className="flex items-center space-x-2 text-gray-400 ">

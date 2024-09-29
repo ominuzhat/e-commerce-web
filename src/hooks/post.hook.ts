@@ -7,7 +7,6 @@ export const useAddToCart = () => {
     mutationKey: ["ADD_TO_CART"],
     mutationFn: async (data: any) => await addToCart(data),
     onSuccess: (data) => {
-      console.log(data, "Product Added Mutation");
       toast({
         title: `Hi, ${data?.data?.title}!`,
         description: "Product added successfully",

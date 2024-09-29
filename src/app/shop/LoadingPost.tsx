@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import DotLoader from "react-spinners/DotLoader";
 
-const Loading = () => {
+const LoadingPost = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -18,4 +18,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default LoadingPost;

@@ -11,9 +11,9 @@ export const getWebsiteInfo = async () => {
     fetchOptions
   );
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
+  // if (!response.ok) {
+  //   throw new Error(`Websites HTTP error! status: ${response?.status}`);
+  // }
 
   const data = await response.json();
   return data;

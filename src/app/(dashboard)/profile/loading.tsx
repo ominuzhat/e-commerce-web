@@ -14,6 +14,7 @@ const Loading = () => {
   return (
     <>
       <div className="flex items-center justify-center h-screen">
+        <p>dashboard</p>
         <DotLoader color="#11B76B" loading={true} speedMultiplier={2} />
       </div>
     </>

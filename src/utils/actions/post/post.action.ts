@@ -6,7 +6,6 @@ export const addToCart = async (data: any) => {
     const res = await axiosInstance.post("/cart", data);
     return res?.data;
   } catch (error: any) {
-    console.log(error, "eeee");
     throw new Error(error);
   }
 };

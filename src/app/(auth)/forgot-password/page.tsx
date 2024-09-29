@@ -21,8 +21,6 @@ const ForgotPassword = () => {
   } = useForm<TForgotPassword>();
   const onSubmit: SubmitHandler<TForgotPassword> = (data) => console.log(data);
 
-  console.log(watch("email")); // watch input value by passing the name of it
-
   return (
     <div className="max-w-screen-xl mx-auto flex items-center justify-center min-h-screen">
       <div className="lg:flex items-center rounded-lg shadow-lg">

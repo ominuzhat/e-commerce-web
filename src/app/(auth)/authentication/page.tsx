@@ -1,23 +1,21 @@
 "use client";
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react"; // Import Suspense
 
 const VerificationCheck = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const hash = searchParams.get("hash");
 
-  // Function to navigate back
   const handleGoBack = () => {
     router.push("/shop");
   };
 
   useEffect(() => {
     if (typeof window !== "undefined" && hash) {
-      // Store token in local storage
       localStorage.setItem("access_token", hash);
 
-      // Set token in cookies using document.cookie
       document.cookie = `accessToken=${hash}; path=/;`;
     }
   }, [hash]);
@@ -40,4 +38,11 @@ const VerificationCheck = () => {
   );
 };
 
-export default VerificationCheck;
+// Wrap the entire component with Suspense
+const WrappedVerificationCheck = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <VerificationCheck />
+  </Suspense>
+);
+
+export default WrappedVerificationCheck;

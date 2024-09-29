@@ -14,6 +14,8 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signOut } from "next-auth/react";
+import { logout } from "@/utils/actions/auth.user";
+import { useUser } from "@/providers/user.provider";
 
 const items = [
   {
@@ -72,6 +74,9 @@ type TUserProps = {
 
 const ProfileNavber = ({ session }: { session: TUserProps | null }) => {
   const pathname = usePathname();
+  const { user, setIsLoading }: any = useUser();
+
+  const { firstName, email } = user || "";
 
   return (
     <>
@@ -86,10 +91,11 @@ const ProfileNavber = ({ session }: { session: TUserProps | null }) => {
           />
           <div className="text-center">
             <p className="text-xl font-semibold">
-              {" "}
-              {session?.user?.name || "N/A"}{" "}
+              {firstName || session?.user?.name || "N/A"}{" "}
             </p>
-            <p className="text-gray-500">{session?.user?.email || "N/A"}</p>
+            <p className="text-gray-500">
+              {email || session?.user?.email || "N/A"}
+            </p>
           </div>
         </div>
         <hr />
@@ -122,7 +128,7 @@ const ProfileNavber = ({ session }: { session: TUserProps | null }) => {
 
           <p
             onClick={() => {
-              signOut();
+              signOut(), logout(), setIsLoading(true);
             }}
             className="font-medium  text-gray-500 px-4 py-2 rounded-lg cursor-pointer hover:text-baseColor hover:translate-x-2 duration-300 hover:duration-300"
           >

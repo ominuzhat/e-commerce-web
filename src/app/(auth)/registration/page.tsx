@@ -35,54 +35,10 @@ const Registration = () => {
   const onSubmit: SubmitHandler<TRegistration> = (data: TRegistration) => {
     handleUserRegistration(data);
 
-    console.log(isSuccess, userData, "ussser");
-
     if (isSuccess) {
       reset();
     }
-    // if (userData && isSuccess === true) {
-    //   toast({
-    //     title: `Hi, ${userData?.data?.firstName}!`,
-    //     description: "Check your mail for validation",
-    //     action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
-    //   });
-    //   reset();
-    // } else {
-    //   toast({
-    //     title: "Registration Failed",
-    //     description: userData?.message || "An unknown error occurred.",
-    //   });
-    // }
-
-    // try {
-    //   const res = await registerUser(data);
-    //   console.log("Registration success:", res);
-
-    //   if (res?.success) {
-    //     toast({
-    //       title: `Hi, ${res?.data?.name}!`,
-    //       description: "User Registration Success",
-    //       action: (
-    //         <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
-    //       ),
-    //     });
-
-    //     // Navigate to the dashboard
-    //     const router = useRouter();
-    //     router.push("/dashboard");
-    //   } else {
-    //     toast({
-    //       title: "Registration Failed",
-    //       description: res?.message || "An unknown error occurred.",
-    //     });
-    //   }
-    // } catch (error: any) {
-    //   console.error("Error during submission:", error);
-    //   toast({
-    //     title: "Error",
-    //     description: error.message || "Something went wrong!",
-    //   });
-    // }
+    
   };
 
   return (

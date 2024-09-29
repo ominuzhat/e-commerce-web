@@ -10,21 +10,18 @@ import { useState } from "react";
 import Link from "next/link";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { signIn } from "next-auth/react";
-import { toast } from "@/hooks/use-toast";
-import { ToastAction } from "@/components/ui/toast";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useUser } from "@/providers/user.provider";
 import { useLogin } from "@/hooks/auth.hook";
 
 export type TLogin = {
   email: string;
-  Password: string;
+  password: string;
 };
 
 const Login = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect");
+  // const router = useRouter();
+  // const searchParams = useSearchParams();
+  // const redirect = searchParams.get("redirect");
   const { mutate: handleUserLogin, isPending, data: userData } = useLogin();
 
   const { setIsLoading }: any = useUser();
@@ -33,41 +30,16 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    watch,
+
     formState: { errors },
   } = useForm<TLogin>();
 
   const onSubmit: SubmitHandler<TLogin> = (data: TLogin) => {
-    console.log(data);
-
     handleUserLogin(data);
     if (!isPending && userData) {
       setIsLoading(true);
-      // router.push(redirect);
     }
-
-    // try {
-    //   const res = await LoginUser(data);
-    //   setIsLoading(true);
-    //   console.log(res);
-    //   if (res.success) {
-    //     localStorage.setItem("accessToken", res?.accessToken);
-    //     // cookies().set("accessToken", res?.accessToken);
-    //     toast({
-    //       title: `Hi, ${res?.data?.name}!`,
-    //       description: "User Registration Success",
-    //       action: (
-    //         <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
-    //       ),
-    //     });
-    //     // router.push(redirect);
-    //   }
-    // } catch (error: any) {
-    //   throw new Error(error.message);
-    // }
   };
-
-  console.log(watch("email")); // watch input value by passing the name of it
 
   return (
     <div className="max-w-screen-xl mx-auto flex items-center justify-center min-h-screen">
@@ -109,7 +81,7 @@ const Login = () => {
               <input
                 type={!password ? "password" : "text"}
                 placeholder="Your Password "
-                {...register("Password", {
+                {...register("password", {
                   required: "Password is required",
                   pattern: {
                     value:
@@ -125,8 +97,8 @@ const Login = () => {
                 icon={!password ? faEye : faEyeSlash}
                 onClick={() => setPassword(!password)}
               />
-              {errors.Password && (
-                <span className="text-red-500">{errors.Password.message}</span>
+              {errors.password && (
+                <span className="text-red-500">{errors.password.message}</span>
               )}
             </div>
             <Link
@@ -136,7 +108,9 @@ const Login = () => {
               Forgot Password?
             </Link>
 
-            <Button className="w-full">Submit</Button>
+            <Button className="w-full">
+              {isPending ? "Pending..." : "Submit"}
+            </Button>
           </form>
           <Button
             variant={"ghost"}

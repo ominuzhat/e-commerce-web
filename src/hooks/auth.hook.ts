@@ -9,17 +9,16 @@ export const useRegistration = () => {
     mutationKey: ["USER_REGISTRATION"],
     mutationFn: async (data: TRegistration) => await registerUser(data),
     onSuccess: (data) => {
-      console.log(data, "register Mutations");
       toast({
         title: `Hi, ${data?.data?.firstName}!`,
         description: "Check your mail for validation",
         // action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
       });
     },
-    onError: (data) => {
+    onError: (error) => {
       toast({
         title: "Registration Failed",
-        description: data?.message || "An unknown error occurred.",
+        description: error?.message || "An unknown error occurred.",
       });
     },
   });
@@ -30,17 +29,16 @@ export const useLogin = () => {
     mutationKey: ["USER_LOGIN"],
     mutationFn: async (data: TLogin) => await LoginUser(data),
     onSuccess: (data) => {
-      console.log(data, "LOgin Mutations");
       toast({
-        title: `Hi, ${data?.data?.firstName}!`,
+        title: `Hi, ${data?.data?.user?.firstName}!`,
         description: "Login Successfully",
         // action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
       });
     },
-    onError: (data) => {
+    onError: (error) => {
       toast({
-        title: "Registration Failed",
-        description: data?.message || "An unknown error occurred.",
+        title: "Login Failed",
+        description: error?.message || "An unknown error occurred.",
       });
     },
   });

@@ -12,7 +12,6 @@ import { useState } from "react";
 
 const CommonPagination = ({ paginationData }: any) => {
   // const totalPageItem = Math.ceil(totalItems / limit);
-  console.log(paginationData);
 
   const [currentPage, setCurrentPage] = useState(1);
 

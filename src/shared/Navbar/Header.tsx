@@ -35,12 +35,9 @@ const Header = () => {
   const { data } = useSession();
   const { register, handleSubmit, watch } = useForm<SearchFormData>();
 
-  console.log(useDebounce(watch("searchQuery")));
+  console.log(user, "user");
 
-  const onSubmit = (data: SearchFormData) => {
-    console.log(data);
-    // You can handle the search action here
-  };
+  const onSubmit = (data: SearchFormData) => {};
 
   return (
     <div className="max-w-screen-xl mx-auto py-5 px-2">
