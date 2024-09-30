@@ -7,11 +7,9 @@ import { getSingleWishList } from "@/utils/actions/get/get.action";
 const ProductPage = async ({ productDetails }: any) => {
   const { images, content, description, reviews } = productDetails || {};
 
-  const { data: WishItem } = await useGetWishlist();
-  const { data: singleWishItem } = await getSingleWishList(productDetails?.id);
+  // const { data: WishItem } = await useGetWishlist();
 
-  console.log(singleWishItem);
-  console.log(WishItem);
+  // console.log("wish", WishItem);
 
   return (
     <div>
@@ -22,7 +20,7 @@ const ProductPage = async ({ productDetails }: any) => {
         <div className="lg:col-span-2">
           <ProductInformation
             productDetails={productDetails}
-            singleWishItem={singleWishItem}
+            singleWishItem={1}
           />
         </div>
       </div>

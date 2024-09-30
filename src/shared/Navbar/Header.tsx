@@ -35,8 +35,6 @@ const Header = () => {
   const { data } = useSession();
   const { register, handleSubmit, watch } = useForm<SearchFormData>();
 
-  console.log(user, "user");
-
   const onSubmit = (data: SearchFormData) => {};
 
   return (

@@ -1,6 +1,7 @@
 "use client";
 import p2 from "@/../../public/p2.png";
 import CommonCard from "@/components/CommonCard";
+import { getWishList } from "@/utils/actions/get/get.action";
 import { Metadata } from "next";
 
 const trendingData = [
@@ -119,7 +120,10 @@ const trendingData = [
 //   description: "My WishList | Eco Shop",
 // };
 
-const MyWishList = () => {
+const MyWishList = async () => {
+  // const { data: wishlist } = await getWishList();
+  // console.log(wishlist);
+
   return (
     <>
       <div className="shadow rounded-lg px-5 py-8 space-y-5">

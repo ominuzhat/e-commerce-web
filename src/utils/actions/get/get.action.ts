@@ -5,9 +5,7 @@ export const getSingleWishList = async (id: number) => {
   try {
     const response = await axiosInstance.get(`/wishlist/${id}`);
 
-    console.log("sing", response);
-
-    return response.data; // Return only the data from the Axios response
+    return response.data;
   } catch (error: any) {
     console.log(error.response?.data?.error?.message);
     throw new Error(
