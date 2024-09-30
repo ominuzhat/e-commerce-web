@@ -2,13 +2,7 @@
 import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import { Button } from "@/components/ui/button";
 import {
   CommonIcon,
@@ -17,31 +11,17 @@ import {
   TwiteerIcon,
 } from "@/common/CommonSociaIcon";
 import { renderStars } from "@/components/CommonRating";
-import { useAddToCart } from "@/hooks/post.hook";
+import { useAddToCart, useAddWishlist } from "@/hooks/post.hook";
+import { useGetWishlist } from "@/hooks/wishlist.hook";
 
-const sizes = [
-  {
-    name: "Extra Small",
-  },
-  {
-    name: "Small",
-  },
-  {
-    name: "Medium",
-  },
-  {
-    name: "Large",
-  },
-  {
-    name: "Extra Large",
-  },
-];
+const ProductInformation = ({ productDetails, singleWishItem }: any) => {
+  console.log(singleWishItem?.products[0]?.id);
 
-const ProductInformation = ({ productDetails }: any) => {
   const [selectedPriceOption, setSelectedPriceOption] = useState<any>(null);
   const [selectedVariantOption, setSelectedVariantOption] = useState<any>(null);
   const [cartId, setCartId] = useState<string | null>(null);
 
+  const { mutate: handleAddToWishlist, data: wishListData } = useAddWishlist();
   const { mutate: handleAddToCart, data: cartData } = useAddToCart();
   const [count, setCount] = useState(1);
   const {
@@ -53,6 +33,8 @@ const ProductInformation = ({ productDetails }: any) => {
     subtitle,
     subCategory,
   } = productDetails || {};
+
+  console.log("wish", wishListData);
 
   // console.log(productDetails);
 
@@ -97,10 +79,14 @@ const ProductInformation = ({ productDetails }: any) => {
     const data = {
       priceOption: selectedVariantOption?.id,
       quantity: count,
-      cartId: cartId,
+      cartId: cartId || null,
     };
     handleAddToCart(data);
   };
+  // const handleItemAddToWishlist = () => {
+
+  //   handleAddToWishlist(productDetails?.id);
+  // };
 
   return (
     <div>
@@ -110,7 +96,6 @@ const ProductInformation = ({ productDetails }: any) => {
           {renderStars(avgRating)}
           <span> ({totalReviews})</span>
         </p>
-
         <div className="flex gap-4 items-center">
           {selectedVariantOption?.discount > 0 && (
             <>
@@ -128,6 +113,7 @@ const ProductInformation = ({ productDetails }: any) => {
             </h2>
           )}
         </div>
+
         <p className="text-gray-500 text-sm">
           Save {selectedVariantOption?.discount}
           {selectedVariantOption?.discountType === "Percent" ? "%" : "TK"}
@@ -135,6 +121,7 @@ const ProductInformation = ({ productDetails }: any) => {
 
         <p className="text-gray-500 ">{subtitle}</p>
         <hr />
+
         <div className="flex items-center space-x-12">
           <div className="space-y-3">
             <p className="text-gray-500 font-medium">Quantity</p>
@@ -173,6 +160,7 @@ const ProductInformation = ({ productDetails }: any) => {
             </div>
           </div>
         </div>
+
         <div className="flex space-x-7  py-2">
           <div className="space-y-3 text-gray-500 font-semibold">
             <p>Color </p>
@@ -188,7 +176,7 @@ const ProductInformation = ({ productDetails }: any) => {
               <p> :</p>
             </div>
             <div className="space-y-3">
-              <p className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 {priceOptions?.map((priceOption: any, index: number) => (
                   <div
                     key={index}
@@ -205,7 +193,7 @@ const ProductInformation = ({ productDetails }: any) => {
                     }}
                   ></div>
                 ))}
-              </p>
+              </div>
               <p>{subCategory?.name}</p>
               <p className="text-baseColor">
                 {selectedVariantOption?.stock || "Out of Stock"}
@@ -219,7 +207,17 @@ const ProductInformation = ({ productDetails }: any) => {
         <div className="flex items-center space-x-10">
           <div className="flex items-center space-x-3">
             <Button onClick={() => handleAddToCartItem()}>Add To Cart</Button>
-            <div className="border rounded-lg hover:bg-baseColor hover:text-white text-baseColor duration-300 hover:duration-300">
+
+            <div
+              className={`border rounded-lg hover:bg-baseColor hover:text-white  duration-300 hover:duration-300 ${
+                singleWishItem?.products[0]?.id === productDetails?.id
+                  ? "bg-baseColor text-white"
+                  : "text-baseColor"
+              }`}
+              onClick={() =>
+                handleAddToWishlist({ product: productDetails?.id })
+              }
+            >
               <FontAwesomeIcon
                 icon={faHeart}
                 className="p-2 w-4 h-4 cursor-pointer  "

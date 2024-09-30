@@ -1,3 +1,4 @@
+"use client";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,11 +13,12 @@ import {
 import { faList } from "@fortawesome/free-solid-svg-icons/faList";
 import { Button } from "@/components/ui/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getWebsiteInfo } from "@/utils/actions/websiteInfo";
+import { useWebsiteInfo } from "@/providers/website.provider";
 
-const CategoryMenu = async () => {
-  const { data } = await getWebsiteInfo();
-  const { category } = data || {};
+const CategoryMenu = () => {
+  const websiteInfo: any = useWebsiteInfo();
+
+  const { category } = websiteInfo || {};
 
   const dropdownItemStyle = {
     padding: "8px 12px",

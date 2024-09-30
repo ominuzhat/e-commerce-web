@@ -1,3 +1,4 @@
+"use client";
 import logo from "../../../public/logo.png";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,12 +22,12 @@ import {
   InstragramIcon,
   TwiteerIcon,
 } from "@/common/CommonSociaIcon";
-import { getWebsiteInfo } from "@/utils/actions/websiteInfo";
+import { useWebsiteInfo } from "@/providers/website.provider";
 
-const Footer = async () => {
-  const { data } = await getWebsiteInfo();
+const Footer = () => {
+  const websiteInfo: any = useWebsiteInfo();
 
-  const { officeInfo } = data || {};
+  const { officeInfo } = websiteInfo || {};
 
   return (
     <footer className="bg-footerColor">

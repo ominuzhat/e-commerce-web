@@ -1,8 +1,8 @@
+"use client";
 import BreadCrumb from "@/common/BreadCrumb";
 import { Button } from "@/components/ui/button";
 import HomeCouponSection from "@/components/ui/Home/HomeCouponSection";
 import MainLayout from "@/layout/MainLayout";
-import { getWebsiteInfo } from "@/utils/actions/websiteInfo";
 import {
   faClock,
   faEnvelopeCircleCheck,
@@ -13,15 +13,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 import { useForm, SubmitHandler } from "react-hook-form";
 import ContactForm from "./ContactForm";
+import { useWebsiteInfo } from "@/providers/website.provider";
 
-export const metadata: Metadata = {
-  title: "Contact Us | Eco Shop",
-  description: "Contact Us | Eco Shop",
-};
+// export const metadata: Metadata = {
+//   title: "Contact Us | Eco Shop",
+//   description: "Contact Us | Eco Shop",
+// };
 
-const ContactPage = async () => {
-  const { data } = await getWebsiteInfo();
-  const { officeInfo } = data || {};
+const ContactPage = () => {
+  const websiteInfo: any = useWebsiteInfo();
+
+  // const { data } = await getWebsiteInfo();
+  const { officeInfo } = websiteInfo || {};
 
   return (
     <MainLayout>

@@ -10,6 +10,7 @@ axiosInstance.interceptors.request.use(
   function (config) {
     const cookiesStore = cookies();
     const accessToken = cookiesStore.get("accessToken")?.value;
+
     if (accessToken) {
       config.headers.Authorization = accessToken;
     }

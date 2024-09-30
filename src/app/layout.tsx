@@ -8,6 +8,7 @@ import AuthProvider from "@/components/AuthProvider/AuthProvider";
 import { Toaster } from "@/components/ui/toaster";
 import TanStackProviders from "@/providers/TanStackProviders";
 import UserProvider from "@/providers/user.provider";
+import { WebsiteInfoProvider } from "@/providers/website.provider";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -32,16 +33,18 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <UserProvider>
-          <TanStackProviders>
-            <AuthProvider>
-              <AOSInit />
-              <Toaster />
-              {children}
-              <ProgressBarComponent />
-            </AuthProvider>
-          </TanStackProviders>
-        </UserProvider>
+        <WebsiteInfoProvider>
+          <UserProvider>
+            <TanStackProviders>
+              <AuthProvider>
+                <AOSInit />
+                <Toaster />
+                {children}
+                <ProgressBarComponent />
+              </AuthProvider>
+            </TanStackProviders>
+          </UserProvider>
+        </WebsiteInfoProvider>
       </body>
     </html>
   );

@@ -1,10 +1,17 @@
+import { useGetWishlist } from "@/hooks/wishlist.hook";
 import ProductDescription from "./ProductDetails";
 import ProductImageInformation from "./ProductImageInformation";
 import ProductInformation from "./ProductInformation";
+import { getSingleWishList } from "@/utils/actions/get/get.action";
 
-const ProductPage = ({ productDetails }: any) => {
+const ProductPage = async ({ productDetails }: any) => {
   const { images, content, description, reviews } = productDetails || {};
 
+  const { data: WishItem } = await useGetWishlist();
+  const { data: singleWishItem } = await getSingleWishList(productDetails?.id);
+
+  console.log(singleWishItem);
+  console.log(WishItem);
 
   return (
     <div>
@@ -13,7 +20,10 @@ const ProductPage = ({ productDetails }: any) => {
           <ProductImageInformation imageData={images} />
         </div>
         <div className="lg:col-span-2">
-          <ProductInformation productDetails={productDetails} />
+          <ProductInformation
+            productDetails={productDetails}
+            singleWishItem={singleWishItem}
+          />
         </div>
       </div>
       <div className="my-20">
