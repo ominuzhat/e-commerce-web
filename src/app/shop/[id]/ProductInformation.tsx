@@ -1,6 +1,5 @@
 "use client";
-import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import React, { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -11,17 +10,14 @@ import {
   TwiteerIcon,
 } from "@/common/CommonSociaIcon";
 import { renderStars } from "@/components/CommonRating";
-import { useAddToCart, useAddWishlist } from "@/hooks/post.hook";
-import { useGetWishlist } from "@/hooks/wishlist.hook";
+import { useAddToCart } from "@/hooks/post.hook";
+import WishListButton from "@/components/WishListButton";
 
-const ProductInformation = ({ productDetails, singleWishItem }: any) => {
-  console.log(singleWishItem?.products[0]?.id);
-
+const ProductInformation = ({ productDetails, wishlist }: any) => {
   const [selectedPriceOption, setSelectedPriceOption] = useState<any>(null);
   const [selectedVariantOption, setSelectedVariantOption] = useState<any>(null);
   const [cartId, setCartId] = useState<string | null>(null);
 
-  const { mutate: handleAddToWishlist, data: wishListData } = useAddWishlist();
   const { mutate: handleAddToCart, data: cartData } = useAddToCart();
   const [count, setCount] = useState(1);
   const {
@@ -33,10 +29,6 @@ const ProductInformation = ({ productDetails, singleWishItem }: any) => {
     subtitle,
     subCategory,
   } = productDetails || {};
-
-  console.log("wish", wishListData);
-
-  // console.log(productDetails);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -77,10 +69,12 @@ const ProductInformation = ({ productDetails, singleWishItem }: any) => {
 
   const handleAddToCartItem = () => {
     const data = {
-      priceOption: selectedVariantOption?.id,
+      variant: selectedVariantOption?.id,
       quantity: count,
       cartId: cartId || null,
     };
+
+
     handleAddToCart(data);
   };
   // const handleItemAddToWishlist = () => {
@@ -207,22 +201,10 @@ const ProductInformation = ({ productDetails, singleWishItem }: any) => {
         <div className="flex items-center space-x-10">
           <div className="flex items-center space-x-3">
             <Button onClick={() => handleAddToCartItem()}>Add To Cart</Button>
-
-            <div
-              className={`border rounded-lg hover:bg-baseColor hover:text-white  duration-300 hover:duration-300 ${
-                singleWishItem?.products[0]?.id === productDetails?.id
-                  ? "bg-baseColor text-white"
-                  : "text-baseColor"
-              }`}
-              onClick={() =>
-                handleAddToWishlist({ product: productDetails?.id })
-              }
-            >
-              <FontAwesomeIcon
-                icon={faHeart}
-                className="p-2 w-4 h-4 cursor-pointer  "
-              />
-            </div>
+            <WishListButton
+              wishlist={wishlist?.[0]}
+              productId={productDetails?.id}
+            />
           </div>
           <div>
             <div className="flex items-center space-x-4 ">

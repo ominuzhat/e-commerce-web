@@ -7,7 +7,7 @@ import {
   faStarHalfAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Tooltip,
   TooltipContent,
@@ -19,15 +19,41 @@ import SingleItemsDrawer from "@/common/SingleItemsDrawer";
 import { Badge } from "./ui/badge";
 import Link from "next/link";
 import { renderStars } from "./CommonRating";
+import WishListButton from "./WishListButton";
+import { useAddToCart } from "@/hooks/post.hook";
 
-const CommonCard = ({ data }: any) => {
+const CommonCard = ({ data, wishlist }: any) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [id, setId] = useState();
-
+  const { mutate: handleAddToCart, data: cartData } = useAddToCart();
+  const [cartId, setCartId] = useState<string | null>(null);
   const singleData = data?.find((item: any) => item?.id === id);
 
   const handleOpenChange = (open: boolean) => {
     setIsDrawerOpen(open);
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedCartId = localStorage.getItem("cartId");
+      setCartId(storedCartId);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cartData?.data?.id) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("cartId", cartData?.data?.id);
+      }
+    }
+  }, [cartData]);
+  const handleAddToCartItem = (data: any) => {
+    const addToCart = {
+      variant: data?.priceOptions?.[0]?.variants[0]?.id,
+      quantity: 1,
+      cartId: cartId || null,
+    };
+    handleAddToCart(addToCart);
   };
 
   return (
@@ -76,10 +102,9 @@ const CommonCard = ({ data }: any) => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger>
-                      {" "}
-                      <FontAwesomeIcon
-                        icon={faHeart}
-                        className="bg-secondaryColor text-white rounded-full p-2 w-4 h-4 cursor-pointer hover:bg-baseColor"
+                      <WishListButton
+                        wishlist={wishlist?.[0]}
+                        productId={data?.id}
                       />
                     </TooltipTrigger>
                     <TooltipContent className="bg-secondaryColor text-white">
@@ -136,8 +161,7 @@ const CommonCard = ({ data }: any) => {
               <div className="absolute bottom-8 right-4">
                 <TooltipProvider>
                   <Tooltip>
-                    <TooltipTrigger>
-                      {" "}
+                    <TooltipTrigger onClick={() => handleAddToCartItem(data)}>
                       <FontAwesomeIcon
                         icon={faBagShopping}
                         className="w-4 h-4 bg-secondaryColor text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"

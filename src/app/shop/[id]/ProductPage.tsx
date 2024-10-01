@@ -1,15 +1,18 @@
-import { useGetWishlist } from "@/hooks/wishlist.hook";
 import ProductDescription from "./ProductDetails";
 import ProductImageInformation from "./ProductImageInformation";
 import ProductInformation from "./ProductInformation";
-import { getSingleWishList } from "@/utils/actions/get/get.action";
+import { getWishList } from "@/utils/actions/get/get.action";
+import { getCurrentUser } from "@/utils/actions/auth.user";
 
 const ProductPage = async ({ productDetails }: any) => {
   const { images, content, description, reviews } = productDetails || {};
+  const data = await getCurrentUser();
 
-  // const { data: WishItem } = await useGetWishlist();
-
-  // console.log("wish", WishItem);
+  let wishlist = [];
+  if (data?.data?.email) {
+    const { data: wishlistItem } = await getWishList();
+    wishlist = wishlistItem;
+  }
 
   return (
     <div>
@@ -20,7 +23,7 @@ const ProductPage = async ({ productDetails }: any) => {
         <div className="lg:col-span-2">
           <ProductInformation
             productDetails={productDetails}
-            singleWishItem={1}
+            wishlist={wishlist}
           />
         </div>
       </div>

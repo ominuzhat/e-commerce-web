@@ -1,5 +1,5 @@
+"use server";
 import envConfig from "@/lib/config/envConfig";
-
 export const getWebsiteInfo = async () => {
   let fetchOptions = {};
   fetchOptions = {

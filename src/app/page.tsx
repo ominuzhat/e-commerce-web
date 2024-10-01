@@ -13,12 +13,23 @@ import HomeSalesSection from "@/components/ui/Home/HomeSalesSection";
 import HomeService from "@/components/ui/Home/HomeService";
 import HomeTrendingSection from "@/components/ui/Home/HomeTrendingSection";
 import MainLayout from "@/layout/MainLayout";
+import { getCurrentUser } from "@/utils/actions/auth.user";
+import { getWishList } from "@/utils/actions/get/get.action";
 import { getProductList } from "@/utils/actions/productList";
 import { getWebsiteInfo } from "@/utils/actions/websiteInfo";
 
 export default async function Home() {
-  const { data } = await getWebsiteInfo();
-  const { data: productList, pagination } = await getProductList();
+  const data = await getCurrentUser();
+
+  let wishlist = [];
+  if (data?.data?.email) {
+    const { data: wishlistItem } = await getWishList();
+    wishlist = wishlistItem;
+  }
+
+  const { data: webInfo } = await getWebsiteInfo();
+  const { data: productList } = await getProductList();
+
   const {
     officeInfo,
     trendingItems,
@@ -28,7 +39,7 @@ export default async function Home() {
     bestSellers,
     topRatedItems,
     onSaleItems,
-  } = data || {};
+  } = webInfo || {};
 
   return (
     <MainLayout>
@@ -36,11 +47,15 @@ export default async function Home() {
       <HomeService />
       <HomeCategory category={category} />
       <HomeCartSection />
-      <HomeTrendingSection trendingItems={trendingItems} />
-      <HomeHotSection hotItems={hotItems} />
+      <HomeTrendingSection trendingItems={trendingItems} wishlist={wishlist} />
+      <HomeHotSection hotItems={hotItems} wishlist={wishlist} />
       <HomeBannerSection />
-      <HomeCategoriesSection category={category} productList={productList} />
-      <HomeNewArrivalsSection newArrivals={newArrivals} />
+      <HomeCategoriesSection
+        category={category}
+        productList={productList}
+        wishlist={wishlist}
+      />
+      <HomeNewArrivalsSection newArrivals={newArrivals} wishlist={wishlist} />
       <HomeMidSection />
       <HomeMegaCollection />
       <HomeBrandsSection />

@@ -5,21 +5,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+
 import p2 from "@/../../public/p2.png";
 import CommonCard from "@/components/CommonCard";
-import { getProductList } from "@/utils/actions/productList";
 import CommonPagination from "@/common/CommonPagination";
+import { getWishList } from "@/utils/actions/get/get.action";
+import { getCurrentUser } from "@/utils/actions/auth.user";
 
-const ShopList = ({ productData, paginationData }: any) => {
+const ShopList = async ({ productData, paginationData }: any) => {
+  const data = await getCurrentUser();
+
+  let wishlist = [];
+  if (data?.data?.email) {
+    const { data: wishlistItem } = await getWishList();
+    wishlist = wishlistItem;
+  }
+
   return (
     <div className=" space-y-3 ">
       <div className="flex items-center space-x-2 text-gray-400 ">
@@ -39,35 +40,10 @@ const ShopList = ({ productData, paginationData }: any) => {
         <p>Showing 1-10 of 50 Results</p>
       </div>
       <div>
-        <CommonCard data={productData} />
+        <CommonCard data={productData} wishlist={wishlist} />
       </div>
       <div>
         <CommonPagination paginationData={paginationData} />
-
-        {/* <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#" isActive>
-                2
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination> */}
       </div>
     </div>
   );

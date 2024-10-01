@@ -41,7 +41,6 @@ export const getCurrentUser = async () => {
     const res = await axios.get(`${envConfig.baseApi}/user/me`, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
-
     return res?.data;
   } catch (error: any) {
     if (error?.response?.status === 401) {

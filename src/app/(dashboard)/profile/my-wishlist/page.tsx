@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import p2 from "@/../../public/p2.png";
 import CommonCard from "@/components/CommonCard";
 import { getWishList } from "@/utils/actions/get/get.action";
@@ -121,16 +121,15 @@ const trendingData = [
 // };
 
 const MyWishList = async () => {
-  // const { data: wishlist } = await getWishList();
-  // console.log(wishlist);
+  const { data: wishlist } = await getWishList();
 
   return (
     <>
       <div className="shadow rounded-lg px-5 py-8 space-y-5">
         <p className="text-xl font-semibold">My Wishlist</p>
         <hr />
-        <CommonCard data={trendingData} />
-      </div>{" "}
+        <CommonCard data={wishlist?.[0]?.products} wishlist={wishlist} />
+      </div>
     </>
   );
 };

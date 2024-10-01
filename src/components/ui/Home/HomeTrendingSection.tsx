@@ -108,8 +108,10 @@ import { TProductTrending } from "@/types/product.type";
 
 const HomeTrendingSection = ({
   trendingItems,
+  wishlist
 }: {
   trendingItems: TProductTrending[];
+  wishlist:any
 }) => {
   return (
     <div className="max-w-screen-xl mx-auto pt-16 pb-12 lg:px-5 px-5">
@@ -125,7 +127,7 @@ const HomeTrendingSection = ({
         </div>
       </div>
 
-      <CommonCardWithCarousel data={trendingItems} />
+      <CommonCardWithCarousel wishlist={wishlist} data={trendingItems} />
     </div>
   );
 };

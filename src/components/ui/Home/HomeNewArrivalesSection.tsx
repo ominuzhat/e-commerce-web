@@ -106,7 +106,7 @@ const trendingData = [
   },
 ];
 
-const HomeNewArrivalsSection = ({newArrivals}:any) => {
+const HomeNewArrivalsSection = ({ newArrivals, wishlist }: any) => {
   return (
     <div className="max-w-screen-xl mx-auto lg:px-5 px-5">
       <div className="flex items-center justify-between">
@@ -121,7 +121,7 @@ const HomeNewArrivalsSection = ({newArrivals}:any) => {
         </div>
       </div>
 
-      <CommonCardWithCarousel data={newArrivals} />
+      <CommonCardWithCarousel data={newArrivals} wishlist={wishlist} />
     </div>
   );
 };

@@ -22,17 +22,18 @@ import cartList from "../../lib/CartItems.json";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { signOut, useSession } from "next-auth/react";
 import { useUser } from "@/providers/user.provider";
-import { logout } from "@/utils/actions/auth.user";
+import { getCurrentUser, logout } from "@/utils/actions/auth.user";
 import { useForm } from "react-hook-form";
 import useDebounce from "@/hooks/debounce.hook";
+import { getWishList } from "@/utils/actions/get/get.action";
 
 interface SearchFormData {
   searchQuery: string;
 }
 
 const Header = () => {
-  const { user, setIsLoading }: any = useUser();
-  const { data } = useSession();
+  const { user, setIsLoading, wishlist }: any = useUser();
+
   const { register, handleSubmit, watch } = useForm<SearchFormData>();
 
   const onSubmit = (data: SearchFormData) => {};
@@ -110,7 +111,7 @@ const Header = () => {
                 className="w-8 bg-footerColor text-baseColor hover:text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"
               />
               <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                0
+                {wishlist && wishlist?.length}
               </span>
             </div>
           </Link>
@@ -172,38 +173,7 @@ const Header = () => {
                           className="text-red-600 hover:text-baseColor cursor-pointer"
                         />
                       </DropdownMenuShortcut>
-
-                      {/* <Users className="mr-2 h-4 w-4" />
-                      <span>Team</span> */}
                     </DropdownMenuItem>
-                    {/* <DropdownMenuSub>
-                      <DropdownMenuSubTrigger>
-                        <UserPlus className="mr-2 h-4 w-4" />
-                        <span>Invite users</span>
-                      </DropdownMenuSubTrigger>
-                      <DropdownMenuPortal>
-                        <DropdownMenuSubContent>
-                          <DropdownMenuItem>
-                            <Mail className="mr-2 h-4 w-4" />
-                            <span>Email</span>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <MessageSquare className="mr-2 h-4 w-4" />
-                            <span>Message</span>
-                          </DropdownMenuItem>
-                          <DropdownMenuSeparator />
-                          <DropdownMenuItem>
-                            <PlusCircle className="mr-2 h-4 w-4" />
-                            <span>More...</span>
-                          </DropdownMenuItem>
-                        </DropdownMenuSubContent>
-                      </DropdownMenuPortal>
-                    </DropdownMenuSub> */}
-                    {/* <DropdownMenuItem>
-                      <Plus className="mr-2 h-4 w-4" />
-                      <span>New Team</span>
-                      <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-                    </DropdownMenuItem> */}
                   </DropdownMenuGroup>
                 ))}
                 <DropdownMenuSeparator />

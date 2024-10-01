@@ -104,7 +104,7 @@ const trendingData = [
   },
 ];
 
-const HomeHotSection = ({ hotItems }: any) => {
+const HomeHotSection = ({ hotItems , wishlist }: any) => {
   return (
     <div className="max-w-screen-xl mx-auto  lg:px-5 px-5">
       <div className="flex items-center justify-between">
@@ -119,7 +119,7 @@ const HomeHotSection = ({ hotItems }: any) => {
         </div>
       </div>
 
-      <CommonCardWithCarousel data={hotItems} />
+      <CommonCardWithCarousel data={hotItems} wishlist={wishlist} />
     </div>
   );
 };

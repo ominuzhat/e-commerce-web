@@ -5,8 +5,6 @@ import ProductsDetails from "./ProductPage";
 import HomeCouponSection from "@/components/ui/Home/HomeCouponSection";
 import RelatedProductItems from "@/components/RelatedItems";
 import { getProductFDetails } from "@/utils/actions/productList";
-import { useSingleGetWishlist } from "@/hooks/wishlist.hook";
-import { getSingleWishList } from "@/utils/actions/get/get.action";
 
 export const metadata: Metadata = {
   title: "Shop | Eco Shop",
@@ -15,9 +13,7 @@ export const metadata: Metadata = {
 
 const ShopItemsDetails = async ({ params }: { params: any }) => {
   const { id } = params;
-  const { data: singleWishItem } = await getSingleWishList(id);
 
-  console.log("sing", singleWishItem);
   const { data: productDetails } = await getProductFDetails(id);
 
   return (

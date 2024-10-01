@@ -12,6 +12,7 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { signIn } from "next-auth/react";
 import { useUser } from "@/providers/user.provider";
 import { useLogin } from "@/hooks/auth.hook";
+import { useRouter } from "next/navigation";
 
 export type TLogin = {
   email: string;
@@ -19,7 +20,7 @@ export type TLogin = {
 };
 
 const Login = () => {
-  // const router = useRouter();
+  const router = useRouter();
   // const searchParams = useSearchParams();
   // const redirect = searchParams.get("redirect");
   const { mutate: handleUserLogin, isPending, data: userData } = useLogin();
@@ -34,10 +35,13 @@ const Login = () => {
     formState: { errors },
   } = useForm<TLogin>();
 
+  console.log(userData);
+
   const onSubmit: SubmitHandler<TLogin> = (data: TLogin) => {
     handleUserLogin(data);
-    if (!isPending && userData) {
+    if (!isPending && userData?.data) {
       setIsLoading(true);
+      router.push("/profile");
     }
   };
 

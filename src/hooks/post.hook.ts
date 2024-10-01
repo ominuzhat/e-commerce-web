@@ -8,7 +8,7 @@ export const useAddToCart = () => {
     mutationFn: async (data: any) => await addToCart(data),
     onSuccess: (data) => {
       toast({
-        title: `Hi, ${data?.data?.title}!`,
+        title: ` ${data?.data?.items[0]?.variant?.priceOption?.product?.title}!`,
         description: "Product added successfully",
         // action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
       });
@@ -25,17 +25,25 @@ export const useAddWishlist = () => {
   return useMutation({
     mutationKey: ["ADD_TO_WISHLIST"],
     mutationFn: async (data: any) => await addWishlist(data),
-    onSuccess: (data) => {
+    onSuccess: (response) => {
+      const status = response?.status;
+      const userName = response?.data?.data?.user?.firstName;
+      let message =
+        status === 201
+          ? "Product added to Wishlist successfully"
+          : "Product removed from Wishlist successfully";
+
       toast({
-        title: `Hi, ${data?.data?.user?.firstName}!`,
-        description: "Product added to Wishlist successfully",
+        title: `Hi, ${userName}!`,
+        description: message,
         // action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
       });
     },
-    onError: (data) => {
+    onError: (error: any) => {
       toast({
-        title: "Product added Failed",
-        description: data?.message || "An unknown error occurred.",
+        title: "Operation Failed",
+        description:
+          error?.response?.data?.message || "An unknown error occurred.",
       });
     },
   });

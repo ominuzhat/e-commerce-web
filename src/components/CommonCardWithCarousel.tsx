@@ -28,8 +28,9 @@ import SingleItemsDrawer from "@/common/SingleItemsDrawer";
 import { Badge } from "./ui/badge";
 import { renderStars } from "./CommonRating";
 import Link from "next/link";
+import WishListButton from "./WishListButton";
 
-const CommonCardWithCarousel = ({ data }: any) => {
+const CommonCardWithCarousel = ({ data, wishlist }: any) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [id, setId] = useState();
 
@@ -92,9 +93,9 @@ const CommonCardWithCarousel = ({ data }: any) => {
                       <Tooltip>
                         <TooltipTrigger>
                           {" "}
-                          <FontAwesomeIcon
-                            icon={faHeart}
-                            className="bg-secondaryColor text-white rounded-full p-2 w-4 h-4 cursor-pointer hover:bg-baseColor"
+                          <WishListButton
+                            wishlist={wishlist?.[0]}
+                            productId={data?.id}
                           />
                         </TooltipTrigger>
                         <TooltipContent className="bg-secondaryColor text-white">

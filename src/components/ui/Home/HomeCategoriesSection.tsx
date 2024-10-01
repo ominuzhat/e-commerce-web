@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "../button";
 import CommonCard from "@/components/CommonCard";
 
-const HomeCategoriesSection = ({ category, productList }: any) => {
+const HomeCategoriesSection = ({ category, productList, wishlist }: any) => {
   // const { data: productList, pagination } = await getProductList();
 
   // console.log(productList);
@@ -52,7 +52,7 @@ const HomeCategoriesSection = ({ category, productList }: any) => {
             </div>
           </div>
 
-          <CommonCard data={productList?.slice(0, 6)} />
+          <CommonCard data={productList?.slice(0, 6)} wishlist={wishlist} />
         </div>
       </div>
     </div>
