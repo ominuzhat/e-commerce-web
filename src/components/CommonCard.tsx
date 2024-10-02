@@ -21,39 +21,20 @@ import Link from "next/link";
 import { renderStars } from "./CommonRating";
 import WishListButton from "./WishListButton";
 import { useAddToCart } from "@/hooks/post.hook";
+import CommonAddToCartButton from "./CommonAddToCartButton";
+import { useGetCartlist } from "@/hooks/get.hook";
 
 const CommonCard = ({ data, wishlist }: any) => {
+  const { data: cartList } = useGetCartlist();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [id, setId] = useState();
-  const { mutate: handleAddToCart, data: cartData } = useAddToCart();
-  const [cartId, setCartId] = useState<string | null>(null);
+
+  console.log(cartList, "cartlist");
+
   const singleData = data?.find((item: any) => item?.id === id);
 
   const handleOpenChange = (open: boolean) => {
     setIsDrawerOpen(open);
-  };
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedCartId = localStorage.getItem("cartId");
-      setCartId(storedCartId);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (cartData?.data?.id) {
-      if (typeof window !== "undefined") {
-        localStorage.setItem("cartId", cartData?.data?.id);
-      }
-    }
-  }, [cartData]);
-  const handleAddToCartItem = (data: any) => {
-    const addToCart = {
-      variant: data?.priceOptions?.[0]?.variants[0]?.id,
-      quantity: 1,
-      cartId: cartId || null,
-    };
-    handleAddToCart(addToCart);
   };
 
   return (
@@ -99,6 +80,7 @@ const CommonCard = ({ data, wishlist }: any) => {
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
+
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger>
@@ -158,21 +140,7 @@ const CommonCard = ({ data, wishlist }: any) => {
                   </h2>
                 )}
               </div>
-              <div className="absolute bottom-8 right-4">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger onClick={() => handleAddToCartItem(data)}>
-                      <FontAwesomeIcon
-                        icon={faBagShopping}
-                        className="w-4 h-4 bg-secondaryColor text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"
-                      />
-                    </TooltipTrigger>
-                    <TooltipContent className="bg-secondaryColor text-white">
-                      <p>Add to Cart</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
+              <CommonAddToCartButton data={data} />
             </div>
           </div>
         ))}

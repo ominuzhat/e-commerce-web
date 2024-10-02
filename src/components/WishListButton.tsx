@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 const WishListButton = ({ wishlist, productId }: any) => {
   const router = useRouter();
-  const { user }: any = useUser();
+  const { user, wishlistLoading, setWishlistLoading }: any = useUser();
 
   const { mutate: handleAddToWishlist } = useAddWishlist();
 
@@ -15,7 +15,18 @@ const WishListButton = ({ wishlist, productId }: any) => {
     if (!user) {
       router.push("/login");
     } else {
-      handleAddToWishlist({ product: productId });
+      setWishlistLoading(true);
+      handleAddToWishlist(
+        { product: productId },
+        {
+          onSuccess: () => {
+            setWishlistLoading(false);
+          },
+          onError: () => {
+            setWishlistLoading(false);
+          },
+        }
+      );
     }
   };
 

@@ -1,48 +1,19 @@
 "use server";
 import axiosInstance from "@/lib/AxiosInstance";
 import envConfig from "@/lib/config/envConfig";
-import axios from "axios";
 import { cookies } from "next/headers";
 
 export const getSingleWishList = async (id: number) => {
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get("accessToken")?.value;
-  const fetchOptions = {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-    next: {
-      tags: ["wishlist"],
-    },
-  };
-
   try {
-    const response = await fetch(
-      `${envConfig.baseApi}/wishlist/${id}`,
-      fetchOptions
-    );
-    console.log(response, "response");
-    if (!response.ok) {
-      throw new Error("Failed to fetch wishlist");
-    }
-    const data = await response.json();
-    console.log(data);
-    return data;
+    const response = await axiosInstance.get(`/wishlist/${id}`);
+
+    return response.data;
   } catch (error: any) {
-    console.log(error, "singleWishlist");
-    throw new Error(error.message || "An unknown error occurred");
+    console.log(error.response?.data?.error?.message);
+    throw new Error(
+      error.response?.data?.error?.message || "Failed to fetch wishlist item"
+    );
   }
-
-  // try {
-  //   const response = await axiosInstance.get(`/wishlist/${id}`);
-
-  //   return response.data;
-  // } catch (error: any) {
-  //   console.log(error.response?.data?.error?.message);
-  //   throw new Error(
-  //     error.response?.data?.error?.message || "Failed to fetch wishlist item"
-  //   );
-  // }
 };
 
 export const getWishList = async () => {
@@ -56,7 +27,6 @@ export const getWishList = async () => {
       tags: ["wishlist"],
     },
   };
-
   try {
     const response = await fetch(`${envConfig.baseApi}/wishlist`, fetchOptions);
 
@@ -67,5 +37,17 @@ export const getWishList = async () => {
     return data;
   } catch (error: any) {
     throw new Error(error.message || "An unknown error occurred");
+  }
+};
+
+export const getCartList = async (cartId: string | null) => {
+  try {
+    const response = await axiosInstance.get(`/cart/${cartId}`);
+    return response?.data;
+  } catch (error: any) {
+    console.log(error.response?.data?.error?.message);
+    throw new Error(
+      error.response?.data?.error?.message || "Failed to fetch cart item"
+    );
   }
 };

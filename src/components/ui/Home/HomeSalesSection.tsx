@@ -11,6 +11,7 @@ import {
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons/faBagShopping";
 import { renderStars } from "@/components/CommonRating";
 import Link from "next/link";
+import CommonAddToCartButton from "@/components/CommonAddToCartButton";
 
 const HomeSalesSection = ({ onSaleItems, topRatedItems, bestSellers }: any) => {
   return (
@@ -73,20 +74,7 @@ const HomeSalesSection = ({ onSaleItems, topRatedItems, bestSellers }: any) => {
                 </div>
               </div>
               <div className="absolute -bottom-1 right-0">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      {" "}
-                      <FontAwesomeIcon
-                        icon={faBagShopping}
-                        className="w-4 h-4 bg-secondaryColor text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"
-                      />
-                    </TooltipTrigger>
-                    <TooltipContent className="bg-secondaryColor text-white">
-                      <p>Add to Cart</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <CommonAddToCartButton data={data} />
               </div>
             </div>
           ))}

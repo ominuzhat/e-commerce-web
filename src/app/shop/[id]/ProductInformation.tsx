@@ -1,7 +1,5 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
-
 import { Button } from "@/components/ui/button";
 import {
   CommonIcon,
@@ -12,6 +10,7 @@ import {
 import { renderStars } from "@/components/CommonRating";
 import { useAddToCart } from "@/hooks/post.hook";
 import WishListButton from "@/components/WishListButton";
+import { cookies } from "next/headers";
 
 const ProductInformation = ({ productDetails, wishlist }: any) => {
   const [selectedPriceOption, setSelectedPriceOption] = useState<any>(null);
@@ -73,7 +72,6 @@ const ProductInformation = ({ productDetails, wishlist }: any) => {
       quantity: count,
       cartId: cartId || null,
     };
-
 
     handleAddToCart(data);
   };

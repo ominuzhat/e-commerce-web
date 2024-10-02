@@ -18,44 +18,63 @@ interface IUserProviderValues {
   wishlist: any[];
   setWishlist: (wishList: any[]) => void;
   isLoading: boolean;
+  wishlistLoading: boolean;
   setUser: (user: any) => void;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
+  setWishlistLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<null>();
   const [wishlist, setWishlist] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [wishlistLoading, setWishlistLoading] = useState(false);
 
   const handleUser = async () => {
     const user = await getCurrentUser();
+    const wishlistData = await getWishList();
+
+    if (wishlistData?.data) {
+      setWishlist(wishlistData?.data?.[0]?.products);
+    }
+
     if (user?.data) {
       setUser(user?.data);
     } else {
       setUser(null);
     }
+    setWishlistLoading(true);
     setIsLoading(true);
   };
 
-  useEffect(() => {
-    const fetchWishlist = async () => {
-      const wishlistData = await getWishList();
+  // useEffect(() => {
+  //   const fetchWishlist = async () => {
+  //     const wishlistData = await getWishList();
 
-      if (wishlistData?.data) {
-        setWishlist(wishlistData?.data?.[0]?.products);
-      }
-    };
+  //     if (wishlistData?.data) {
+  //       setWishlist(wishlistData?.data?.[0]?.products);
+  //     }
+  //   };
 
-    fetchWishlist();
-  }, []);
+  //   fetchWishlist();
+  // }, []);
 
   useEffect(() => {
     handleUser();
-  }, [isLoading]);
+  }, [isLoading, wishlistLoading]);
 
   return (
     <UserContext.Provider
-      value={{ user, setUser, isLoading, setIsLoading, wishlist, setWishlist }}
+      value={{
+        user,
+        setUser,
+        isLoading,
+        setIsLoading,
+        wishlist,
+        setWishlist,
+        wishlistLoading,
+        setWishlistLoading,
+      }}
     >
       {children}
     </UserContext.Provider>

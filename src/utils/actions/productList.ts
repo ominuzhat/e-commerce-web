@@ -2,19 +2,21 @@
 import axiosInstance from "@/lib/AxiosInstance";
 import envConfig from "@/lib/config/envConfig";
 
-export const getProductList = async () => {
+export const getProductList = async (searchItem: any) => {
   let fetchOptions = {};
   fetchOptions = {
     cache: "no-store",
   };
 
   try {
-    const response = await axiosInstance.get(`/product`, fetchOptions);
+    const response = await axiosInstance.get(
+      `/product?keyword=${searchItem}`,
+      fetchOptions
+    );
     return response?.data;
   } catch (error: any) {
     console.log(error);
     throw new Error(error);
-    // return null;
   }
 };
 
