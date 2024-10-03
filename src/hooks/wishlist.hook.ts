@@ -1,12 +1,12 @@
-// import { getWishList, getSingleWishList } from "@/utils/actions/get/get.action";
-// import { useQuery } from "@tanstack/react-query";
+import { getWishList, getSingleWishList } from "@/utils/actions/get/get.action";
+import { useQuery } from "@tanstack/react-query";
 
-// export const useGetWishlist = () => {
-//   return useQuery({
-//     queryKey: ["WISHLIST"],
-//     queryFn: getWishList,
-//   });
-// };
+export const useGetWishlist = () => {
+  return useQuery({
+    queryKey: ["WISHLIST"],
+    queryFn: getWishList,
+  });
+};
 
 // type WishlistItem = {
 //   id: number;

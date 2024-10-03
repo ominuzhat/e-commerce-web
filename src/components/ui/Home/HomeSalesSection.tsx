@@ -39,8 +39,8 @@ const HomeSalesSection = ({ onSaleItems, topRatedItems, bestSellers }: any) => {
                     <Tooltip>
                       <TooltipTrigger>
                         <p className="text-xl font-semibold text-left">
-                          {data?.title?.length > 50
-                            ? data?.title?.slice(0, 50) + "..."
+                          {data?.title?.length > 20
+                            ? data?.title?.slice(0, 20) + "..."
                             : data?.title}
                         </p>
                       </TooltipTrigger>
@@ -91,7 +91,7 @@ const HomeSalesSection = ({ onSaleItems, topRatedItems, bestSellers }: any) => {
               <Image
                 src={data?.featuredImage}
                 alt={"p2"}
-                width={100}
+                width={90}
                 height={30}
                 className="border bg-white rounded-xl"
               />
@@ -101,8 +101,8 @@ const HomeSalesSection = ({ onSaleItems, topRatedItems, bestSellers }: any) => {
                     <Tooltip>
                       <TooltipTrigger>
                         <p className="text-xl font-semibold text-left">
-                          {data?.title?.length > 50
-                            ? data?.title?.slice(0, 50) + "..."
+                          {data?.title?.length > 20
+                            ? data?.title?.slice(0, 20) + "..."
                             : data?.title}
                         </p>
                       </TooltipTrigger>
@@ -135,22 +135,7 @@ const HomeSalesSection = ({ onSaleItems, topRatedItems, bestSellers }: any) => {
                   )}
                 </div>
               </div>
-              <div className="absolute -bottom-1 right-0">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      {" "}
-                      <FontAwesomeIcon
-                        icon={faBagShopping}
-                        className="w-4 h-4 bg-secondaryColor text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"
-                      />
-                    </TooltipTrigger>
-                    <TooltipContent className="bg-secondaryColor text-white">
-                      <p>Add to Cart</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
+              <CommonAddToCartButton data={data} />
             </div>
           ))}
         </div>
@@ -175,8 +160,8 @@ const HomeSalesSection = ({ onSaleItems, topRatedItems, bestSellers }: any) => {
                     <Tooltip>
                       <TooltipTrigger>
                         <p className="text-xl font-semibold text-left">
-                          {data?.title?.length > 50
-                            ? data?.title?.slice(0, 50) + "..."
+                          {data?.title?.length > 20
+                            ? data?.title?.slice(0, 20) + "..."
                             : data?.title}
                         </p>
                       </TooltipTrigger>
@@ -209,22 +194,7 @@ const HomeSalesSection = ({ onSaleItems, topRatedItems, bestSellers }: any) => {
                   )}
                 </div>
               </div>
-              <div className="absolute -bottom-1 right-0">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      {" "}
-                      <FontAwesomeIcon
-                        icon={faBagShopping}
-                        className="w-4 h-4 bg-secondaryColor text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"
-                      />
-                    </TooltipTrigger>
-                    <TooltipContent className="bg-secondaryColor text-white">
-                      <p>Add to Cart</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
+              <CommonAddToCartButton data={data} />
             </div>
           ))}
         </div>

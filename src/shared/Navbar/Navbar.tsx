@@ -7,6 +7,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
 import { usePathname } from "next/navigation";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import CategoryMenu from "./CategoryMenu";
+import SearchBar from "./SearchBar";
 
 const nav_links = [
   {
@@ -39,8 +40,8 @@ const Navbar = () => {
     <div className="border py-3">
       <div className="max-w-screen-xl mx-auto px-2">
         <div className="flex items-center justify-between ">
-          <div>  
-          <CategoryMenu/>      
+          <div>
+            <CategoryMenu />
           </div>
           <div className="navigation" onClick={toggleMenu} ref={menuRef}>
             <div className="menu flex text-sm ">
@@ -57,24 +58,15 @@ const Navbar = () => {
                   {navlinks.display}
                 </Link>
               ))}
-              {/* <Link href={"/login"}>
-                <Button>Sign Up</Button>
-              </Link> */}
+
               <Link href={"/"}>
                 <Button>Become Seller</Button>
               </Link>
             </div>
           </div>
 
-          <div className="lg:hidden block md:hidden relative ">
-            <input
-              placeholder="Search Here..."
-              className="border hover:border-baseColor rounded-lg  py-2 px-4  focus:outline-none"
-            />
-            <FontAwesomeIcon
-              icon={faMagnifyingGlass}
-              className="w-9 p-2 absolute right-2 bottom-1 font-medium text-slate-400"
-            />
+          <div className="relative lg:hidden block ">
+            <SearchBar />
           </div>
 
           <FontAwesomeIcon

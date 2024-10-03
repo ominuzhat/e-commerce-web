@@ -22,10 +22,8 @@ import cartList from "../../lib/CartItems.json";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { signOut, useSession } from "next-auth/react";
 import { useUser } from "@/providers/user.provider";
-import { getCurrentUser, logout } from "@/utils/actions/auth.user";
-import { useForm } from "react-hook-form";
-import useDebounce from "@/hooks/debounce.hook";
-import { getWishList } from "@/utils/actions/get/get.action";
+import { logout } from "@/utils/actions/auth.user";
+
 import SearchBar from "./SearchBar";
 
 const Header = () => {
@@ -37,12 +35,10 @@ const Header = () => {
         <Link href={"/"}>
           <Image src={logo} alt={"logo"} width={200} height={50} />
         </Link>
-        <SearchBar />
+        <div className="relative hidden lg:block">
+          <SearchBar />
+        </div>
         <div className="flex items-center space-x-3">
-          {/* <FontAwesomeIcon
-            icon={faUser}
-            className="w-8 bg-footerColor text-baseColor hover:text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"
-          /> */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <FontAwesomeIcon

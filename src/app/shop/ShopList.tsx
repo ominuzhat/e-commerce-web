@@ -6,7 +6,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import p2 from "@/../../public/p2.png";
 import CommonCard from "@/components/CommonCard";
 import CommonPagination from "@/common/CommonPagination";
 import { getWishList } from "@/utils/actions/get/get.action";

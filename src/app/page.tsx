@@ -17,6 +17,7 @@ import { getCurrentUser } from "@/utils/actions/auth.user";
 import { getWishList } from "@/utils/actions/get/get.action";
 import { getProductList } from "@/utils/actions/productList";
 import { getWebsiteInfo } from "@/utils/actions/websiteInfo";
+import { Suspense } from "react";
 
 export default async function Home() {
   const data = await getCurrentUser();
@@ -28,7 +29,7 @@ export default async function Home() {
   }
 
   const { data: webInfo } = await getWebsiteInfo();
-  const { data: productList } = await getProductList();
+  const { data: productList } = await getProductList("");
 
   const {
     officeInfo,
@@ -43,28 +44,33 @@ export default async function Home() {
 
   return (
     <MainLayout>
-      <HeroSection />
-      <HomeService />
-      <HomeCategory category={category} />
-      <HomeCartSection />
-      <HomeTrendingSection trendingItems={trendingItems} wishlist={wishlist} />
-      <HomeHotSection hotItems={hotItems} wishlist={wishlist} />
-      <HomeBannerSection />
-      <HomeCategoriesSection
-        category={category}
-        productList={productList}
-        wishlist={wishlist}
-      />
-      <HomeNewArrivalsSection newArrivals={newArrivals} wishlist={wishlist} />
-      <HomeMidSection />
-      <HomeMegaCollection />
-      <HomeBrandsSection />
-      <HomeSalesSection
-        bestSellers={bestSellers}
-        topRatedItems={topRatedItems}
-        onSaleItems={onSaleItems}
-      />
-      <HomeCouponSection />
+      <Suspense fallback="loading...">
+        <HeroSection />
+        <HomeService />
+        <HomeCategory category={category} />
+        <HomeCartSection />
+        <HomeTrendingSection
+          trendingItems={trendingItems}
+          wishlist={wishlist}
+        />
+        <HomeHotSection hotItems={hotItems} wishlist={wishlist} />
+        <HomeBannerSection />
+        <HomeCategoriesSection
+          category={category}
+          productList={productList}
+          wishlist={wishlist}
+        />
+        <HomeNewArrivalsSection newArrivals={newArrivals} wishlist={wishlist} />
+        <HomeMidSection />
+        <HomeMegaCollection />
+        <HomeBrandsSection />
+        <HomeSalesSection
+          bestSellers={bestSellers}
+          topRatedItems={topRatedItems}
+          onSaleItems={onSaleItems}
+        />
+        <HomeCouponSection />
+      </Suspense>
     </MainLayout>
   );
 }

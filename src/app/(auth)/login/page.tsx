@@ -35,13 +35,11 @@ const Login = () => {
     formState: { errors },
   } = useForm<TLogin>();
 
-  console.log(userData);
-
   const onSubmit: SubmitHandler<TLogin> = (data: TLogin) => {
     handleUserLogin(data);
     if (!isPending && userData?.data) {
       setIsLoading(true);
-      router.push("/profile");
+      router.push("/");
     }
   };
 

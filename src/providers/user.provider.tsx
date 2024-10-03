@@ -47,18 +47,6 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading(true);
   };
 
-  // useEffect(() => {
-  //   const fetchWishlist = async () => {
-  //     const wishlistData = await getWishList();
-
-  //     if (wishlistData?.data) {
-  //       setWishlist(wishlistData?.data?.[0]?.products);
-  //     }
-  //   };
-
-  //   fetchWishlist();
-  // }, []);
-
   useEffect(() => {
     handleUser();
   }, [isLoading, wishlistLoading]);

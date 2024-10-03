@@ -10,10 +10,12 @@ const HomeCategoriesSection = ({ category, productList, wishlist }: any) => {
 
   // console.log(productList);
 
+  console.log(category);
+
   return (
     <div className="max-w-screen-xl mx-auto lg:pt-16 pb-12 lg:px-2 px-5">
       <div className="lg:grid lg:grid-cols-4 gap-5">
-        <div className="border shadow-xl py-5 px-6 rounded-xl ">
+        <div className="border shadow-xl py-10 px-6 rounded-xl max-h-fit">
           <p className="text-xl lg:text-2xl font-semibold">Top Categories</p>
           <div className="my-5">
             {category?.map((item: any, index: number) => (

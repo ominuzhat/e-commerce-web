@@ -36,6 +36,7 @@ export const getWishList = async () => {
     const data = await response.json();
     return data;
   } catch (error: any) {
+    console.log(error);
     throw new Error(error.message || "An unknown error occurred");
   }
 };

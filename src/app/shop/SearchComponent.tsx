@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
+import { useWebsiteInfo } from "@/providers/website.provider";
 import { faSearch, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -67,15 +68,15 @@ const mobileData = [
 ];
 
 const SearchComponent = () => {
-  const [priceRange, setPriceRange] = useState([20, 80]); // Initial values for the two pointers
-  const ratings = [5, 4, 3, 2, 1]; // Ratings from 5 stars to 1 star
+  const websiteInfo: any = useWebsiteInfo();
 
-  // Function to generate star icons based on the rating
+  const [priceRange, setPriceRange] = useState([20, 80]);
+  const ratings = [5, 4, 3, 2, 1];
+
   const getStarIcons = (rating: any) => {
     const fullStarClass = "fas fa-star text-yellow-500  w-5 h-5 border"; // Full star class
     const emptyStarClass = "far fa-star text-yellow-500  w-5 h-5 border"; // Empty star class
 
-    // Create full and empty stars
     const fullStars = Array(rating).fill(
       <i className={fullStarClass} key={`full-${rating}-${Math.random()}`} />
     );
@@ -109,24 +110,26 @@ const SearchComponent = () => {
         <p className="text-xl font-semibold">Category</p>
         <hr className="my-4" />
         <div>
-          {mobileData?.map((item) => (
+          {websiteInfo?.category?.map((item: any) => (
             <div key={item?.id}>
-              <div className="flex justify-between items-center space-y-4 hover:text-baseColor cursor-pointer text-gray-400">
-                <div className="flex items-center space-x-3  hover:text-baseColor hover:ms-5 duration-300 hover:duration-300">
-                  <p className="font-medium ">{item?.name}</p>
+              {item?.subCategory?.map((subCategory: any) => (
+                <div className="flex justify-between items-center space-y-4 hover:text-baseColor cursor-pointer text-gray-400">
+                  <div className="flex items-center space-x-3  hover:text-baseColor hover:ms-5 duration-300 hover:duration-300">
+                    <p className="font-medium ">{subCategory?.name}</p>
+                  </div>
+                  <p>({item?.subCategoryCount})</p>
                 </div>
-                <p>({item?.quantity})</p>
-              </div>
+              ))}
             </div>
           ))}
         </div>
       </div>
       {/* brands */}
-      <div className="rounded-lg bg-footerColor px-6 py-4">
+      {/* <div className="rounded-lg bg-footerColor px-6 py-4">
         <p className="text-xl font-semibold">Brands</p>
         <hr className="my-4" />
         <div>
-          {brands.map((item, index) => (
+          {websiteInfo?.category?.map((item: any, index: number) => (
             <div key={index}>
               <div className="flex justify-between items-center space-y-4 hover:text-baseColor cursor-pointer text-gray-400">
                 <div className="flex items-center space-x-3 hover:text-baseColor ">
@@ -146,7 +149,7 @@ const SearchComponent = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
       {/* price range */}
       <div className="rounded-lg bg-footerColor px-6 py-4">
         <p className="text-xl font-semibold">Price Range</p>

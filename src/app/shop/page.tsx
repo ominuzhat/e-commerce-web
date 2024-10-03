@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const ShopPage = async () => {
-  const { data: productList, pagination } = await getProductList();
+  const { data: productList, pagination } = await getProductList("");
 
   return (
     <MainLayout>

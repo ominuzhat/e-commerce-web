@@ -25,7 +25,7 @@ import CommonAddToCartButton from "./CommonAddToCartButton";
 import { useGetCartlist } from "@/hooks/get.hook";
 
 const CommonCard = ({ data, wishlist }: any) => {
-  const { data: cartList } = useGetCartlist();
+  const { data: cartList } = useGetCartlist("");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [id, setId] = useState();
 
@@ -62,7 +62,7 @@ const CommonCard = ({ data, wishlist }: any) => {
               >
                 {data?.badgeText}
               </Badge>
-              <div className="space-x-2 absolute bottom-4 w-full left-[33%] transform  opacity-0 group-hover:opacity-100 group-hover:animate-fade-in-bottom">
+              <div className="space-x-2 absolute bottom-4 w-full left-[40%] transform  opacity-0 group-hover:opacity-100 group-hover:animate-fade-in-bottom">
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger>
@@ -94,11 +94,6 @@ const CommonCard = ({ data, wishlist }: any) => {
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
-
-                <FontAwesomeIcon
-                  icon={faHeart}
-                  className="bg-secondaryColor text-white rounded-full p-2 w-4 h-4 cursor-pointer hover:bg-baseColor"
-                />
               </div>
             </div>
 
@@ -108,8 +103,8 @@ const CommonCard = ({ data, wishlist }: any) => {
                   <Tooltip>
                     <TooltipTrigger>
                       <p className="text-xl font-semibold text-left">
-                        {data?.title?.length > 50
-                          ? data?.title?.slice(0, 50) + "..."
+                        {data?.title?.length > 25
+                          ? data?.title?.slice(0, 25) + "..."
                           : data?.title}
                       </p>
                     </TooltipTrigger>
@@ -139,6 +134,10 @@ const CommonCard = ({ data, wishlist }: any) => {
                     ৳{data?.priceOptions?.[0]?.variants?.[0]?.price}
                   </h2>
                 )}
+
+                <p className="font-semibold text-xs text-baseColor">
+                  {data?.sales} Sold
+                </p>
               </div>
               <CommonAddToCartButton data={data} />
             </div>

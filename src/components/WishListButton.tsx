@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 const WishListButton = ({ wishlist, productId }: any) => {
   const router = useRouter();
-  const { user, wishlistLoading, setWishlistLoading }: any = useUser();
+  const { user, setWishlistLoading }: any = useUser();
 
   const { mutate: handleAddToWishlist } = useAddWishlist();
 
@@ -33,23 +33,17 @@ const WishListButton = ({ wishlist, productId }: any) => {
   return (
     <div>
       {wishlist?.products.find((p: any) => p.id === productId) ? (
-        <div
-          className="bg-secondaryColor text-white rounded-md cursor-pointer hover:bg-baseColor border  duration-300 hover:bg-opacity-80"
-          onClick={() => handleProductAddToWishlist()}
-        >
+        <div onClick={() => handleProductAddToWishlist()}>
           <FontAwesomeIcon
             icon={faHeart}
-            className="p-2 w-4 h-4 cursor-pointer"
+            className="p-2 w-4 h-4  text-white rounded-full cursor-pointer bg-baseColor duration-300 hover:bg-opacity-80"
           />
         </div>
       ) : (
-        <div
-          className="border rounded-lg hover:bg-baseColor hover:text-white duration-300"
-          onClick={() => handleProductAddToWishlist()}
-        >
+        <div onClick={() => handleProductAddToWishlist()}>
           <FontAwesomeIcon
             icon={faHeart}
-            className="p-2 w-4 h-4 cursor-pointer"
+            className="bg-secondaryColor text-white rounded-full p-2 w-4 h-4 cursor-pointer hover:bg-baseColor  "
           />
         </div>
       )}
