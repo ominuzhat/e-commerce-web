@@ -42,8 +42,13 @@ export const getWishList = async () => {
 };
 
 export const getCartList = async (cartId: string | null) => {
+  const fetchOptions: any = {
+    next: {
+      tags: ["addToCart"],
+    },
+  };
   try {
-    const response = await axiosInstance.get(`/cart/${cartId}`);
+    const response = await axiosInstance.get(`/cart/${cartId}`, fetchOptions);
     return response?.data;
   } catch (error: any) {
     console.log(error.response?.data?.error?.message);

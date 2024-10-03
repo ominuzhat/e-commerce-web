@@ -2,17 +2,25 @@
 import axiosInstance from "@/lib/AxiosInstance";
 import envConfig from "@/lib/config/envConfig";
 
-export const getProductList = async (searchItem: any) => {
+export const getProductList = async ({
+  searchItem = "",
+  subCategory = "",
+}: {
+  searchItem?: string | null;
+  subCategory?: any;
+}) => {
   let fetchOptions = {};
   fetchOptions = {
     cache: "no-store",
   };
 
+  let query = `/product?keyword=${searchItem}`;
+  if (subCategory) {
+    query += `&subCategory=${subCategory?.subCategory}`;
+  }
+
   try {
-    const response = await axiosInstance.get(
-      `/product?keyword=${searchItem}`,
-      fetchOptions
-    );
+    const response = await axiosInstance.get(query, fetchOptions);
     return response?.data;
   } catch (error: any) {
     console.log(error);

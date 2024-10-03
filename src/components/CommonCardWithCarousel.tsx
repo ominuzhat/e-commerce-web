@@ -109,7 +109,7 @@ const CommonCardWithCarousel = ({ data, wishlist }: any) => {
                         <Tooltip>
                           <TooltipTrigger>
                             <WishListButton
-                              wishlist={wishlist?.[0]}
+                              wishlist={wishlist}
                               productId={data?.id}
                             />
                           </TooltipTrigger>
@@ -165,7 +165,7 @@ const CommonCardWithCarousel = ({ data, wishlist }: any) => {
                     <p className="font-semibold text-xs text-baseColor">
                       {data?.sales} Sold
                     </p>
-                    <CommonAddToCartButton data={data} cartItem={{}} />
+                    <CommonAddToCartButton data={data} />
                   </div>
                 </CarouselItem>
               );

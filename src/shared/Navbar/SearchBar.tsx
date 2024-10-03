@@ -17,7 +17,10 @@ const SearchBar = () => {
   const searchQuery = watch("searchQuery");
   const search = useDebounce(searchQuery);
 
-  const { data, isSuccess, isPending } = useGetProduct(search);
+  const { data, isSuccess, isPending } = useGetProduct({
+    subCategory: "",
+    searchItem: search || "",
+  });
 
   useEffect(() => {
     if (!isPending && isSuccess && data) {

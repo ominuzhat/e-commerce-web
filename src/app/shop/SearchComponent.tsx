@@ -2,27 +2,14 @@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
+import useDebounce from "@/hooks/debounce.hook";
 import { useWebsiteInfo } from "@/providers/website.provider";
+import SearchBar from "@/shared/Navbar/SearchBar";
 import { faSearch, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React, { useState } from "react";
-
-const brands = [
-  { name: "Apple", count: 12 },
-  { name: "Adidas", count: 15 },
-  { name: "Bosilox Inc", count: 20 },
-  { name: "Converse", count: 5 },
-  { name: "Canon Inc", count: 9 },
-  { name: "Fashionox", count: 25 },
-  { name: "Samsung", count: 19 },
-  { name: "Hitachi", count: 23 },
-  { name: "Nike", count: 13 },
-  { name: "Panasonic", count: 14 },
-  { name: "Puma", count: 16 },
-  { name: "Urba Outfitters", count: 17 },
-  { name: "Others", count: 18 },
-];
+import { useForm } from "react-hook-form";
 
 const sales = [
   {
@@ -56,19 +43,15 @@ const sizes = [
   },
 ];
 
-const mobileData = [
-  { id: 1, name: "Samsung", quantity: 10 },
-  { id: 2, name: "Apple", quantity: 15 },
-  { id: 3, name: "Xiaomi", quantity: 12 },
-  { id: 4, name: "Sony", quantity: 18 },
-  { id: 5, name: "Google", quantity: 5 },
-  { id: 6, name: "Vivo", quantity: 14 },
-  { id: 7, name: "Huawei", quantity: 17 },
-  { id: 8, name: "Techno", quantity: 8 },
-];
+interface SearchFormData {
+  searchQuery: string;
+}
 
-const SearchComponent = () => {
+const SearchComponent = ({ setSubCategory, setSearchterm }: any) => {
   const websiteInfo: any = useWebsiteInfo();
+  const [activeSubCategory, setActiveSubCategory] = useState<string | null>(
+    null
+  );
 
   const [priceRange, setPriceRange] = useState([20, 80]);
   const ratings = [5, 4, 3, 2, 1];
@@ -86,6 +69,21 @@ const SearchComponent = () => {
 
     return [...fullStars, ...emptyStars];
   };
+  const { register, handleSubmit, watch } = useForm<SearchFormData>();
+
+  const searchQuery = watch("searchQuery");
+  const search = useDebounce(searchQuery);
+  setSearchterm(search);
+
+  const onSubmit = (data: SearchFormData) => {};
+
+  function handleCategory(id: any): void {
+    if (id === activeSubCategory) {
+      setSubCategory({ subCategory: "" }), setActiveSubCategory("");
+    } else {
+      setSubCategory({ subCategory: id }), setActiveSubCategory(id);
+    }
+  }
 
   return (
     <div className="space-y-5">
@@ -93,19 +91,24 @@ const SearchComponent = () => {
       <div className="rounded-lg bg-footerColor px-6 py-4">
         <p className="text-xl font-semibold">Search</p>
         <hr className="my-4" />
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Search"
-            className="border px-4 py-4 rounded-lg w-full hover:border-baseColor focus:outline-none"
-          />
-          <FontAwesomeIcon
-            icon={faSearch}
-            className=" text-slate-400 absolute right-4 top-1/3"
-          />
-        </div>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="relative">
+            <input
+              {...register("searchQuery")} // React Hook Form's register method
+              type="text"
+              placeholder="Search Here..."
+              className="border px-4 py-4 rounded-lg w-full hover:border-baseColor focus:outline-none"
+            />
+            <FontAwesomeIcon
+              icon={faSearch}
+              className="text-slate-400 absolute right-4 top-1/3"
+            />
+          </div>
+        </form>
       </div>
       {/* category */}
+
       <div className="rounded-lg bg-footerColor px-6 py-4">
         <p className="text-xl font-semibold">Category</p>
         <hr className="my-4" />
@@ -113,17 +116,28 @@ const SearchComponent = () => {
           {websiteInfo?.category?.map((item: any) => (
             <div key={item?.id}>
               {item?.subCategory?.map((subCategory: any) => (
-                <div className="flex justify-between items-center space-y-4 hover:text-baseColor cursor-pointer text-gray-400">
-                  <div className="flex items-center space-x-3  hover:text-baseColor hover:ms-5 duration-300 hover:duration-300">
-                    <p className="font-medium ">{subCategory?.name}</p>
-                  </div>
-                  <p>({item?.subCategoryCount})</p>
+                <div
+                  onClick={() => handleCategory(subCategory?.id)}
+                  key={subCategory?.id}
+                  className={`flex justify-between items-center   py-1 cursor-pointer 
+                    ${
+                      activeSubCategory === subCategory?.id
+                        ? "text-baseColor "
+                        : "hover:text-baseColor text-gray-400"
+                    }`}
+                >
+                  <p className="font-medium flex items-center   hover:text-baseColor hover:ms-5 duration-300 hover:duration-300">
+                    {subCategory?.name}
+                  </p>
+
+                  {/* <p>({item?.subCategoryCount})</p> */}
                 </div>
               ))}
             </div>
           ))}
         </div>
       </div>
+
       {/* brands */}
       {/* <div className="rounded-lg bg-footerColor px-6 py-4">
         <p className="text-xl font-semibold">Brands</p>

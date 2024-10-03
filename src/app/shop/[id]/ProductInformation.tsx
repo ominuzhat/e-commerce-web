@@ -10,7 +10,6 @@ import {
 import { renderStars } from "@/components/CommonRating";
 import { useAddToCart } from "@/hooks/post.hook";
 import WishListButton from "@/components/WishListButton";
-import { cookies } from "next/headers";
 
 const ProductInformation = ({ productDetails, wishlist }: any) => {
   const [selectedPriceOption, setSelectedPriceOption] = useState<any>(null);
@@ -200,7 +199,7 @@ const ProductInformation = ({ productDetails, wishlist }: any) => {
           <div className="flex items-center space-x-3">
             <Button onClick={() => handleAddToCartItem()}>Add To Cart</Button>
             <WishListButton
-              wishlist={wishlist?.[0]}
+              wishlist={wishlist}
               productId={productDetails?.id}
             />
           </div>

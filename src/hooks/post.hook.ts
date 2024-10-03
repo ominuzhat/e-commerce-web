@@ -1,4 +1,8 @@
-import { addToCart, addWishlist } from "@/utils/actions/post/post.action";
+import {
+  addToCart,
+  addWishlist,
+  removeToCart,
+} from "@/utils/actions/post/post.action";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "./use-toast";
 
@@ -21,6 +25,30 @@ export const useAddToCart = () => {
     },
   });
 };
+
+export const useRemoveToCart = () => {
+  return useMutation({
+    mutationKey: ["REMOVE_TO_CART"],
+    mutationFn: async (data: any) => await removeToCart(data),
+    onSuccess: (data) => {
+      console.log(data);
+
+      toast({
+        title: ` ${data?.data?.items[0]?.variant?.priceOption?.product?.title}!`,
+        description: "Product Remove successfully",
+      });
+    },
+    onError: (data) => {
+      console.log(data);
+
+      toast({
+        title: "Product remove Failed",
+        description: data?.message || "An unknown error occurred.",
+      });
+    },
+  });
+};
+
 export const useAddWishlist = () => {
   return useMutation({
     mutationKey: ["ADD_TO_WISHLIST"],

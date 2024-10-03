@@ -32,7 +32,7 @@ const WishListButton = ({ wishlist, productId }: any) => {
 
   return (
     <div>
-      {wishlist?.products.find((p: any) => p.id === productId) ? (
+      {wishlist?.find((p: any) => p.id === productId) ? (
         <div onClick={() => handleProductAddToWishlist()}>
           <FontAwesomeIcon
             icon={faHeart}

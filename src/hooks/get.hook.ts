@@ -1,4 +1,5 @@
 import { getCartList } from "@/utils/actions/get/get.action";
+import { removeToCart } from "@/utils/actions/post/post.action";
 import { getProductList } from "@/utils/actions/productList";
 import { useQuery } from "@tanstack/react-query";
 
@@ -10,9 +11,15 @@ export const useGetCartlist = (cartId: string | null) => {
   });
 };
 
-export const useGetProduct = (searchItem: string | null) => {
+export const useGetProduct = ({
+  subCategory = "",
+  searchItem = "",
+}: {
+  subCategory?: string;
+  searchItem?: string | null;
+}) => {
   return useQuery({
-    queryKey: ["PRODUCT_LIST", searchItem],
-    queryFn: () => getProductList(searchItem),
+    queryKey: ["PRODUCT_LIST", searchItem, subCategory],
+    queryFn: () => getProductList({ searchItem, subCategory }),
   });
 };

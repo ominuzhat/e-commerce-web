@@ -11,13 +11,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useRemoveToCart } from "@/hooks/post.hook";
+import { useUser } from "@/providers/user.provider";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useState } from "react";
-const CartItemsData = ({ CartListData }: any) => {
+const CartItemsData = () => {
+  const { mutate: handleRemoveToCart, data: cartData } = useRemoveToCart();
+
   const [count, setCount] = useState(0);
+  const { cartlist, setIsCartLoading }: any = useUser();
+
+  console.log(cartlist?.data);
 
   const handleDecrement = () => {
     setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
@@ -26,6 +33,17 @@ const CartItemsData = ({ CartListData }: any) => {
   const handleIncrement = () => {
     setCount((prevCount) => prevCount + 1);
   };
+  function handleCartDelete(cart: any): void {
+    const data = {
+      quantity: cart?.variant?.quantity,
+      variant: cart?.variant?.id,
+      product: cart?.variant?.priceOption?.product?.id,
+      cartId: cartlist?.data?.id,
+    };
+    handleRemoveToCart(data);
+    setIsCartLoading(true);
+  }
+
   return (
     <div>
       <Table>
@@ -40,12 +58,12 @@ const CartItemsData = ({ CartListData }: any) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {CartListData.map((cart: any, index: number) => (
+          {cartlist?.data?.items?.map((cart: any, index: number) => (
             <TableRow key={index}>
               <TableCell className="w-36 ">
                 <Image
-                  src={cart?.image}
-                  alt={cart?.name}
+                  src={cart?.variant?.priceOption?.product?.featuredImage}
+                  alt={cart?.variant?.priceOption?.product?.title}
                   width={150}
                   height={200}
                   className="border rounded "
@@ -54,17 +72,28 @@ const CartItemsData = ({ CartListData }: any) => {
               <TableCell>
                 <ul className="space-y-2">
                   <li>
-                    <span className="font-medium text-xl">{cart.name}</span>
+                    <span className=" text-xl font-semibold">
+                      {cart?.variant?.priceOption?.product?.title.length > 20
+                        ? cart?.variant?.priceOption?.product?.title.slice(
+                            0,
+                            20
+                          ) + "..."
+                        : cart?.variant?.priceOption?.product?.title}
+                    </span>
                   </li>
                   <li className="">
-                    <span className="font-base ">Type: {cart.type}</span>
+                    <span className="font-base text-baseColor">
+                      Size: {cart?.variant?.size || "N/A"}
+                    </span>
                   </li>
                   <li>
-                    <span className="font-base">Color: {cart.type}</span>
+                    <span className="font-base text-baseColor">
+                      Color: {cart?.variant?.priceOption?.color || "N/A"}
+                    </span>
                   </li>
                 </ul>
               </TableCell>
-              <TableCell className="font-medium">{cart.price}</TableCell>
+              <TableCell className="font-medium">{cart?.totalPrice}</TableCell>
               <TableCell className="text-right font-medium">
                 <div className="flex items-center space-x-5">
                   <button
@@ -87,6 +116,7 @@ const CartItemsData = ({ CartListData }: any) => {
               <TableCell className="font-medium">{cart.price}</TableCell>
               <TableCell className="text-right font-medium">
                 <FontAwesomeIcon
+                  onClick={() => handleCartDelete(cart)}
                   icon={faCircleXmark}
                   className="text-xl text-red-600 hover:text-baseColor cursor-pointer"
                 />

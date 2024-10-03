@@ -1,22 +1,55 @@
+"use client";
 import { faArrowRight, faMobile } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
 import { Button } from "../button";
 import CommonCard from "@/components/CommonCard";
+import { useState } from "react";
 
 const HomeCategoriesSection = ({ category, productList, wishlist }: any) => {
-  // const { data: productList, pagination } = await getProductList();
+  // const [activeSubCategory, setActiveSubCategory] = useState<string | null>(
+  //   null
+  // );
 
-  // console.log(productList);
-
-  console.log(category);
+  // function handleCategory(id: any): void {
+  //   if (id === activeSubCategory) {
+  //     setSubCategory({ subCategory: "" }), setActiveSubCategory("");
+  //   } else {
+  //     setSubCategory({ subCategory: id }), setActiveSubCategory(id);
+  //   }
+  // }
 
   return (
     <div className="max-w-screen-xl mx-auto lg:pt-16 pb-12 lg:px-2 px-5">
       <div className="lg:grid lg:grid-cols-4 gap-5">
         <div className="border shadow-xl py-10 px-6 rounded-xl max-h-fit">
           <p className="text-xl lg:text-2xl font-semibold">Top Categories</p>
+          {/* 
+          <div>
+            {category?.map((item: any) => (
+              <div key={item?.id}>
+                {item?.subCategory?.map((subCategory: any) => (
+                  <div
+                    onClick={() => handleCategory(subCategory?.id)}
+                    key={subCategory?.id}
+                    className={`flex justify-between items-center   py-1 cursor-pointer 
+                    ${
+                      activeSubCategory === subCategory?.id
+                        ? "text-baseColor "
+                        : "hover:text-baseColor text-gray-400"
+                    }`}
+                  >
+                    <p className="font-medium flex items-center   hover:text-baseColor hover:ms-5 duration-300 hover:duration-300">
+                      {subCategory?.name}
+                    </p>
+
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div> */}
+
           <div className="my-5">
             {category?.map((item: any, index: number) => (
               <div key={item?.id}>

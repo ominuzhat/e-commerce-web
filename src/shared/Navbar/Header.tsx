@@ -27,7 +27,7 @@ import { logout } from "@/utils/actions/auth.user";
 import SearchBar from "./SearchBar";
 
 const Header = () => {
-  const { user, setIsLoading, wishlist }: any = useUser();
+  const { user, setIsLoading, wishlist, cartlist }: any = useUser();
 
   return (
     <div className="max-w-screen-xl mx-auto py-5 px-2">
@@ -90,17 +90,6 @@ const Header = () => {
               </span>
             </div>
           </Link>
-          {/* <div className="relative">
-            <FontAwesomeIcon
-              icon={faBagShopping}
-              className="w-8 bg-footerColor text-baseColor hover:text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"
-            />
-            <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-              0
-            </span>
-          </div> */}
-
-          {/* Cart */}
 
           <div>
             <DropdownMenu>
@@ -111,7 +100,7 @@ const Header = () => {
                     className="w-8 bg-footerColor text-baseColor hover:text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"
                   />
                   <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                    {cartList?.length}
+                    {cartlist?.data?.items?.length || 0}
                   </span>
                 </div>
               </DropdownMenuTrigger>
@@ -119,43 +108,55 @@ const Header = () => {
               <DropdownMenuContent className="w-[20rem] absolute right-0 px-3 py-2">
                 <DropdownMenuLabel>
                   <div className="flex items-center justify-between">
-                    <p>{cartList?.length} items</p>
+                    <p>{cartlist?.data?.items?.length} items</p>
                     <Link href={"/cart"}>View Cart</Link>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
 
-                {cartList?.slice(0, 3)?.map((cart, index) => (
-                  <DropdownMenuGroup key={index}>
-                    <DropdownMenuItem>
-                      <Image
-                        src={cart?.image}
-                        alt={cart?.name}
-                        width={50}
-                        height={50}
-                        className="border "
-                      />
-                      <div className="ml-4 ">
-                        <p className="font-semibold">{cart?.name}</p>
-                        <div className="flex items-center space-x-2">
-                          <p>{cart?.quantity}</p> <span>X</span>{" "}
-                          <p>{cart?.price}</p>
-                        </div>
-                      </div>
-                      <DropdownMenuShortcut>
-                        <FontAwesomeIcon
-                          icon={faCircleXmark}
-                          className="text-red-600 hover:text-baseColor cursor-pointer"
+                {cartlist?.data?.items
+                  ?.slice(0, 3)
+                  ?.map((cart: any, index: number) => (
+                    <DropdownMenuGroup key={index}>
+                      <DropdownMenuItem>
+                        <Image
+                          src={
+                            cart?.variant?.priceOption?.product?.featuredImage
+                          }
+                          alt={cart?.variant?.priceOption?.product?.title}
+                          width={50}
+                          height={50}
+                          className="border "
                         />
-                      </DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                ))}
+                        <div className="ml-4 ">
+                          <p className="font-semibold">
+                            {cart?.variant?.priceOption?.product?.title.length >
+                            25
+                              ? cart?.variant?.priceOption?.product?.title.slice(
+                                  0,
+                                  25
+                                ) + "..."
+                              : cart?.variant?.priceOption?.product?.title}
+                          </p>
+                          <div className="flex items-center space-x-2">
+                            <p>{cart?.quantity}</p> <span>X</span>{" "}
+                            <p>{cart?.totalPrice}</p>
+                          </div>
+                        </div>
+                        <DropdownMenuShortcut>
+                          <FontAwesomeIcon
+                            icon={faCircleXmark}
+                            className="text-red-600 hover:text-baseColor cursor-pointer"
+                          />
+                        </DropdownMenuShortcut>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                  ))}
                 <DropdownMenuSeparator />
                 <DropdownMenuLabel>
                   <div className="flex items-center justify-between">
                     <p>Total</p>
-                    <p>$500</p>
+                    <p>${cartlist?.data?.totalPrice}</p>
                   </div>
 
                   <Button className="w-full mt-5">Checkout</Button>

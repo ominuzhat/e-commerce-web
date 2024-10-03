@@ -25,11 +25,11 @@ import CommonAddToCartButton from "./CommonAddToCartButton";
 import { useGetCartlist } from "@/hooks/get.hook";
 
 const CommonCard = ({ data, wishlist }: any) => {
-  const { data: cartList } = useGetCartlist("");
+  // const { data: cartList } = useGetCartlist("");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [id, setId] = useState();
 
-  console.log(cartList, "cartlist");
+  // console.log(cartList, "cartlist");
 
   const singleData = data?.find((item: any) => item?.id === id);
 
@@ -85,7 +85,7 @@ const CommonCard = ({ data, wishlist }: any) => {
                   <Tooltip>
                     <TooltipTrigger>
                       <WishListButton
-                        wishlist={wishlist?.[0]}
+                        wishlist={wishlist}
                         productId={data?.id}
                       />
                     </TooltipTrigger>

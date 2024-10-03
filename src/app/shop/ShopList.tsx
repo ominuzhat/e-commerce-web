@@ -1,3 +1,4 @@
+"use client";
 import {
   Select,
   SelectContent,
@@ -10,15 +11,10 @@ import CommonCard from "@/components/CommonCard";
 import CommonPagination from "@/common/CommonPagination";
 import { getWishList } from "@/utils/actions/get/get.action";
 import { getCurrentUser } from "@/utils/actions/auth.user";
+import { useUser } from "@/providers/user.provider";
 
-const ShopList = async ({ productData, paginationData }: any) => {
-  const data = await getCurrentUser();
-
-  let wishlist = [];
-  if (data?.data?.email) {
-    const { data: wishlistItem } = await getWishList();
-    wishlist = wishlistItem;
-  }
+const ShopList = ({ productData, paginationData }: any) => {
+  const { wishlist }: any = useUser();
 
   return (
     <div className=" space-y-3 ">

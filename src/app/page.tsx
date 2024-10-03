@@ -29,10 +29,12 @@ export default async function Home() {
   }
 
   const { data: webInfo } = await getWebsiteInfo();
-  const { data: productList } = await getProductList("");
+  const { data: productList } = await getProductList({
+    subCategory: "",
+    searchItem: "",
+  });
 
   const {
-    officeInfo,
     trendingItems,
     hotItems,
     newArrivals,

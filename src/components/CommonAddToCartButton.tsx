@@ -1,5 +1,4 @@
 "use client";
-
 import { useAddToCart } from "@/hooks/post.hook";
 import { useEffect, useState } from "react";
 
@@ -12,12 +11,17 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 import { useGetCartlist } from "@/hooks/get.hook";
+import { useUser } from "@/providers/user.provider";
 
-const CommonAddToCartButton = ({ data, cartItem }: any) => {
-  const { mutate: handleAddToCart, data: cartData } = useAddToCart();
+const CommonAddToCartButton = ({ data }: any) => {
+  const { setIsCartLoading }: any = useUser();
+  const {
+    mutate: handleAddToCart,
+    data: cartData,
+    isPending,
+    isSuccess,
+  } = useAddToCart();
   const [cartId, setCartId] = useState<string | null>(null);
-
-  console.log(cartItem, "cartItem");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -33,12 +37,14 @@ const CommonAddToCartButton = ({ data, cartItem }: any) => {
       }
     }
   }, [cartData]);
+
   const handleAddToCartItem = (data: any) => {
     const addToCart = {
       variant: data?.priceOptions?.[0]?.variants[0]?.id,
       quantity: 1,
       cartId: cartId || null,
     };
+    setIsCartLoading(true);
     handleAddToCart(addToCart);
   };
   return (
