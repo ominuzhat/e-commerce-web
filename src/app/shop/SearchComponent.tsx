@@ -4,7 +4,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import useDebounce from "@/hooks/debounce.hook";
 import { useWebsiteInfo } from "@/providers/website.provider";
-import SearchBar from "@/shared/Navbar/SearchBar";
 import { faSearch, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -49,6 +48,7 @@ interface SearchFormData {
 
 const SearchComponent = ({ setSubCategory, setSearchterm }: any) => {
   const websiteInfo: any = useWebsiteInfo();
+
   const [activeSubCategory, setActiveSubCategory] = useState<string | null>(
     null
   );

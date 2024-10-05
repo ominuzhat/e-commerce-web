@@ -14,11 +14,21 @@ import { faList } from "@fortawesome/free-solid-svg-icons/faList";
 import { Button } from "@/components/ui/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useWebsiteInfo } from "@/providers/website.provider";
+import { useUser } from "@/providers/user.provider";
+import { useGetProduct } from "@/hooks/get.hook";
+import Link from "next/link";
 
 const CategoryMenu = () => {
   const websiteInfo: any = useWebsiteInfo();
 
-  const { category } = websiteInfo || {};
+  const { subCategory, setSubCategory, category, setCategory }: any = useUser();
+  const { data, isSuccess, isPending } = useGetProduct({
+    category: category || "",
+    subCategory: subCategory || "",
+    searchItem: "",
+  });
+
+  const { category: mainCategory } = websiteInfo || {};
 
   const dropdownItemStyle = {
     padding: "8px 12px",
@@ -47,32 +57,38 @@ const CategoryMenu = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-72 ms-32 px-4 py-2">
           <DropdownMenuGroup>
-            {category?.map((cat: any) => (
+            {mainCategory?.map((cat: any) => (
               <DropdownMenuSub key={cat.id}>
                 {cat?.subCategory?.length > 0 ? (
                   <>
-                    <DropdownMenuSubTrigger
-                      style={{
-                        ...dropdownItemStyle,
-                        paddingLeft: "12px",
-                        transition:
-                          "padding-left 0.3s ease, background-color 0.3s ease",
-                      }}
-                      onMouseEnter={(e) => {
-                        Object.assign(e.currentTarget.style, {
-                          ...dropdownItemHoverStyle,
-                          paddingLeft: "26px",
-                        });
-                      }}
-                      onMouseLeave={(e) => {
-                        Object.assign(e.currentTarget.style, {
-                          backgroundColor: "transparent",
-                          paddingLeft: "12px",
-                        });
-                      }}
+                    {" "}
+                    <Link
+                      href={`/shop`}
+                      onClick={() => setCategory({ category: cat?.id })}
                     >
-                      <span>{cat.name}</span>
-                    </DropdownMenuSubTrigger>
+                      <DropdownMenuSubTrigger
+                        style={{
+                          ...dropdownItemStyle,
+                          paddingLeft: "12px",
+                          transition:
+                            "padding-left 0.3s ease, background-color 0.3s ease",
+                        }}
+                        onMouseEnter={(e) => {
+                          Object.assign(e.currentTarget.style, {
+                            ...dropdownItemHoverStyle,
+                            paddingLeft: "26px",
+                          });
+                        }}
+                        onMouseLeave={(e) => {
+                          Object.assign(e.currentTarget.style, {
+                            backgroundColor: "transparent",
+                            paddingLeft: "12px",
+                          });
+                        }}
+                      >
+                        <span>{cat.name}</span>
+                      </DropdownMenuSubTrigger>
+                    </Link>
                   </>
                 ) : (
                   <DropdownMenuItem
@@ -101,7 +117,7 @@ const CategoryMenu = () => {
                     <DropdownMenuSubContent>
                       {cat.subCategory.map((sub: any) => (
                         <DropdownMenuItem
-                          key={sub.id}
+                          key={sub?.id}
                           style={dropdownItemStyle}
                           onMouseEnter={(e) => {
                             Object.assign(
@@ -115,7 +131,14 @@ const CategoryMenu = () => {
                             });
                           }}
                         >
-                          <span>{sub.name}</span>
+                          <Link
+                            href={`/shop`}
+                            onClick={() =>
+                              setSubCategory({ subCategory: sub?.id })
+                            }
+                          >
+                            <span>{sub.name}</span>
+                          </Link>
                         </DropdownMenuItem>
                       ))}
                     </DropdownMenuSubContent>

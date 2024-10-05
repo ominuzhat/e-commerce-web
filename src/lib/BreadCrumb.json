@@ -64,5 +64,11 @@
     "name": "Cart",
     "slug": "/cart",
     "section_down_scroll": "#service-section"
+  },
+  {
+    "id": "11",
+    "name": "Checkout",
+    "slug": "/checkout",
+    "section_down_scroll": "#service-section"
   }
 ]

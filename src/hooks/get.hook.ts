@@ -14,12 +14,14 @@ export const useGetCartlist = (cartId: string | null) => {
 export const useGetProduct = ({
   subCategory = "",
   searchItem = "",
+  category = "",
 }: {
+  category?: string;
   subCategory?: string;
   searchItem?: string | null;
 }) => {
   return useQuery({
-    queryKey: ["PRODUCT_LIST", searchItem, subCategory],
-    queryFn: () => getProductList({ searchItem, subCategory }),
+    queryKey: ["PRODUCT_LIST", searchItem, subCategory, category],
+    queryFn: () => getProductList({ searchItem, subCategory, category }),
   });
 };

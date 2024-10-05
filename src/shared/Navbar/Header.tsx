@@ -158,8 +158,9 @@ const Header = () => {
                     <p>Total</p>
                     <p>${cartlist?.data?.totalPrice}</p>
                   </div>
-
-                  <Button className="w-full mt-5">Checkout</Button>
+                  <Link href={"/checkout"}>
+                    <Button className="w-full mt-5">Checkout</Button>
+                  </Link>
                 </DropdownMenuLabel>
               </DropdownMenuContent>
             </DropdownMenu>

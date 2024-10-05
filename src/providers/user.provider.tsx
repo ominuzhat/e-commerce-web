@@ -16,6 +16,7 @@ const UserContext = createContext<IUserProviderValues | undefined>(undefined);
 
 interface IUserProviderValues {
   user: any;
+  category: any;
   subCategory: any;
   wishlist: any[];
   cartlist: any;
@@ -25,6 +26,7 @@ interface IUserProviderValues {
   wishlistLoading: boolean;
   setCartlist: any;
   setUser: (user: any) => void;
+  setCategory: (user: any) => void;
   setSubCategory: (user: any) => void;
   setIsCartLoading: Dispatch<SetStateAction<boolean>>;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
@@ -38,6 +40,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   const [isCartLoading, setIsCartLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [wishlistLoading, setWishlistLoading] = useState(false);
+  const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [cartId, setCartId] = useState<string | null>(null);
 
@@ -93,6 +96,8 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
         isCartLoading,
         setIsCartLoading,
         cartlist,
+        category,
+        setCategory,
       }}
     >
       {children}

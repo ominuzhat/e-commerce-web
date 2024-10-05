@@ -5,9 +5,11 @@ import envConfig from "@/lib/config/envConfig";
 export const getProductList = async ({
   searchItem = "",
   subCategory = "",
+  category = "",
 }: {
   searchItem?: string | null;
   subCategory?: any;
+  category?: any;
 }) => {
   let fetchOptions = {};
   fetchOptions = {
@@ -17,6 +19,9 @@ export const getProductList = async ({
   let query = `/product?keyword=${searchItem}`;
   if (subCategory) {
     query += `&subCategory=${subCategory?.subCategory}`;
+  }
+  if (category) {
+    query += `&subCategory=${category?.category}`;
   }
 
   try {

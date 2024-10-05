@@ -127,15 +127,6 @@ const CartItemsData = () => {
       </Table>
 
       <div className="lg:flex items-center justify-between mt-5 space-y-0 lg:space-y-5 px-2">
-        <div className="relative">
-          <Input
-            placeholder="Your Coupon Code"
-            className="rounded-full lg:w-[25rem] px-5 py-6 hover:border-baseColor focus:outline-none "
-          />
-          <Button className="rounded-full absolute top-1 right-1 ">
-            Apply Coupon
-          </Button>
-        </div>
         <Button className="">
           <FontAwesomeIcon icon={faArrowLeft} className="me-2" /> Continue
           Shopping
