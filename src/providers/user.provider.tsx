@@ -77,7 +77,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     handleUser();
-  }, [isLoading, wishlistLoading, setIsCartLoading]);
+  }, [isLoading, wishlistLoading, isCartLoading]);
 
   return (
     <UserContext.Provider

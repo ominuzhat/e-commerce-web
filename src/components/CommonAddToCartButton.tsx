@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/tooltip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
-import { useGetCartlist } from "@/hooks/get.hook";
 import { useUser } from "@/providers/user.provider";
 
 const CommonAddToCartButton = ({ data }: any) => {
@@ -39,13 +38,21 @@ const CommonAddToCartButton = ({ data }: any) => {
   }, [cartData]);
 
   const handleAddToCartItem = (data: any) => {
+    setIsCartLoading(true);
     const addToCart = {
       variant: data?.priceOptions?.[0]?.variants[0]?.id,
       quantity: 1,
       cartId: cartId || null,
     };
-    setIsCartLoading(true);
-    handleAddToCart(addToCart);
+
+    handleAddToCart(addToCart, {
+      onSuccess: (data) => {
+        setIsCartLoading(false);
+      },
+      onError: () => {
+        setIsCartLoading(false);
+      },
+    });
   };
   return (
     <div>
