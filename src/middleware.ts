@@ -35,9 +35,6 @@ export const config = {
   matcher: [
     "/profile",
     "/profile/:page*",
-    // "/profile/my-order",
-    // "/profile/address-list",
-    // "/profile/track-my-order",
     "/login",
     "/registration",
   ],

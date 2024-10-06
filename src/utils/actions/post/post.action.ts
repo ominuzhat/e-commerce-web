@@ -31,6 +31,8 @@ export const removeToCart = async (data: any) => {
 };
 
 export const addWishlist = async (data: any) => {
+  console.log(data);
+
   try {
     const res = await axiosInstance.post("/wishlist", data);
     revalidateTag("wishlist");

@@ -30,6 +30,8 @@ const WishListButton = ({ wishlist, productId }: any) => {
     }
   };
 
+  console.log(wishlist);
+
   return (
     <div>
       {wishlist?.find((p: any) => p.id === productId) ? (

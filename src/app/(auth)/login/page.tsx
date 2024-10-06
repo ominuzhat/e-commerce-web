@@ -21,8 +21,6 @@ export type TLogin = {
 
 const Login = () => {
   const router = useRouter();
-  // const searchParams = useSearchParams();
-  // const redirect = searchParams.get("redirect");
   const { mutate: handleUserLogin, isPending, data: userData } = useLogin();
 
   const { setIsLoading }: any = useUser();
@@ -36,11 +34,19 @@ const Login = () => {
   } = useForm<TLogin>();
 
   const onSubmit: SubmitHandler<TLogin> = (data: TLogin) => {
-    handleUserLogin(data);
-    if (!isPending && userData?.data) {
-      setIsLoading(true);
-      router.push("/");
-    }
+    setIsLoading(true);
+
+    handleUserLogin(data, {
+      onSuccess: (data) => {
+        if (data?.data?.user) {
+          setIsLoading(false);
+          router.back();
+        }
+      },
+      onError: () => {
+        setIsLoading(false);
+      },
+    });
   };
 
   return (

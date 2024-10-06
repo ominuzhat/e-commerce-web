@@ -93,7 +93,6 @@ export const useAddCoupon = () => {
       toast({
         title: `Hi, ${userName}!`,
         description: message,
-        // action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
       });
     },
     onError: (error: any) => {
