@@ -103,8 +103,8 @@ const CommonCard = ({ data, wishlist }: any) => {
                   <Tooltip>
                     <TooltipTrigger>
                       <p className="text-xl font-semibold text-left">
-                        {data?.title?.length > 25
-                          ? data?.title?.slice(0, 25) + "..."
+                        {data?.title?.length > 20
+                          ? data?.title?.slice(0, 20) + "..."
                           : data?.title}
                       </p>
                     </TooltipTrigger>
@@ -117,6 +117,9 @@ const CommonCard = ({ data, wishlist }: any) => {
               <p>
                 {renderStars(data?.avgRating)}
                 <span>({data?.totalReviews})</span>
+              </p>
+              <p className="font-semibold text-xs text-baseColor">
+                {data?.sales} Sold
               </p>
               <div className="flex gap-4 items-center">
                 {data?.priceOptions?.[0]?.variants?.[0]?.discount > 0 && (
@@ -134,10 +137,6 @@ const CommonCard = ({ data, wishlist }: any) => {
                     ৳{data?.priceOptions?.[0]?.variants?.[0]?.price}
                   </h2>
                 )}
-
-                <p className="font-semibold text-xs text-baseColor">
-                  {data?.sales} Sold
-                </p>
               </div>
               <CommonAddToCartButton data={data} />
             </div>

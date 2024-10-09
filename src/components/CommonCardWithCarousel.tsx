@@ -143,7 +143,9 @@ const CommonCardWithCarousel = ({ data, wishlist }: any) => {
                       {renderStars(data?.avgRating)}
                       <span>({data?.totalReviews})</span>
                     </p>
-
+                    <p className="font-semibold text-xs text-baseColor">
+                      {data?.sales} Sold
+                    </p>
                     <div className="flex gap-4 items-center">
                       {data?.priceOptions?.[0]?.variants?.[0]?.discount > 0 && (
                         <>
@@ -162,9 +164,7 @@ const CommonCardWithCarousel = ({ data, wishlist }: any) => {
                         </h2>
                       )}
                     </div>
-                    <p className="font-semibold text-xs text-baseColor">
-                      {data?.sales} Sold
-                    </p>
+
                     <CommonAddToCartButton data={data} />
                   </div>
                 </CarouselItem>

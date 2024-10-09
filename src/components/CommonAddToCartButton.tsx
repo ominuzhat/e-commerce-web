@@ -13,7 +13,12 @@ import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 import { useUser } from "@/providers/user.provider";
 
 const CommonAddToCartButton = ({ data }: any) => {
-  const { setIsCartLoading }: any = useUser();
+  const { cartlist, setIsCartLoading }: any = useUser();
+
+  const CartID = cartlist?.data?.items?.find(
+    (p: any) => p?.variant?.priceOption?.product?.id === data?.id
+  );
+
   const {
     mutate: handleAddToCart,
     data: cartData,
@@ -62,7 +67,11 @@ const CommonAddToCartButton = ({ data }: any) => {
             <TooltipTrigger onClick={() => handleAddToCartItem(data)}>
               <FontAwesomeIcon
                 icon={faBagShopping}
-                className="w-4 h-4 bg-secondaryColor text-white hover:bg-baseColor rounded-full p-2 cursor-pointer duration-300 hover:duration-300"
+                className={` ${
+                  CartID
+                    ? "bg-baseColor"
+                    : "bg-secondaryColor hover:bg-baseColor"
+                } w-4 h-4 text-white rounded-full p-2 cursor-pointer duration-300 hover:duration-300`}
               />
             </TooltipTrigger>
             <TooltipContent className="bg-secondaryColor text-white">

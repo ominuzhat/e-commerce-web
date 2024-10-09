@@ -1,14 +1,10 @@
-import p2 from "../../../../public/p2.png";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faStarHalfAlt } from "@fortawesome/free-regular-svg-icons";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "../tooltip";
-import { faBagShopping } from "@fortawesome/free-solid-svg-icons/faBagShopping";
 import { renderStars } from "@/components/CommonRating";
 import Link from "next/link";
 import CommonAddToCartButton from "@/components/CommonAddToCartButton";
@@ -51,9 +47,11 @@ const HomeSalesSection = ({ onSaleItems, topRatedItems, bestSellers }: any) => {
                   </TooltipProvider>
                 </Link>
                 <p>
-                  {" "}
                   {renderStars(data?.avgRating)}{" "}
                   <span>({data?.totalReviews})</span>
+                </p>
+                <p className="font-semibold text-xs text-baseColor">
+                  {data?.sales} Sold
                 </p>
                 <div className="flex gap-4 items-center">
                   {data?.priceOptions?.[0]?.variants?.[0]?.discount > 0 && (
@@ -117,6 +115,9 @@ const HomeSalesSection = ({ onSaleItems, topRatedItems, bestSellers }: any) => {
                   {renderStars(data?.avgRating)}{" "}
                   <span>({data?.totalReviews})</span>
                 </p>
+                <p className="font-semibold text-xs text-baseColor">
+                  {data?.sales} Sold
+                </p>
                 <div className="flex gap-4 items-center">
                   {data?.priceOptions?.[0]?.variants?.[0]?.discount > 0 && (
                     <>
@@ -175,6 +176,9 @@ const HomeSalesSection = ({ onSaleItems, topRatedItems, bestSellers }: any) => {
                   {" "}
                   {renderStars(data?.avgRating)}{" "}
                   <span>({data?.totalReviews})</span>
+                </p>
+                <p className="font-semibold text-xs text-baseColor">
+                  {data?.sales} Sold
                 </p>
                 <div className="flex gap-4 items-center">
                   {data?.priceOptions?.[0]?.variants?.[0]?.discount > 0 && (
