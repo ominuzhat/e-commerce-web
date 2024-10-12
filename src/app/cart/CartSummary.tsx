@@ -17,11 +17,17 @@ const CartSummary = ({ checkout }: any) => {
     isSuccess,
   }: any = useAddOrder();
   const { mutate: handleAddCoupon }: any = useAddCoupon();
-  const { cartlist }: any = useUser();
+  const { user, cartlist }: any = useUser();
   const { discount, subtotal, grandTotal } = cartlist?.data || {};
 
   const [cartId, setCartId] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (isSuccess && addOrder?.data?.data?.bkashURL) {
+      const bkashURL = addOrder.data.data.bkashURL;
+      window.location.href = bkashURL;
+    }
+  }, [isSuccess, addOrder]);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedCartId = localStorage.getItem("cartId");
@@ -51,9 +57,9 @@ const CartSummary = ({ checkout }: any) => {
       });
     }
   }
-  if (isSuccess && addOrder?.data) {
-    router.push("/order");
-  }
+  // if (isSuccess && addOrder?.data) {
+  //   router.push("/order");
+  // }
 
   return (
     <div className=" px-6 py-10 rounded-lg bg-footerColor shadow">

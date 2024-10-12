@@ -14,6 +14,18 @@ export const addToCart = async (data: any) => {
   }
 };
 
+export const updateToCart = async (data: any) => {
+  try {
+    const res = await axiosInstance.patch("/cart", data);
+    revalidateTag("addTocart");
+    return res?.data;
+  } catch (error: any) {
+    throw new Error(
+      `Add to Cart Error : ${error?.response?.data?.error?.message}`
+    );
+  }
+};
+
 export const removeToCart = async (data: any) => {
   try {
     const res = await axiosInstance.delete("/cart", data);
@@ -57,7 +69,7 @@ export const addCoupon = async (data: any) => {
 };
 export const AddOrder = async (data: any) => {
   try {
-    const res = await axiosInstance.post("/order", data);
+    const res = await axiosInstance.post("/payment/bkash/create", data);
 
     return { status: res.status, data: res.data };
   } catch (error: any) {

@@ -20,6 +20,9 @@ export async function middleware(request: NextRequest) {
       }
     }
 
+    if (pathname.startsWith("/checkout")) {
+      return NextResponse.next();
+    }
     if (pathname.startsWith("/profile")) {
       return NextResponse.next();
     }
@@ -36,6 +39,7 @@ export const config = {
     "/profile",
     "/profile/:page*",
     "/login",
+    "/checkout",
     "/registration",
   ],
 };

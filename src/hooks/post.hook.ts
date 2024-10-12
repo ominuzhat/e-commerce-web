@@ -4,6 +4,7 @@ import {
   addToCart,
   addWishlist,
   removeToCart,
+  updateToCart,
 } from "@/utils/actions/post/post.action";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "./use-toast";
@@ -22,6 +23,27 @@ export const useAddToCart = () => {
     onError: (data) => {
       toast({
         title: "Product added Failed",
+        description: data?.message || "An unknown error occurred.",
+      });
+    },
+  });
+};
+export const useUpdateToCart = () => {
+  return useMutation({
+    mutationKey: ["Update_TO_CART"],
+    mutationFn: async (data: any) => await updateToCart(data),
+    onSuccess: (data) => {
+      console.log(data, "suc");
+
+      toast({
+        title: ` ${data?.data?.items[0]?.variant?.priceOption?.product?.title}!`,
+        description: "Product Updated successfully",
+      });
+    },
+    onError: (data) => {
+      console.log(data, "error");
+      toast({
+        title: "Product Updated Failed",
         description: data?.message || "An unknown error occurred.",
       });
     },

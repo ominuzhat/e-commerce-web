@@ -4,6 +4,8 @@ import MainLayout from "@/layout/MainLayout";
 import { Metadata } from "next";
 import CartItems from "./CartItemsData";
 import CartSummary from "./CartSummary";
+import { Suspense } from "react";
+import LoadingPost from "../shop/LoadingPost";
 
 export const metadata: Metadata = {
   title: "Cart | Eco Shop",
@@ -20,7 +22,9 @@ const CartList = () => {
             <CartItems />
           </div>
           <div>
-            <CartSummary />
+            <Suspense fallback={<LoadingPost />}>
+              <CartSummary />
+            </Suspense>
           </div>
         </div>
       </div>

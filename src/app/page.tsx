@@ -18,6 +18,7 @@ import { getWishList } from "@/utils/actions/get/get.action";
 import { getProductList } from "@/utils/actions/productList";
 import { getWebsiteInfo } from "@/utils/actions/websiteInfo";
 import { Suspense } from "react";
+import LoadingPost from "./shop/LoadingPost";
 
 export default async function Home() {
   const data = await getCurrentUser();
@@ -46,7 +47,7 @@ export default async function Home() {
 
   return (
     <MainLayout>
-      <Suspense fallback="loading...">
+      <Suspense fallback={<LoadingPost />}>
         <HeroSection />
         <HomeService />
         <HomeCategory category={category} />

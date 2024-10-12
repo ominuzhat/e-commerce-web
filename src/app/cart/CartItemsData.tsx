@@ -8,7 +8,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useAddToCart, useRemoveToCart } from "@/hooks/post.hook";
+import {
+  useAddToCart,
+  useRemoveToCart,
+  useUpdateToCart,
+} from "@/hooks/post.hook";
 import { useUser } from "@/providers/user.provider";
 import { faCircleXmark, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,31 +20,44 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const CartItemsData = () => {
+  const { mutate: handleUpdateToCart } = useUpdateToCart();
   const { mutate: handleAddToCart } = useAddToCart();
   const { mutate: handleRemoveToCart, data: cartData } = useRemoveToCart();
   const { cartlist, setIsCartLoading }: any = useUser();
 
-  // Function to update the cart quantity
+  // console.log(cartlist?.data);
+
   const updateCartQuantity = (cart: any, quantity: number) => {
+    // console.log(cart, quantity);
+
     const data = {
       quantity: quantity,
       variant: cart?.variant?.id,
       cartId: cartlist?.data?.id,
     };
-    // Mutate the cart with the updated quantity
-    handleAddToCart(data);
+
     setIsCartLoading(true);
+
+    handleUpdateToCart(data, {
+      onSuccess: () => {
+        setIsCartLoading(false);
+      },
+      onError: () => {
+        setIsCartLoading(false);
+      },
+    });
   };
 
   const handleDecrement = (cart: any) => {
     if (cart?.quantity > 0) {
-      const newQuantity = cart.quantity - 1;
+      const newQuantity = cart?.quantity - 1;
+      // console.log(newQuantity, "cartt");
       updateCartQuantity(cart, newQuantity);
     }
   };
 
   const handleIncrement = (cart: any) => {
-    const newQuantity = cart.quantity + 1;
+    const newQuantity = cart?.quantity + 1;
     updateCartQuantity(cart, newQuantity);
   };
 
